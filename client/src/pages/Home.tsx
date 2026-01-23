@@ -1,256 +1,260 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, ChevronRight } from "lucide-react";
+import { ArrowRight, CheckCircle2, Server, Cloud, Database, Shield, Zap, Play } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Home() {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-white py-16 lg:py-24">
-        <div className="container grid lg:grid-cols-2 gap-12 items-center">
-          <div className="max-w-2xl">
-            <h1 className="text-4xl font-bold tracking-tight text-[#1A1A1A] sm:text-6xl mb-6">
-              Transforming Viewer Experiences <span className="text-[#FF5F00]">with Technology</span>
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+        {/* Animated Background */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#0056D2]/20 via-[#050A1F] to-[#02040A]"></div>
+          <div className="absolute top-0 left-0 w-full h-full bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
+        </div>
+
+        <div className="container relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+          <div className="max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00FF00]/10 border border-[#00FF00]/20 text-[#00FF00] text-xs font-bold tracking-wider uppercase mb-6 animate-fade-in-up">
+              <span className="w-2 h-2 rounded-full bg-[#00FF00] animate-pulse"></span>
+              Media Asset Management
+            </div>
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6 leading-tight animate-fade-in-up animation-delay-100">
+              Gestão inteligente de <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00FF00] to-emerald-400">ativos digitais</span>
             </h1>
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-              Empower teams of any size to create, manage, and deliver stunning live and on-demand content with tools trusted by broadcasters and media organizations worldwide.
+            <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed max-w-xl animate-fade-in-up animation-delay-200">
+              Com o MAM Media Portal é possível realizar a gestão de pequenos, médios e grandes acervos de mídia, com segurança garantida e recuperação ágil. Recursos avançados de IA garantem o sucesso de suas pesquisas.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Button className="bg-[#FF5F00] hover:bg-orange-600 text-white font-semibold px-8 py-6 rounded-sm text-lg">
-                Talk to an Expert
-              </Button>
-              <Button variant="outline" className="border-gray-300 text-[#1A1A1A] hover:bg-gray-50 font-semibold px-8 py-6 rounded-sm text-lg">
-                Explore Industries
-              </Button>
-            </div>
-            
-            <div className="mt-12 pt-8 border-t border-gray-100">
-              <p className="text-sm font-semibold text-gray-500 mb-4">Supporting 3,500+ companies globally</p>
-              <div className="flex gap-8 opacity-50 grayscale hover:grayscale-0 transition-all">
-                {/* Logos placeholders */}
-                <div className="h-8 w-20 bg-gray-300 rounded"></div>
-                <div className="h-8 w-20 bg-gray-300 rounded"></div>
-                <div className="h-8 w-20 bg-gray-300 rounded"></div>
-                <div className="h-8 w-20 bg-gray-300 rounded"></div>
-              </div>
-            </div>
-          </div>
-          <div className="relative">
-            {/* Geometric Mask Image Placeholder */}
-            <div className="relative aspect-square md:aspect-[4/3] lg:aspect-square overflow-hidden rounded-bl-[100px] rounded-tr-[40px] shadow-2xl bg-gray-100">
-              <img 
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" 
-                alt="Broadcast studio environment" 
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#0056D2]/20 to-transparent"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Solutions Grid */}
-      <section className="py-20 bg-gray-50">
-        <div className="container">
-          <div className="mb-12">
-            <p className="text-[#FF5F00] font-bold text-sm tracking-wider uppercase mb-2">Industries</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1A1A1A]">
-              Innovative Solutions for<br />Every Creator, Every Vision
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                title: "Media and Entertainment",
-                desc: "Captivate audiences with innovative and engaging storytelling solutions.",
-                tag: "01",
-                color: "bg-[#FF5F00]",
-                img: "https://images.unsplash.com/photo-1586899028174-e7098604235b?q=80&w=2071&auto=format&fit=crop"
-              },
-              {
-                title: "Sports",
-                desc: "From broadcast to live streams and highlight clips, solutions that make every second count.",
-                tag: "02",
-                color: "bg-[#22C55E]",
-                img: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=2070&auto=format&fit=crop"
-              },
-              {
-                title: "Enterprise",
-                desc: "Empowering Organizations, Engaging People. No matter your business.",
-                tag: "03",
-                color: "bg-[#0EA5E9]",
-                img: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2032&auto=format&fit=crop"
-              },
-              {
-                title: "Creator Economy",
-                desc: "Empower Your Creators with Broadcast-Quality Tools.",
-                tag: "04",
-                color: "bg-[#E11D48]",
-                img: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974&auto=format&fit=crop"
-              }
-            ].map((item, idx) => (
-              <div key={idx} className="group cursor-pointer">
-                <div className="relative aspect-video overflow-hidden rounded-md mb-4">
-                  <img src={item.img} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                  <div className={`absolute bottom-4 left-4 ${item.color} text-white text-xs font-bold px-2 py-1 rounded-sm`}>
-                    {item.tag}
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold text-[#1A1A1A] mb-2 group-hover:text-[#FF5F00] transition-colors">{item.title}</h3>
-                <p className="text-gray-600 text-sm mb-4">{item.desc}</p>
-                <div className="flex items-center text-sm font-semibold text-[#1A1A1A] group-hover:text-[#FF5F00] transition-colors">
-                  Learn more <ArrowRight size={16} className="ml-2" />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Use Cases - Dark Grid */}
-      <section className="py-24 bg-white">
-        <div className="container">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <p className="text-gray-500 font-bold text-xs tracking-wider uppercase mb-3">Use Cases</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1A1A1A] mb-4">
-              Revolutionizing Viewer Experiences Every Day
-            </h2>
-            <p className="text-gray-600">
-              Empowering creators everywhere to deliver immersive viewer experiences across industries, platforms, and audiences.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              "Live Production and Vision Mixing",
-              "Newsroom and PCR",
-              "Graphics",
-              "Venue Production",
-              "Digital and Streaming",
-              "Studio Production",
-              "Virtual Townhalls and Leadership Updates",
-              "Lecture Capture"
-            ].map((title, idx) => (
-              <div key={idx} className="bg-[#1A1A1A] p-6 rounded-sm hover:bg-[#FF5F00] transition-colors group cursor-pointer min-h-[180px] flex flex-col justify-between">
-                <div className="flex justify-between items-start">
-                  <h3 className="text-white font-bold text-lg leading-tight max-w-[80%]">{title}</h3>
-                  <ArrowRight className="text-gray-500 group-hover:text-white transition-colors" size={20} />
-                </div>
-                <p className="text-gray-400 text-xs group-hover:text-white/90 mt-4">
-                  Scale from small shows to primetime with powerful switching, automation, and real-time graphics.
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Blue CTA Section */}
-      <section className="py-16 bg-[#0056D2] text-white overflow-hidden relative">
-        <div className="container grid lg:grid-cols-2 gap-12 items-center relative z-10">
-          <div>
-            <p className="text-blue-200 text-xs font-bold tracking-wider uppercase mb-4">Vizrt at ISE 2026</p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Powering the Future of Video Production.
-            </h2>
-            <p className="text-xl font-medium mb-6">Cloud. AI. Digital.</p>
-            <p className="text-blue-100 mb-8 max-w-md">
-              February 3 - 6 | Fira de Barcelona | Hall 4 Stand no. 4Q500 | Guest Pass Code: ISE261318
-            </p>
-            <div className="flex gap-4">
-              <Button className="bg-white text-[#0056D2] hover:bg-blue-50 font-bold px-6 py-2 rounded-sm">
-                Book a Meeting
-              </Button>
-              <Button variant="ghost" className="text-white hover:bg-white/10 font-bold px-6 py-2 rounded-sm">
-                Learn More <ArrowRight size={16} className="ml-2" />
+            <div className="flex flex-wrap gap-4 animate-fade-in-up animation-delay-300">
+              <Link href="/contact">
+                <Button className="bg-[#00FF00] hover:bg-green-400 text-black font-bold px-8 py-6 rounded-full text-lg shadow-[0_0_20px_rgba(0,255,0,0.3)] hover:shadow-[0_0_30px_rgba(0,255,0,0.5)] transition-all">
+                  Entrar em contato
+                </Button>
+              </Link>
+              <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 font-bold px-8 py-6 rounded-full text-lg backdrop-blur-sm">
+                <Play className="mr-2 h-5 w-5 fill-current" /> Conheça em 1 minuto
               </Button>
             </div>
-          </div>
-          <div className="relative h-64 lg:h-full min-h-[300px]">
-             {/* Image mask effect */}
-             <div className="absolute inset-0 bg-gradient-to-l from-transparent to-[#0056D2] z-10 lg:w-1/2"></div>
-             <img 
-              src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop" 
-              alt="Conference crowd" 
-              className="absolute right-0 top-0 h-full w-full lg:w-[120%] object-cover rounded-l-full border-4 border-white/10"
-             />
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-24 bg-[#F9FAFB]">
-        <div className="container">
-          <div className="mb-16">
-             <p className="text-gray-500 font-bold text-xs tracking-wider uppercase mb-3">Metrics</p>
-             <h2 className="text-3xl font-bold text-[#1A1A1A]">Shaping Experiences Globally</h2>
           </div>
           
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="relative animate-fade-in-up animation-delay-500 hidden lg:block">
+            <div className="relative z-10 bg-gradient-to-tr from-white/5 to-white/0 backdrop-blur-xl border border-white/10 rounded-2xl p-2 shadow-2xl transform rotate-1 hover:rotate-0 transition-transform duration-700">
+              <img 
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" 
+                alt="Media Portal Dashboard Interface" 
+                className="rounded-xl shadow-inner border border-white/5"
+              />
+              
+              {/* Floating Cards */}
+              <div className="absolute -bottom-6 -left-6 bg-[#050A1F] border border-white/10 p-4 rounded-lg shadow-xl flex items-center gap-4 animate-float">
+                <div className="bg-[#00FF00]/20 p-2 rounded-full">
+                  <Database className="text-[#00FF00]" size={24} />
+                </div>
+                <div>
+                  <div className="text-xs text-gray-400 uppercase font-bold">Storage</div>
+                  <div className="text-white font-bold text-lg">Híbrido / Cloud</div>
+                </div>
+              </div>
+
+              <div className="absolute -top-6 -right-6 bg-[#050A1F] border border-white/10 p-4 rounded-lg shadow-xl flex items-center gap-4 animate-float animation-delay-1000">
+                <div className="bg-blue-500/20 p-2 rounded-full">
+                  <Zap className="text-blue-400" size={24} />
+                </div>
+                <div>
+                  <div className="text-xs text-gray-400 uppercase font-bold">Velocidade</div>
+                  <div className="text-white font-bold text-lg">Alta Performance</div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Decorative Glows */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[#0056D2]/20 blur-[100px] rounded-full -z-10"></div>
+          </div>
+        </div>
+        
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center p-1">
+            <div className="w-1 h-2 bg-[#00FF00] rounded-full"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Segments Section */}
+      <section className="py-24 bg-[#02040A]">
+        <div className="container">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">Segmentos de negócio</h2>
+            <p className="text-gray-400 text-lg">
+              Um sistema único, customizado de acordo com o segmento de negócio de cada empresa.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
             {[
-              { val: "4.5bn+", label: "People interact daily with media created using our tools" },
-              { val: "3500+", label: "Companies Globally use Vizrt to engage their viewers" },
-              { val: "92", label: "Countries rely on our tools to engage diverse audiences" },
-              { val: "600+", label: "Passionate people working to transform viewer experiences" }
-            ].map((stat, idx) => (
-              <div key={idx}>
-                <div className="text-4xl md:text-5xl font-bold text-[#FF5F00] mb-4">{stat.val}</div>
-                <p className="text-gray-600 text-sm leading-relaxed">{stat.label}</p>
+              { title: "Televisão", icon: "📺", desc: "Gestão completa para emissoras" },
+              { title: "Rádio", icon: "📻", desc: "Acervo de áudio inteligente" },
+              { title: "TV Igreja", icon: "⛪", desc: "Organização de cultos e eventos" },
+              { title: "Público", icon: "🏛️", desc: "Transparência e acesso rápido" },
+              { title: "EAD", icon: "🎓", desc: "Gestão de videoaulas e materiais" }
+            ].map((item, idx) => (
+              <div key={idx} className="bg-white/5 border border-white/10 p-6 rounded-xl hover:bg-white/10 hover:border-[#00FF00]/50 transition-all group cursor-pointer text-center">
+                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{item.icon}</div>
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#00FF00] transition-colors">{item.title}</h3>
+                <p className="text-sm text-gray-400">{item.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Case Studies Preview */}
-      <section className="py-24 bg-white">
+      {/* Advantages Section */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[#050A1F]"></div>
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-[url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-5 mix-blend-overlay"></div>
+        
+        <div className="container relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="inline-block text-[#00FF00] font-bold tracking-widest uppercase text-sm mb-4">Por que Media Portal?</div>
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Vantagens da nossa tecnologia</h2>
+              <p className="text-gray-400 text-lg mb-8">
+                Entenda os diferenciais dos softwares de gestão de ativos da Media Portal que nos tornam líderes de mercado.
+              </p>
+              
+              <div className="space-y-8">
+                {[
+                  { title: "Integrações multisistemas", desc: "Faça a integração com ingests, playouts e outros sistemas já contratados.", icon: <Server className="text-[#00FF00]" /> },
+                  { title: "Flexibilidade", desc: "Construa fluxos de trabalho customizados aderentes ao processo atual da emissora.", icon: <Zap className="text-[#00FF00]" /> },
+                  { title: "Segurança", desc: "Sistema de prevenção de desastres e múltiplas redundâncias.", icon: <Shield className="text-[#00FF00]" /> },
+                  { title: "Armazenamento inteligente", desc: "Faça a gestão e o armazenamento dos ativos em nuvem, storage ou robótica.", icon: <Cloud className="text-[#00FF00]" /> }
+                ].map((item, idx) => (
+                  <div key={idx} className="flex gap-4">
+                    <div className="mt-1 bg-white/5 p-3 rounded-lg border border-white/10 h-fit">
+                      {item.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+                      <p className="text-gray-400">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            <div className="relative">
+              <div className="grid grid-cols-2 gap-4">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" className="rounded-2xl shadow-2xl border border-white/10 translate-y-8" alt="Dashboard" />
+                <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=2069&auto=format&fit=crop" className="rounded-2xl shadow-2xl border border-white/10" alt="Server Room" />
+              </div>
+              {/* Tech Badge */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/80 backdrop-blur-md border border-[#00FF00]/30 p-6 rounded-full shadow-[0_0_30px_rgba(0,255,0,0.2)]">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-[#00FF00]">16+</div>
+                  <div className="text-xs text-white uppercase tracking-wider font-bold">Anos de<br/>Inovação</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Workflow Section */}
+      <section className="py-24 bg-[#02040A]">
         <div className="container">
-          <div className="text-center mb-16">
-            <p className="text-gray-500 font-bold text-xs tracking-wider uppercase mb-3">Case Studies</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1A1A1A] mb-4">Real-World Results with Vizrt</h2>
-            <Link href="/cases">
-              <a className="inline-flex items-center text-sm font-bold text-[#1A1A1A] hover:text-[#FF5F00] transition-colors">
-                View All Case Studies <ArrowRight size={16} className="ml-2" />
-              </a>
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">Fluxos de Mídia</h2>
+            <p className="text-gray-400 text-lg">
+              Alguns exemplos do que você pode fazer com a Media Portal para otimizar sua produção.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: "Arquivamento automático", desc: "Catalogação e indexação nos padrões LTO, RDX e ODA." },
+              { title: "Solução flexível", desc: "Escolha uma solução on premises, nuvem ou híbrida." },
+              { title: "Inteligência Artificial", desc: "Geração automática de metadados, legendas e análise de faces e objetos." },
+              { title: "Gestão inteligente", desc: "Gestão do fluxo de produção, arquivamento seguro e recuperação rápida." }
+            ].map((item, idx) => (
+              <div key={idx} className="bg-gradient-to-br from-white/5 to-transparent border border-white/10 p-8 rounded-2xl hover:border-[#00FF00]/30 transition-all group">
+                <div className="w-12 h-12 bg-[#00FF00]/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-[#00FF00] transition-colors duration-300">
+                  <CheckCircle2 className="text-[#00FF00] group-hover:text-black transition-colors" size={24} />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-4">{item.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Partners Marquee (Static for now) */}
+      <section className="py-16 border-y border-white/5 bg-[#050A1F]">
+        <div className="container text-center mb-8">
+          <p className="text-sm font-bold text-gray-500 uppercase tracking-widest">Tecnologias Integradas</p>
+        </div>
+        <div className="container overflow-hidden">
+          <div className="flex justify-between items-center opacity-50 grayscale hover:grayscale-0 transition-all duration-500 gap-8 flex-wrap lg:flex-nowrap">
+            {["Adobe", "Sony", "AWS", "Google Cloud", "IBM", "Dell"].map((partner, idx) => (
+              <div key={idx} className="text-2xl font-bold text-white/30 hover:text-white transition-colors cursor-default">{partner}</div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Blog Preview */}
+      <section className="py-24 bg-[#02040A]">
+        <div className="container">
+          <div className="flex justify-between items-end mb-12">
+            <div>
+              <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">Nosso Conteúdo</h2>
+              <p className="text-gray-400">Tenha acesso ao conteúdo gratuito sobre o mercado Broadcast.</p>
+            </div>
+            <Link href="/blog">
+              <Button variant="ghost" className="text-[#00FF00] hover:text-green-400 hover:bg-transparent p-0 font-bold hidden md:flex">
+                Ver todos os posts <ArrowRight className="ml-2" />
+              </Button>
             </Link>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                logo: "SHARP",
-                quote: "TriCaster® and NDI® have helped us reach more audiences with tailored content.",
-                bg: "bg-gray-100",
-                img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
+                title: "Media Portal celebra balanço positivo em 2024",
+                date: "Nov 2024",
+                img: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop",
+                desc: "Projetos de destaque e expansão de negócios marcam o ano."
               },
               {
-                logo: "Chess.com",
-                quote: "Vizrt graphics tools bring chess to life for millions of viewers worldwide.",
-                bg: "bg-[#0056D2]",
-                text: "text-white",
-                img: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?q=80&w=2071&auto=format&fit=crop"
+                title: "16 anos de inovação e excelência",
+                date: "Out 2024",
+                img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop",
+                desc: "Empresa comemorou 16 anos de existência no mercado de broadcast."
               },
               {
-                logo: "blinx",
-                quote: "Creating a digital-native storytelling hub for the next generation.",
-                bg: "bg-black",
-                text: "text-white",
-                img: "https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?q=80&w=2070&auto=format&fit=crop"
+                title: "Canal UOL amplia cobertura e estreia na Vivo TV",
+                date: "Set 2024",
+                img: "https://images.unsplash.com/photo-1586899028174-e7098604235b?q=80&w=2071&auto=format&fit=crop",
+                desc: "Ampliando acesso a conteúdos exclusivos de esportes e jornalismo."
               }
-            ].map((card, idx) => (
-              <div key={idx} className={`relative group overflow-hidden rounded-md h-[400px] flex flex-col justify-end p-8 ${card.bg} ${card.text || 'text-[#1A1A1A]'}`}>
-                 <img src={card.img} alt="Case study" className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
-                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
-                 
-                 <div className="relative z-20 transition-transform duration-300 group-hover:-translate-y-4">
-                   <h3 className={`text-2xl font-serif font-bold mb-4 ${card.text ? '' : 'text-[#1A1A1A]'} group-hover:text-white`}>{card.logo}</h3>
-                   <p className={`text-lg font-medium leading-snug mb-6 ${card.text ? 'opacity-90' : 'text-gray-700'} group-hover:text-white`}>"{card.quote}"</p>
-                   <div className="flex items-center text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white">
-                     Read Case Study <ArrowRight size={16} className="ml-2" />
-                   </div>
-                 </div>
+            ].map((post, idx) => (
+              <div key={idx} className="group cursor-pointer">
+                <div className="relative aspect-video overflow-hidden rounded-xl mb-6 border border-white/10">
+                  <img src={post.img} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full border border-white/10">
+                    {post.date}
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#00FF00] transition-colors">
+                  {post.title}
+                </h3>
+                <p className="text-gray-400 text-sm mb-4 leading-relaxed">
+                  {post.desc}
+                </p>
+                <div className="flex items-center text-[#00FF00] font-bold text-sm opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
+                  Ler mais <ArrowRight size={16} className="ml-2" />
+                </div>
               </div>
             ))}
           </div>

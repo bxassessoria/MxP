@@ -1,59 +1,72 @@
 import { Link } from "wouter";
+import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
-    Products: [
-      { label: "Live Production", href: "/products/live-production" },
-      { label: "Graphics", href: "/products/graphics" },
-      { label: "Cloud Production", href: "/products/cloud" },
-      { label: "Automation", href: "/products/automation" },
+    Produtos: [
+      { label: "MAM", href: "/products/mam" },
+      { label: "Cloud", href: "/products/cloud" },
+      { label: "Arquivamento", href: "/products/archiving" },
+      { label: "Inteligência Artificial", href: "/products/ai" },
     ],
-    Company: [
-      { label: "About Us", href: "/about" },
-      { label: "Careers", href: "/careers" },
-      { label: "Partners", href: "/partners" },
-      { label: "Contact", href: "/contact" },
+    Empresa: [
+      { label: "Sobre Nós", href: "/about" },
+      { label: "Missão, Visão, Valores", href: "/mission" },
+      { label: "Carreiras", href: "/careers" },
+      { label: "Contato", href: "/contact" },
     ],
-    Resources: [
+    Recursos: [
       { label: "Blog", href: "/blog" },
-      { label: "Case Studies", href: "/cases" },
-      { label: "Events", href: "/events" },
-      { label: "Support", href: "/support" },
+      { label: "Cases de Sucesso", href: "/cases" },
+      { label: "Integrações", href: "/partners" },
+      { label: "Suporte", href: "/support" },
     ],
   };
 
   return (
-    <footer className="bg-[#1A1A1A] text-white py-16">
-      <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
+    <footer className="bg-[#02040A] text-white pt-20 pb-10 border-t border-white/5 relative overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[300px] bg-[#0056D2]/10 blur-[100px] rounded-full pointer-events-none"></div>
+
+      <div className="container relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <Link href="/">
-              <a className="text-3xl font-bold text-[#FF5F00] mb-6 block">vizrt</a>
+              <a className="block mb-6">
+                <img src="/images/mediaportal_logo.webp" alt="Media Portal" className="h-10 w-auto brightness-200 contrast-200" />
+              </a>
             </Link>
-            <p className="text-gray-400 mb-6 max-w-sm">
-              Empowering stories everywhere. Vizrt delivers the visual storytelling tools that define the future of media.
+            <p className="text-gray-400 mb-8 max-w-sm leading-relaxed">
+              Gestão inteligente de ativos digitais. Transformamos a maneira como empresas de mídia armazenam, gerenciam e distribuem seu conteúdo.
             </p>
             <div className="flex space-x-4">
-              {/* Social Icons Placeholders */}
-              <div className="w-8 h-8 bg-gray-800 rounded-full hover:bg-[#FF5F00] transition-colors"></div>
-              <div className="w-8 h-8 bg-gray-800 rounded-full hover:bg-[#FF5F00] transition-colors"></div>
-              <div className="w-8 h-8 bg-gray-800 rounded-full hover:bg-[#FF5F00] transition-colors"></div>
-              <div className="w-8 h-8 bg-gray-800 rounded-full hover:bg-[#FF5F00] transition-colors"></div>
+              <a href="#" className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-[#00FF00] hover:text-black transition-all duration-300">
+                <Linkedin size={18} />
+              </a>
+              <a href="#" className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-[#00FF00] hover:text-black transition-all duration-300">
+                <Instagram size={18} />
+              </a>
+              <a href="#" className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-[#00FF00] hover:text-black transition-all duration-300">
+                <Facebook size={18} />
+              </a>
+              <a href="#" className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-[#00FF00] hover:text-black transition-all duration-300">
+                <Youtube size={18} />
+              </a>
             </div>
           </div>
 
           {/* Link Columns */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h3 className="text-lg font-semibold mb-6">{category}</h3>
+              <h3 className="text-lg font-bold mb-6 text-white border-b-2 border-[#00FF00] inline-block pb-1">{category}</h3>
               <ul className="space-y-4">
                 {links.map((link) => (
                   <li key={link.label}>
                     <Link href={link.href}>
-                      <a className="text-gray-400 hover:text-white transition-colors text-sm">
+                      <a className="text-gray-400 hover:text-[#00FF00] transition-colors text-sm font-medium">
                         {link.label}
                       </a>
                     </Link>
@@ -64,12 +77,11 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-          <p>&copy; {currentYear} Vizrt. All rights reserved.</p>
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+          <p>&copy; {currentYear} Media Portal. Todos os direitos reservados.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <Link href="/privacy"><a className="hover:text-white">Privacy Policy</a></Link>
-            <Link href="/terms"><a className="hover:text-white">Terms of Use</a></Link>
-            <Link href="/cookies"><a className="hover:text-white">Cookie Settings</a></Link>
+            <Link href="/privacy"><a className="hover:text-white transition-colors">Política de Privacidade</a></Link>
+            <Link href="/terms"><a className="hover:text-white transition-colors">Termos de Uso</a></Link>
           </div>
         </div>
       </div>

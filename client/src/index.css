@@ -37,77 +37,55 @@
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
   
-  --color-vizrt-orange: var(--vizrt-orange);
-  --color-vizrt-blue: var(--vizrt-blue);
-  --color-vizrt-dark: var(--vizrt-dark);
+  --color-mp-blue: var(--mp-blue);
+  --color-mp-green: var(--mp-green);
+  --color-mp-dark: var(--mp-dark);
 }
 
 :root {
-  /* Vizrt Brand Colors */
-  --vizrt-orange: oklch(0.66 0.22 35.0); /* #FF5F00 approx */
-  --vizrt-blue: oklch(0.45 0.18 260.0); /* #0056D2 approx */
-  --vizrt-dark: oklch(0.15 0.00 0.0);   /* #1A1A1A approx */
+  /* Media Portal Brand Colors */
+  --mp-blue: oklch(0.35 0.15 260.0); /* Deep Space Blue */
+  --mp-green: oklch(0.75 0.20 145.0); /* Neon Green for CTAs */
+  --mp-dark: oklch(0.12 0.05 260.0);   /* Darker Blue/Black background */
 
-  /* Base System */
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.15 0 0); /* Dark grey almost black */
+  /* Base System - Dark Mode Default for Space Theme */
+  --background: var(--mp-dark);
+  --foreground: oklch(0.98 0 0);
 
-  --primary: var(--vizrt-orange);
-  --primary-foreground: oklch(1 0 0);
+  --primary: var(--mp-green);
+  --primary-foreground: oklch(0.15 0.05 260.0); /* Dark text on green button */
 
-  --secondary: var(--vizrt-blue);
-  --secondary-foreground: oklch(1 0 0);
+  --secondary: var(--mp-blue);
+  --secondary-foreground: oklch(0.98 0 0);
 
-  --muted: oklch(0.96 0 0);
-  --muted-foreground: oklch(0.45 0 0);
+  --muted: oklch(0.25 0.05 260.0);
+  --muted-foreground: oklch(0.70 0 0);
 
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: var(--vizrt-blue);
+  --accent: oklch(0.22 0.05 260.0);
+  --accent-foreground: var(--mp-green);
 
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
 
-  --border: oklch(0.90 0 0);
-  --input: oklch(0.90 0 0);
-  --ring: var(--vizrt-orange);
+  --border: oklch(0.30 0.05 260.0);
+  --input: oklch(0.30 0.05 260.0);
+  --ring: var(--mp-green);
 
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0 0);
-
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0 0);
-
-  --radius: 0.25rem; /* More squared, technical look */
-}
-
-.dark {
-  --background: oklch(0.12 0 0);
-  --foreground: oklch(0.98 0 0);
-
-  --primary: var(--vizrt-orange);
-  --primary-foreground: oklch(1 0 0);
-
-  --secondary: var(--vizrt-blue);
-  --secondary-foreground: oklch(1 0 0);
-
-  --muted: oklch(0.20 0 0);
-  --muted-foreground: oklch(0.70 0 0);
-
-  --accent: oklch(0.18 0 0);
-  --accent-foreground: var(--vizrt-orange);
-
-  --destructive: oklch(0.4 0.2 25);
-  --destructive-foreground: oklch(0.98 0 0);
-
-  --border: oklch(0.25 0 0);
-  --input: oklch(0.25 0 0);
-  --ring: var(--vizrt-orange);
-
-  --card: oklch(0.15 0 0);
+  --card: oklch(0.18 0.05 260.0);
   --card-foreground: oklch(0.98 0 0);
 
-  --popover: oklch(0.15 0 0);
+  --popover: oklch(0.18 0.05 260.0);
   --popover-foreground: oklch(0.98 0 0);
+
+  --radius: 0.5rem; /* Slightly more rounded for modern feel */
+}
+
+/* Light mode override if needed, but primary is dark */
+.light {
+  --background: oklch(0.98 0 0);
+  --foreground: oklch(0.15 0.05 260.0);
+  
+  /* Adjust other variables for light mode if user switches */
 }
 
 @layer base {
@@ -116,12 +94,14 @@
   }
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    background-image: radial-gradient(circle at 50% 0%, #1e3a8a 0%, #0f172a 50%, #020617 100%);
+    background-attachment: fixed;
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-bold tracking-tight text-vizrt-dark dark:text-white;
+    @apply font-bold tracking-tight text-white;
   }
   h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl;
+    @apply text-4xl md:text-5xl lg:text-7xl;
   }
   h2 {
     @apply text-3xl md:text-4xl;
@@ -147,14 +127,18 @@
   }
 
   .btn-primary {
-    @apply bg-vizrt-orange text-white hover:bg-orange-600 transition-colors font-semibold px-6 py-2 rounded-sm;
+    @apply bg-mp-green text-mp-dark hover:bg-green-400 transition-all font-bold px-8 py-3 rounded-full shadow-[0_0_20px_rgba(74,222,128,0.3)] hover:shadow-[0_0_30px_rgba(74,222,128,0.5)];
   }
   
   .btn-secondary {
-    @apply bg-white text-vizrt-dark border border-gray-300 hover:bg-gray-50 transition-colors font-semibold px-6 py-2 rounded-sm;
+    @apply bg-white/10 backdrop-blur-sm text-white border border-white/20 hover:bg-white/20 transition-all font-semibold px-8 py-3 rounded-full;
   }
 
   .nav-link {
-    @apply text-sm font-medium text-gray-700 hover:text-vizrt-orange transition-colors cursor-pointer;
+    @apply text-sm font-medium text-gray-300 hover:text-mp-green transition-colors cursor-pointer uppercase tracking-wider;
+  }
+  
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-xl;
   }
 }
