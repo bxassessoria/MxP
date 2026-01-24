@@ -7,6 +7,9 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
 import ProductDetail from "./pages/ProductDetail";
+import MAMPage from "./pages/seo/MAM";
+import DAMPage from "./pages/seo/DAM";
+import BroadcastPage from "./pages/seo/Broadcast";
 import Blog from "./pages/Blog";
 import About from "./pages/About";
 import Integrations from "./pages/Integrations";
@@ -18,10 +21,13 @@ function Router() {
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/products"} component={Products} />
-      <Route path={"/products/:id"} component={ProductDetail} />
+      <Route path="/products/:id" component={ProductDetail} />
+      <Route path="/seo/mam" component={MAMPage} />
+      <Route path="/seo/dam" component={DAMPage} />
+      <Route path="/seo/broadcast" component={BroadcastPage} />
       <Route path={"/blog"} component={Blog} />
       <Route path={"/about"} component={About} />
-      <Route path={"/partners"} component={Integrations} />
+      <Route path={"/integrations"} component={Integrations} />
       <Route path={"/cases"} component={Cases} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
@@ -30,17 +36,11 @@ function Router() {
   );
 }
 
-// NOTE: About Theme
-// - First choose a default theme according to your design style (dark or light bg), than change color palette in index.css
-//   to keep consistent foreground/background color across components
-// - If you want to make theme switchable, pass `switchable` ThemeProvider and use `useTheme` hook
-
 function App() {
   return (
     <ErrorBoundary>
       <ThemeProvider
         defaultTheme="light"
-        // switchable
       >
         <TooltipProvider>
           <Toaster />

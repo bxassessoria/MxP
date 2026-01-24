@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Youtube, MapPin, Phone, Mail } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -13,11 +13,11 @@ export default function Footer() {
       { label: "Gendai TV", href: "/products/gendai-tv" },
       { label: "Gendai News", href: "/products/gendai-news" },
     ],
-    Empresa: [
+    Institucional: [
       { label: "Sobre Nós", href: "/about" },
-      { label: "Missão, Visão, Valores", href: "/about" },
+      { label: "Missão e Valores", href: "/about#values" },
       { label: "Carreiras", href: "/careers" },
-      { label: "Contato", href: "/contact" },
+      { label: "Política de Privacidade", href: "/privacy" },
     ],
     Recursos: [
       { label: "Blog", href: "/blog" },
@@ -28,34 +28,47 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#02040A] text-white pt-20 pb-10 border-t border-white/5 relative overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[300px] bg-[#0056D2]/10 blur-[100px] rounded-full pointer-events-none"></div>
-
-      <div className="container relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+    <footer className="bg-[#263858] text-white pt-16 pb-8 border-t border-gray-800">
+      <div className="container">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-12">
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <Link href="/">
-              <a className="block mb-6">
-                <img src="/images/mediaportal_logo.webp" alt="Media Portal" className="h-10 w-auto brightness-200 contrast-200" />
+              <a className="block mb-6 bg-white w-fit p-2 rounded">
+                <img src="/images/mediaportal_logo.webp" alt="Media Portal" className="h-8 w-auto" />
               </a>
             </Link>
-            <p className="text-gray-400 mb-8 max-w-sm leading-relaxed">
-              Gestão inteligente de ativos digitais. Transformamos a maneira como empresas de mídia armazenam, gerenciam e distribuem seu conteúdo.
+            <p className="text-gray-300 mb-6 max-w-sm leading-relaxed text-sm">
+              Gestão inteligente de ativos digitais. Transformamos a maneira como empresas de mídia armazenam, gerenciam e distribuem seu conteúdo com segurança e eficiência.
             </p>
+            
+            <div className="space-y-3 mb-6 text-sm text-gray-300">
+              <div className="flex items-start gap-3">
+                <MapPin size={18} className="text-[#EE6025] shrink-0 mt-1" />
+                <span>Av. Paulista, 1234 - Bela Vista<br/>São Paulo - SP, 01310-100</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Phone size={18} className="text-[#EE6025] shrink-0" />
+                <span>+55 (11) 3000-0000</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Mail size={18} className="text-[#EE6025] shrink-0" />
+                <span>contato@mediaportal.com.br</span>
+              </div>
+            </div>
+
             <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-[#00FF00] hover:text-black transition-all duration-300">
-                <Linkedin size={18} />
+              <a href="#" className="w-8 h-8 bg-white/10 rounded flex items-center justify-center hover:bg-[#EE6025] transition-all duration-300">
+                <Linkedin size={16} />
               </a>
-              <a href="#" className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-[#00FF00] hover:text-black transition-all duration-300">
-                <Instagram size={18} />
+              <a href="#" className="w-8 h-8 bg-white/10 rounded flex items-center justify-center hover:bg-[#EE6025] transition-all duration-300">
+                <Instagram size={16} />
               </a>
-              <a href="#" className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-[#00FF00] hover:text-black transition-all duration-300">
-                <Facebook size={18} />
+              <a href="#" className="w-8 h-8 bg-white/10 rounded flex items-center justify-center hover:bg-[#EE6025] transition-all duration-300">
+                <Facebook size={16} />
               </a>
-              <a href="#" className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-[#00FF00] hover:text-black transition-all duration-300">
-                <Youtube size={18} />
+              <a href="#" className="w-8 h-8 bg-white/10 rounded flex items-center justify-center hover:bg-[#EE6025] transition-all duration-300">
+                <Youtube size={16} />
               </a>
             </div>
           </div>
@@ -63,12 +76,12 @@ export default function Footer() {
           {/* Link Columns */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h3 className="text-lg font-bold mb-6 text-white border-b-2 border-[#00FF00] inline-block pb-1">{category}</h3>
-              <ul className="space-y-4">
+              <h3 className="text-base font-bold mb-6 text-white border-b-2 border-[#EE6025] inline-block pb-1">{category}</h3>
+              <ul className="space-y-3">
                 {links.map((link) => (
                   <li key={link.label}>
                     <Link href={link.href}>
-                      <a className="text-gray-400 hover:text-[#00FF00] transition-colors text-sm font-medium">
+                      <a className="text-gray-400 hover:text-[#EE6025] transition-colors text-sm">
                         {link.label}
                       </a>
                     </Link>
@@ -79,7 +92,7 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
           <p>&copy; {currentYear} Media Portal. Todos os direitos reservados.</p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <Link href="/privacy"><a className="hover:text-white transition-colors">Política de Privacidade</a></Link>

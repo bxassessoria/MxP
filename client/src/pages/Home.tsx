@@ -1,146 +1,157 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, Server, Cloud, Database, Shield, Zap, Play, Box, Settings, Tv, Newspaper, Link as LinkIcon } from "lucide-react";
+import { ArrowRight, Server, Cloud, Shield, Zap, PlayCircle, CheckCircle2 } from "lucide-react";
 import { Link } from "wouter";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 export default function Home() {
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        {/* Animated Background */}
+      {/* Hero Section with Video Loop */}
+      <section className="relative h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden bg-[#263858]">
+        {/* Video Background Overlay */}
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#0056D2]/20 via-[#050A1F] to-[#02040A]"></div>
-          <div className="absolute top-0 left-0 w-full h-full bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
+          <div className="absolute inset-0 bg-[#263858]/80 z-10"></div>
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            className="w-full h-full object-cover opacity-40"
+            poster="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop"
+          >
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-server-room-with-blue-lights-24072-large.mp4" type="video/mp4" />
+          </video>
         </div>
 
-        <div className="container relative z-10 grid lg:grid-cols-2 gap-12 items-center">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00FF00]/10 border border-[#00FF00]/20 text-[#00FF00] text-xs font-bold tracking-wider uppercase mb-6 animate-fade-in-up">
-              <span className="w-2 h-2 rounded-full bg-[#00FF00] animate-pulse"></span>
-              Media Asset Management
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6 leading-tight animate-fade-in-up animation-delay-100">
-              Gestão inteligente de <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00FF00] to-emerald-400">ativos digitais</span>
-            </h1>
-            <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed max-w-xl animate-fade-in-up animation-delay-200">
-              Com o MAM Media Portal é possível realizar a gestão de pequenos, médios e grandes acervos de mídia, com segurança garantida e recuperação ágil. Recursos avançados de IA garantem o sucesso de suas pesquisas.
-            </p>
-            <div className="flex flex-wrap gap-4 animate-fade-in-up animation-delay-300">
-              <Link href="/contact">
-                <Button className="bg-[#00FF00] hover:bg-green-400 text-black font-bold px-8 py-6 rounded-full text-lg shadow-[0_0_20px_rgba(0,255,0,0.3)] hover:shadow-[0_0_30px_rgba(0,255,0,0.5)] transition-all">
-                  Entrar em contato
-                </Button>
-              </Link>
-              <Button variant="outline" className="border-white/20 text-white hover:bg-white/10 font-bold px-8 py-6 rounded-full text-lg backdrop-blur-sm">
-                <Play className="mr-2 h-5 w-5 fill-current" /> Conheça em 1 minuto
+        <div className="container relative z-20 text-center max-w-4xl mx-auto px-4">
+          <div className="inline-block bg-[#EE6025] text-white text-xs font-bold px-3 py-1 rounded mb-6 tracking-widest uppercase animate-fade-in-up">
+            Media Asset Management
+          </div>
+          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight animate-fade-in-up animation-delay-100">
+            Gestão inteligente de <br/><span className="text-[#EE6025]">ativos digitais</span>
+          </h1>
+          <p className="text-lg md:text-xl text-gray-200 mb-10 leading-relaxed max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
+            Com o MAM Media Portal é possível realizar a gestão de pequenos, médios e grandes acervos de mídia, com segurança garantida e recuperação ágil.
+          </p>
+          <div className="animate-fade-in-up animation-delay-300">
+            <Link href="/contact">
+              <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white font-bold px-10 py-6 text-lg rounded shadow-lg transition-transform hover:scale-105">
+                Falar com um Consultor
               </Button>
-            </div>
-          </div>
-          
-          <div className="relative animate-fade-in-up animation-delay-500 hidden lg:block">
-            <div className="relative z-10 bg-gradient-to-tr from-white/5 to-white/0 backdrop-blur-xl border border-white/10 rounded-2xl p-2 shadow-2xl transform rotate-1 hover:rotate-0 transition-transform duration-700">
-              <img 
-                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" 
-                alt="Media Portal Dashboard Interface" 
-                className="rounded-xl shadow-inner border border-white/5"
-              />
-              
-              {/* Floating Cards */}
-              <div className="absolute -bottom-6 -left-6 bg-[#050A1F] border border-white/10 p-4 rounded-lg shadow-xl flex items-center gap-4 animate-float">
-                <div className="bg-[#00FF00]/20 p-2 rounded-full">
-                  <Database className="text-[#00FF00]" size={24} />
-                </div>
-                <div>
-                  <div className="text-xs text-gray-400 uppercase font-bold">Storage</div>
-                  <div className="text-white font-bold text-lg">Híbrido / Cloud</div>
-                </div>
-              </div>
-
-              <div className="absolute -top-6 -right-6 bg-[#050A1F] border border-white/10 p-4 rounded-lg shadow-xl flex items-center gap-4 animate-float animation-delay-1000">
-                <div className="bg-blue-500/20 p-2 rounded-full">
-                  <Zap className="text-blue-400" size={24} />
-                </div>
-                <div>
-                  <div className="text-xs text-gray-400 uppercase font-bold">Velocidade</div>
-                  <div className="text-white font-bold text-lg">Alta Performance</div>
-                </div>
-              </div>
-            </div>
-            
-            {/* Decorative Glows */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[#0056D2]/20 blur-[100px] rounded-full -z-10"></div>
-          </div>
-        </div>
-        
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center p-1">
-            <div className="w-1 h-2 bg-[#00FF00] rounded-full"></div>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Solutions Grid Section (New Products) */}
-      <section className="py-24 bg-[#02040A]">
+      {/* Segmentos de Negócio (Carousel) */}
+      <section className="py-20 bg-gray-50">
+        <div className="container">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <h2 className="text-3xl font-bold mb-4 text-[#263858]">Segmentos de Negócio</h2>
+            <p className="text-gray-600 text-lg">
+              Soluções customizadas para atender as demandas específicas do seu setor.
+            </p>
+          </div>
+
+          <Carousel 
+            plugins={[Autoplay({ delay: 3000 })]}
+            className="w-full max-w-5xl mx-auto"
+          >
+            <CarouselContent className="-ml-4">
+              {[
+                { title: "Televisão", icon: "📺", desc: "Gestão completa para emissoras" },
+                { title: "Rádio", icon: "📻", desc: "Acervo de áudio inteligente" },
+                { title: "TV Igreja", icon: "⛪", desc: "Organização de cultos e eventos" },
+                { title: "Público", icon: "🏛️", desc: "Transparência e acesso rápido" },
+                { title: "EAD", icon: "🎓", desc: "Gestão de videoaulas e materiais" },
+                { title: "Corporativo", icon: "🏢", desc: "Comunicação interna eficiente" }
+              ].map((item, idx) => (
+                <CarouselItem key={idx} className="pl-4 md:basis-1/3 lg:basis-1/4">
+                  <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-100 h-full text-center hover:shadow-md transition-shadow">
+                    <div className="text-4xl mb-4">{item.icon}</div>
+                    <h3 className="text-lg font-bold text-[#263858] mb-2">{item.title}</h3>
+                    <p className="text-sm text-gray-500">{item.desc}</p>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
+        </div>
+      </section>
+
+      {/* Dedicated Video Section */}
+      <section className="py-24 bg-[#263858] text-white">
+        <div className="container">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">Transforme seu fluxo de trabalho</h2>
+              <p className="text-gray-300 text-lg mb-8 leading-relaxed">
+                Veja como a plataforma Media Portal centraliza, organiza e distribui seu conteúdo com eficiência incomparável. Nossa interface intuitiva permite que sua equipe foque no que importa: criar conteúdo de qualidade.
+              </p>
+              <ul className="space-y-4 mb-8">
+                <li className="flex items-center text-gray-300">
+                  <CheckCircle2 className="text-[#EE6025] mr-3" size={20} /> Indexação automática com IA
+                </li>
+                <li className="flex items-center text-gray-300">
+                  <CheckCircle2 className="text-[#EE6025] mr-3" size={20} /> Busca frame-a-frame
+                </li>
+                <li className="flex items-center text-gray-300">
+                  <CheckCircle2 className="text-[#EE6025] mr-3" size={20} /> Integração nativa com editores
+                </li>
+              </ul>
+              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-[#263858] font-bold px-8 py-3 rounded">
+                Agendar Demonstração
+              </Button>
+            </div>
+            <div className="relative aspect-video bg-black rounded-lg overflow-hidden shadow-2xl border border-white/10 group cursor-pointer">
+              <img 
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" 
+                alt="Media Portal Interface Preview" 
+                className="w-full h-full object-cover opacity-80 group-hover:opacity-60 transition-opacity"
+              />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <PlayCircle className="w-20 h-20 text-white opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Soluções (Grid) */}
+      <section className="py-24 bg-white">
         <div className="container">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">Nossas Soluções</h2>
-            <p className="text-gray-400 text-lg">
-              Conheça o portfólio completo da Media Portal para gestão, processamento e distribuição de mídia.
+            <span className="text-[#EE6025] font-bold uppercase tracking-widest text-sm">Nossas Soluções</span>
+            <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-6 text-[#263858]">Tecnologia completa para seu acervo</h2>
+            <p className="text-gray-600 text-lg">
+              Do cloud ao on-premises, temos a infraestrutura ideal para o seu negócio.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              {
-                title: "CloudFly",
-                desc: "Gestão e processamento de acervo digital 100% em nuvem permitindo a visualização em baixa resolução e download da mídia mezanino.",
-                icon: <Cloud className="text-[#00FF00]" size={32} />,
-                link: "/products/cloudfly"
-              },
-              {
-                title: "Gems in a box",
-                desc: "Projetos com infraestrutura on-premises dimensionados de acordo com a carga de conteúdo arquivado.",
-                icon: <Box className="text-[#00FF00]" size={32} />,
-                link: "/products/gems-in-a-box"
-              },
-              {
-                title: "CloudLink",
-                desc: "Solução híbrida para gestão de conteúdo digital mesclando vantagens do cloud computing aliado a infraestrutura on-premises.",
-                icon: <LinkIcon className="text-[#00FF00]" size={32} />,
-                link: "/products/cloudlink"
-              },
-              {
-                title: "Custom PRJ",
-                desc: "Projetos customizados com aproveitamento da infraestrutura existente para potencializar o poder do seu conteúdo.",
-                icon: <Settings className="text-[#00FF00]" size={32} />,
-                link: "/products/custom-prj"
-              },
-              {
-                title: "Gendai TV",
-                desc: "Gestão de todo o seu fluxo de produção, integrando ingest, distribuição (broadband) e exibição (broadcast).",
-                icon: <Tv className="text-[#00FF00]" size={32} />,
-                link: "/products/gendai-tv"
-              },
-              {
-                title: "Gendai News",
-                desc: "Gestão de todo o seu fluxo de produção televisiva e jornalística, integrando ingest, jornalismo, distribuição e exibição.",
-                icon: <Newspaper className="text-[#00FF00]" size={32} />,
-                link: "/products/gendai-news"
-              }
+              { title: "CloudFly", desc: "Gestão e processamento 100% em nuvem.", icon: <Cloud className="text-[#EE6025]" size={32} />, link: "/products/cloudfly" },
+              { title: "Gems in a box", desc: "Infraestrutura on-premises dedicada.", icon: <Server className="text-[#EE6025]" size={32} />, link: "/products/gems-in-a-box" },
+              { title: "CloudLink", desc: "Solução híbrida (Cloud + On-Premises).", icon: <Zap className="text-[#EE6025]" size={32} />, link: "/products/cloudlink" },
+              { title: "Custom PRJ", desc: "Projetos customizados de infraestrutura.", icon: <Shield className="text-[#EE6025]" size={32} />, link: "/products/custom-prj" },
+              { title: "Gendai TV", desc: "Fluxo completo para emissoras de TV.", icon: <PlayCircle className="text-[#EE6025]" size={32} />, link: "/products/gendai-tv" },
+              { title: "Gendai News", desc: "Agilidade para jornalismo e redações.", icon: <CheckCircle2 className="text-[#EE6025]" size={32} />, link: "/products/gendai-news" }
             ].map((item, idx) => (
               <Link key={idx} href={item.link}>
-                <a className="bg-white/5 border border-white/10 p-8 rounded-2xl hover:border-[#00FF00]/50 hover:bg-white/10 transition-all group flex flex-col h-full cursor-pointer">
-                  <div className="bg-[#00FF00]/10 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#00FF00] transition-colors duration-300">
-                    <div className="text-[#00FF00] group-hover:text-black transition-colors">
+                <a className="bg-white border border-gray-200 p-8 rounded-lg hover:border-[#EE6025] hover:shadow-lg transition-all group flex flex-col h-full cursor-pointer text-left">
+                  <div className="bg-[#EE6025]/10 w-14 h-14 rounded flex items-center justify-center mb-6 group-hover:bg-[#EE6025] transition-colors">
+                    <div className="text-[#EE6025] group-hover:text-white transition-colors">
                       {item.icon}
                     </div>
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-4 group-hover:text-[#00FF00] transition-colors">{item.title}</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-1">{item.desc}</p>
-                  <div className="flex items-center text-[#00FF00] font-bold text-sm uppercase tracking-wider mt-auto">
-                    Saiba Mais <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  <h3 className="text-xl font-bold text-[#263858] mb-3">{item.title}</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-6 flex-1">{item.desc}</p>
+                  <div className="flex items-center text-[#EE6025] font-bold text-sm uppercase tracking-wider mt-auto group-hover:underline">
+                    Saiba Mais <ArrowRight size={16} className="ml-2" />
                   </div>
                 </a>
               </Link>
@@ -149,156 +160,59 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Segments Section */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[#050A1F]"></div>
-        <div className="container relative z-10">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">Segmentos de negócio</h2>
-            <p className="text-gray-400 text-lg">
-              Um sistema único, customizado de acordo com o segmento de negócio de cada empresa.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
-            {[
-              { title: "Televisão", icon: "📺", desc: "Gestão completa para emissoras" },
-              { title: "Rádio", icon: "📻", desc: "Acervo de áudio inteligente" },
-              { title: "TV Igreja", icon: "⛪", desc: "Organização de cultos e eventos" },
-              { title: "Público", icon: "🏛️", desc: "Transparência e acesso rápido" },
-              { title: "EAD", icon: "🎓", desc: "Gestão de videoaulas e materiais" }
-            ].map((item, idx) => (
-              <div key={idx} className="bg-white/5 border border-white/10 p-6 rounded-xl hover:bg-white/10 hover:border-[#00FF00]/50 transition-all group cursor-pointer text-center">
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">{item.icon}</div>
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#00FF00] transition-colors">{item.title}</h3>
-                <p className="text-sm text-gray-400">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Advantages Section */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[#02040A]"></div>
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-[url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-5 mix-blend-overlay"></div>
-        
-        <div className="container relative z-10">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+      {/* Vantagens (Institucional) */}
+      <section className="py-24 bg-gray-50">
+        <div className="container">
+          <div className="grid lg:grid-cols-2 gap-16">
             <div>
-              <div className="inline-block text-[#00FF00] font-bold tracking-widest uppercase text-sm mb-4">Por que Media Portal?</div>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Vantagens da nossa tecnologia</h2>
-              <p className="text-gray-400 text-lg mb-8">
-                Entenda os diferenciais dos softwares de gestão de ativos da Media Portal que nos tornam líderes de mercado.
+              <h2 className="text-3xl font-bold text-[#263858] mb-6">Por que escolher a Media Portal?</h2>
+              <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+                Somos líderes em tecnologia de gestão de mídia no Brasil, com 16 anos de experiência entregando soluções robustas para os maiores players do mercado.
               </p>
-              
-              <div className="space-y-8">
+              <div className="grid sm:grid-cols-2 gap-6">
                 {[
-                  { title: "Integrações multisistemas", desc: "Faça a integração com ingests, playouts e outros sistemas já contratados.", icon: <Server className="text-[#00FF00]" /> },
-                  { title: "Flexibilidade", desc: "Construa fluxos de trabalho customizados aderentes ao processo atual da emissora.", icon: <Zap className="text-[#00FF00]" /> },
-                  { title: "Segurança", desc: "Sistema de prevenção de desastres e múltiplas redundâncias.", icon: <Shield className="text-[#00FF00]" /> },
-                  { title: "Armazenamento inteligente", desc: "Faça a gestão e o armazenamento dos ativos em nuvem, storage ou robótica.", icon: <Cloud className="text-[#00FF00]" /> }
+                  { title: "Integração Total", desc: "Conecte-se com Adobe, Avid, Sony e mais." },
+                  { title: "Segurança", desc: "Proteção de dados e redundância garantida." },
+                  { title: "Suporte Local", desc: "Equipe brasileira especializada e ágil." },
+                  { title: "Flexibilidade", desc: "Modelos SaaS, On-Premises ou Híbrido." }
                 ].map((item, idx) => (
-                  <div key={idx} className="flex gap-4">
-                    <div className="mt-1 bg-white/5 p-3 rounded-lg border border-white/10 h-fit">
-                      {item.icon}
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                      <p className="text-gray-400">{item.desc}</p>
-                    </div>
+                  <div key={idx} className="bg-white p-5 rounded border border-gray-200 shadow-sm">
+                    <h4 className="font-bold text-[#263858] mb-2">{item.title}</h4>
+                    <p className="text-sm text-gray-500">{item.desc}</p>
                   </div>
                 ))}
               </div>
             </div>
-            
             <div className="relative">
-              <div className="grid grid-cols-2 gap-4">
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" className="rounded-2xl shadow-2xl border border-white/10 translate-y-8" alt="Dashboard" />
-                <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=2069&auto=format&fit=crop" className="rounded-2xl shadow-2xl border border-white/10" alt="Server Room" />
-              </div>
-              {/* Tech Badge */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/80 backdrop-blur-md border border-[#00FF00]/30 p-6 rounded-full shadow-[0_0_30px_rgba(0,255,0,0.2)]">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-[#00FF00]">16+</div>
-                  <div className="text-xs text-white uppercase tracking-wider font-bold">Anos de<br/>Inovação</div>
-                </div>
-              </div>
+               <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2032&auto=format&fit=crop" alt="Media Portal Team" className="rounded-lg shadow-xl" />
+               <div className="absolute -bottom-6 -left-6 bg-[#EE6025] text-white p-6 rounded shadow-lg max-w-xs">
+                 <div className="text-3xl font-bold mb-1">16+ Anos</div>
+                 <div className="text-sm opacity-90">De inovação contínua no mercado de broadcast.</div>
+               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Partners Marquee (Static for now) */}
-      <section className="py-16 border-y border-white/5 bg-[#050A1F]">
+      {/* Parceiros (Carousel) */}
+      <section className="py-16 bg-white border-t border-gray-100">
         <div className="container text-center mb-8">
-          <p className="text-sm font-bold text-gray-500 uppercase tracking-widest">Tecnologias Integradas</p>
+          <p className="text-sm font-bold text-gray-400 uppercase tracking-widest">Tecnologias Integradas</p>
         </div>
-        <div className="container overflow-hidden">
-          <div className="flex justify-between items-center opacity-50 grayscale hover:grayscale-0 transition-all duration-500 gap-8 flex-wrap lg:flex-nowrap">
-            {["Adobe", "Sony", "AWS", "Google Cloud", "IBM", "Dell"].map((partner, idx) => (
-              <div key={idx} className="text-2xl font-bold text-white/30 hover:text-white transition-colors cursor-default">{partner}</div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Blog Preview */}
-      <section className="py-24 bg-[#02040A]">
-        <div className="container">
-          <div className="flex justify-between items-end mb-12">
-            <div>
-              <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">Nosso Conteúdo</h2>
-              <p className="text-gray-400">Tenha acesso ao conteúdo gratuito sobre o mercado Broadcast.</p>
-            </div>
-            <Link href="/blog">
-              <Button variant="ghost" className="text-[#00FF00] hover:text-green-400 hover:bg-transparent p-0 font-bold hidden md:flex">
-                Ver todos os posts <ArrowRight className="ml-2" />
-              </Button>
-            </Link>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Media Portal celebra balanço positivo em 2024",
-                date: "Nov 2024",
-                img: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop",
-                desc: "Projetos de destaque e expansão de negócios marcam o ano."
-              },
-              {
-                title: "16 anos de inovação e excelência",
-                date: "Out 2024",
-                img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop",
-                desc: "Empresa comemorou 16 anos de existência no mercado de broadcast."
-              },
-              {
-                title: "Canal UOL amplia cobertura e estreia na Vivo TV",
-                date: "Set 2024",
-                img: "https://images.unsplash.com/photo-1586899028174-e7098604235b?q=80&w=2071&auto=format&fit=crop",
-                desc: "Ampliando acesso a conteúdos exclusivos de esportes e jornalismo."
-              }
-            ].map((post, idx) => (
-              <div key={idx} className="group cursor-pointer">
-                <div className="relative aspect-video overflow-hidden rounded-xl mb-6 border border-white/10">
-                  <img src={post.img} alt={post.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                  <div className="absolute top-4 left-4 bg-black/50 backdrop-blur-md text-white text-xs font-bold px-3 py-1 rounded-full border border-white/10">
-                    {post.date}
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#00FF00] transition-colors">
-                  {post.title}
-                </h3>
-                <p className="text-gray-400 text-sm mb-4 leading-relaxed">
-                  {post.desc}
-                </p>
-                <div className="flex items-center text-[#00FF00] font-bold text-sm opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
-                  Ler mais <ArrowRight size={16} className="ml-2" />
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <Carousel 
+            plugins={[Autoplay({ delay: 2000 })]}
+            className="w-full max-w-6xl mx-auto"
+          >
+            <CarouselContent className="items-center">
+              {["Adobe", "Sony", "AWS", "Google Cloud", "IBM", "Dell", "Avid", "Ross"].map((partner, idx) => (
+                <CarouselItem key={idx} className="basis-1/3 md:basis-1/5 lg:basis-1/6 text-center">
+                   <div className="text-xl font-bold text-gray-300 hover:text-[#263858] transition-colors cursor-default select-none">
+                     {partner}
+                   </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+        </Carousel>
       </section>
     </Layout>
   );
