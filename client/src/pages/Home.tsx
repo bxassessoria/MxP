@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, PlayCircle, Layers, Server, Cloud, MonitorPlay, FileText, Search, Mic2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, PlayCircle, Layers, Server, Cloud, MonitorPlay, FileText, Search, Mic2, ShieldCheck, Zap, Globe, Users } from "lucide-react";
 import { Link } from "wouter";
 import Autoplay from "embla-carousel-autoplay";
 import useEmblaCarousel from "embla-carousel-react";
@@ -16,38 +16,64 @@ export default function Home() {
     { title: "EAD", icon: <Layers className="w-12 h-12 mb-4 text-[#EE6025]" /> },
   ];
 
+  const advantages = [
+    { title: "Segurança Total", desc: "Criptografia de ponta a ponta e backups automáticos.", icon: <ShieldCheck className="w-10 h-10 text-[#EE6025]" /> },
+    { title: "Alta Performance", desc: "Transcodificação rápida e entrega via CDN global.", icon: <Zap className="w-10 h-10 text-[#EE6025]" /> },
+    { title: "Acesso Remoto", desc: "Gerencie seu acervo de qualquer lugar do mundo.", icon: <Globe className="w-10 h-10 text-[#EE6025]" /> },
+    { title: "Colaboração", desc: "Ferramentas para equipes trabalharem simultaneamente.", icon: <Users className="w-10 h-10 text-[#EE6025]" /> },
+  ];
+
+  const partners = [
+    "https://upload.wikimedia.org/wikipedia/commons/4/40/Adobe_Premiere_Pro_CC_icon.svg",
+    "https://upload.wikimedia.org/wikipedia/commons/3/37/Avid_Logo.svg",
+    "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg",
+    "https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg",
+    "https://upload.wikimedia.org/wikipedia/commons/f/f0/Microsoft_Azure_logo.svg",
+    "https://upload.wikimedia.org/wikipedia/commons/e/e3/Telestream_Logo.png"
+  ];
+
   return (
     <Layout>
-      {/* Hero Video Section */}
-      <div className="relative h-[80vh] w-full overflow-hidden bg-[#263858]">
-        <div className="absolute inset-0 bg-black/40 z-10"></div>
-        <iframe 
-            className="absolute top-1/2 left-1/2 w-[150%] h-[150%] -translate-x-1/2 -translate-y-1/2 object-cover pointer-events-none"
-            src="https://www.youtube.com/embed/ZepJRvf_elo?playlist=ZepJRvf_elo&mute=1&autoplay=1&loop=1&controls=0&start=0" 
-            title="Media Portal Hero Video"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        ></iframe>
-        
-        <div className="container relative z-20 h-full flex flex-col justify-center items-center text-center text-white">
-          <span className="bg-[#EE6025] px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wider mb-6">Media Asset Management</span>
-          <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
-            Gestão inteligente de <br/>
-            <span className="text-[#EE6025]">ativos digitais</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-200 max-w-3xl mb-10 leading-relaxed">
-            Com o MAM Media Portal é possível realizar a gestão de pequenos, médios e grandes acervos de mídia, com segurança garantida e recuperação ágil.
-          </p>
-          <div className="flex flex-col md:flex-row gap-4">
-            <Link href="/products">
-                <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white font-bold px-8 py-6 text-lg rounded shadow-lg transition-all hover:scale-105">
-                    Falar com um Consultor
-                </Button>
-            </Link>
-          </div>
+      {/* Hero Section: Texto Esquerda / Vídeo Direita */}
+      <div className="bg-[#263858] text-white py-24 relative overflow-hidden">
+        <div className="container grid lg:grid-cols-2 gap-12 items-center relative z-10">
+            {/* Coluna Texto */}
+            <div className="text-left">
+                <span className="bg-[#EE6025] px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wider mb-6 inline-block">Media Asset Management</span>
+                <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight">
+                    Gestão inteligente de <br/>
+                    <span className="text-[#EE6025]">ativos digitais</span>
+                </h1>
+                <p className="text-xl text-gray-300 max-w-xl mb-10 leading-relaxed">
+                    Com o MAM Media Portal é possível realizar a gestão de pequenos, médios e grandes acervos de mídia, com segurança garantida e recuperação ágil.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                    <Link href="/products">
+                        <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white font-bold px-8 py-6 text-lg rounded shadow-lg transition-all hover:scale-105">
+                            Falar com um Consultor
+                        </Button>
+                    </Link>
+                </div>
+            </div>
+
+            {/* Coluna Vídeo (Loop Background/Conceitual) */}
+            <div className="relative h-[400px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-black/50">
+                <video 
+                    className="absolute inset-0 w-full h-full object-cover opacity-80"
+                    autoPlay 
+                    muted 
+                    loop 
+                    playsInline
+                    poster="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop"
+                >
+                    <source src="https://assets.mixkit.co/videos/preview/mixkit-server-room-with-blue-lights-2423-large.mp4" type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#263858] via-transparent to-transparent"></div>
+            </div>
         </div>
       </div>
 
-      {/* Segmentos Clean */}
+      {/* Segmentos Clean (Restaurado) */}
       <div className="bg-white py-20 border-b border-gray-100">
         <div className="container">
           <h2 className="text-3xl font-bold text-[#263858] text-center mb-16">Segmentos de Atuação</h2>
@@ -64,27 +90,46 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Fluxo de Mídia */}
+      {/* Vantagens (Restaurado) */}
       <div className="bg-gray-50 py-24">
+        <div className="container">
+            <div className="text-center mb-16">
+                <h2 className="text-3xl font-bold text-[#263858] mb-4">Por que escolher a Media Portal?</h2>
+                <p className="text-gray-600 max-w-2xl mx-auto">
+                    Tecnologia robusta desenvolvida para escalar junto com o seu negócio.
+                </p>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {advantages.map((adv, idx) => (
+                    <div key={idx} className="bg-white p-8 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                        <div className="mb-6">{adv.icon}</div>
+                        <h3 className="text-xl font-bold text-[#263858] mb-3">{adv.title}</h3>
+                        <p className="text-gray-500 text-sm leading-relaxed">{adv.desc}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+      </div>
+
+      {/* Fluxo de Mídia (Novo) */}
+      <div className="bg-white py-24 border-y border-gray-100">
         <div className="container">
             <div className="text-center mb-16">
                 <h2 className="text-3xl font-bold text-[#263858] mb-4">Fluxo de Mídia Inteligente</h2>
                 <p className="text-gray-600 max-w-2xl mx-auto">
-                    Nossa plataforma integra todas as etapas do ciclo de vida do conteúdo, garantindo eficiência do ingest à distribuição.
+                    Nossa plataforma integra todas as etapas do ciclo de vida do conteúdo.
                 </p>
             </div>
             
             <div className="grid md:grid-cols-4 gap-8 relative">
-                {/* Linha conectora (desktop apenas) */}
-                <div className="hidden md:block absolute top-12 left-[12%] right-[12%] h-1 bg-gray-200 -z-10"></div>
-                
+                <div className="hidden md:block absolute top-12 left-[12%] right-[12%] h-1 bg-gray-100 -z-10"></div>
                 {[
                     { title: "Ingest", desc: "Captura automática de arquivos e sinais ao vivo." },
                     { title: "Gestão", desc: "Catalogação rica com metadados e IA." },
                     { title: "Edição", desc: "Integração nativa com Adobe e Avid." },
                     { title: "Distribuição", desc: "Entrega multiplataforma (TV, Web, VOD)." }
                 ].map((step, idx) => (
-                    <div key={idx} className="bg-white p-8 rounded-lg shadow-sm border border-gray-100 text-center relative">
+                    <div key={idx} className="bg-white p-8 rounded-lg shadow-sm border border-gray-200 text-center relative">
                         <div className="w-10 h-10 bg-[#263858] text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-6 border-4 border-white shadow-sm">
                             {idx + 1}
                         </div>
@@ -96,8 +141,36 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Nosso Conteúdo (Blog Preview) */}
-      <div className="py-24">
+      {/* Parceiros (Restaurado) */}
+      <div className="py-16 bg-gray-50">
+        <div className="container">
+            <h2 className="text-2xl font-bold text-gray-400 text-center mb-12 uppercase tracking-widest">Tecnologias Integradas</h2>
+            <div className="flex flex-wrap justify-center items-center gap-12 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+                {partners.map((logo, idx) => (
+                    <img key={idx} src={logo} alt="Partner" className="h-12 w-auto object-contain" />
+                ))}
+            </div>
+        </div>
+      </div>
+
+      {/* Vídeo Institucional (Secao Dedicada) */}
+      <div className="bg-[#263858] py-24 text-center text-white">
+        <div className="container">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8">Conheça mais em 1 minuto</h2>
+            <div className="max-w-4xl mx-auto aspect-video rounded-lg overflow-hidden shadow-2xl border border-white/10 bg-black">
+                 <iframe 
+                    className="w-full h-full"
+                    src="https://www.youtube.com/embed/ZepJRvf_elo" 
+                    title="Media Portal Institucional"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                ></iframe>
+            </div>
+        </div>
+      </div>
+
+      {/* Nosso Conteúdo (Novo) */}
+      <div className="py-24 bg-white">
         <div className="container">
             <div className="flex justify-between items-end mb-12">
                 <div>
@@ -128,22 +201,6 @@ export default function Home() {
                         <p className="text-gray-500 text-sm">Ler artigo completo &rarr;</p>
                     </div>
                 ))}
-            </div>
-        </div>
-      </div>
-
-      {/* Video Section Title */}
-      <div className="bg-[#263858] py-20 text-center text-white">
-        <div className="container">
-            <h2 className="text-3xl md:text-4xl font-bold mb-8">Conheça mais em 1 minuto</h2>
-            <div className="max-w-4xl mx-auto aspect-video rounded-lg overflow-hidden shadow-2xl border border-white/10">
-                 <iframe 
-                    className="w-full h-full"
-                    src="https://www.youtube.com/embed/ZepJRvf_elo" 
-                    title="Media Portal Institucional"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                ></iframe>
             </div>
         </div>
       </div>
