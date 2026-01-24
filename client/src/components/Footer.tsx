@@ -5,15 +5,17 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
-    Produtos: [
-      { label: "MAM", href: "/products/mam" },
-      { label: "Cloud", href: "/products/cloud" },
-      { label: "Arquivamento", href: "/products/archiving" },
-      { label: "Inteligência Artificial", href: "/products/ai" },
+    Soluções: [
+      { label: "CloudFly", href: "/products/cloudfly" },
+      { label: "Gems in a box", href: "/products/gems-in-a-box" },
+      { label: "CloudLink", href: "/products/cloudlink" },
+      { label: "Custom PRJ", href: "/products/custom-prj" },
+      { label: "Gendai TV", href: "/products/gendai-tv" },
+      { label: "Gendai News", href: "/products/gendai-news" },
     ],
     Empresa: [
       { label: "Sobre Nós", href: "/about" },
-      { label: "Missão, Visão, Valores", href: "/mission" },
+      { label: "Missão, Visão, Valores", href: "/about" },
       { label: "Carreiras", href: "/careers" },
       { label: "Contato", href: "/contact" },
     ],

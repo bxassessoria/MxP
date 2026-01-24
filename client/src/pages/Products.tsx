@@ -1,44 +1,56 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Cloud, Box, Link as LinkIcon, Settings, Tv, Newspaper } from "lucide-react";
 import { Link } from "wouter";
 
 const products = [
   {
-    title: "Media Asset Management",
-    desc: "Gestão completa de ativos digitais com indexação avançada e busca inteligente.",
-    link: "/products/mam",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop"
-  },
-  {
-    title: "Cloud Archive",
-    desc: "Armazenamento seguro e escalável na nuvem para preservação de longo prazo.",
-    link: "/products/cloud",
+    id: "cloudfly",
+    title: "CloudFly",
+    desc: "Gestão e processamento de acervo digital 100% em nuvem permitindo a visualização em baixa resolução e download da mídia mezanino.",
+    icon: <Cloud className="w-12 h-12 text-[#00FF00] mb-4" />,
+    link: "/products/cloudfly",
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
   },
   {
-    title: "Inteligência Artificial",
-    desc: "Reconhecimento facial, transcrição de áudio e análise de sentimentos automática.",
-    link: "/products/ai",
-    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1965&auto=format&fit=crop"
+    id: "gems-in-a-box",
+    title: "Gems in a box",
+    desc: "Projetos com infraestrutura on-premises dimensionados de acordo com a carga de conteúdo arquivado.",
+    icon: <Box className="w-12 h-12 text-[#00FF00] mb-4" />,
+    link: "/products/gems-in-a-box",
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop"
   },
   {
-    title: "Ingest & Playout",
-    desc: "Automação de captura e exibição de conteúdo para broadcast e streaming.",
-    link: "/products/ingest",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop"
+    id: "cloudlink",
+    title: "CloudLink",
+    desc: "Solução híbrida para gestão de conteúdo digital mesclando vantagens do cloud computing aliado a infraestrutura on-premises.",
+    icon: <LinkIcon className="w-12 h-12 text-[#00FF00] mb-4" />,
+    link: "/products/cloudlink",
+    image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=2070&auto=format&fit=crop"
   },
   {
-    title: "Workflow Automation",
-    desc: "Orquestração de processos de mídia para aumentar a eficiência operacional.",
-    link: "/products/workflow",
-    image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=2070&auto=format&fit=crop"
+    id: "custom-prj",
+    title: "Custom PRJ",
+    desc: "Projetos customizados com aproveitamento da infraestrutura existente para potencializar o poder do seu conteúdo.",
+    icon: <Settings className="w-12 h-12 text-[#00FF00] mb-4" />,
+    link: "/products/custom-prj",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop"
   },
   {
-    title: "Digital Signage",
-    desc: "Soluções para distribuição de conteúdo em telas corporativas e públicas.",
-    link: "/products/signage",
-    image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=2070&auto=format&fit=crop"
+    id: "gendai-tv",
+    title: "Gendai TV",
+    desc: "Gestão de todo o seu fluxo de produção, integrando ingest, distribuição (broadband) e exibição (broadcast).",
+    icon: <Tv className="w-12 h-12 text-[#00FF00] mb-4" />,
+    link: "/products/gendai-tv",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop"
+  },
+  {
+    id: "gendai-news",
+    title: "Gendai News",
+    desc: "Gestão de todo o seu fluxo de produção televisiva e jornalística, integrando ingest, jornalismo, distribuição e exibição.",
+    icon: <Newspaper className="w-12 h-12 text-[#00FF00] mb-4" />,
+    link: "/products/gendai-news",
+    image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=2070&auto=format&fit=crop"
   }
 ];
 
@@ -50,7 +62,7 @@ export default function Products() {
         <div className="container relative z-10">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">Nossas Soluções</h1>
           <p className="text-xl text-gray-300 max-w-2xl">
-            Tecnologia de ponta para gestão, distribuição e monetização de conteúdo audiovisual.
+            Tecnologia completa para gestão, arquivamento e distribuição de ativos digitais.
           </p>
         </div>
       </div>
@@ -58,23 +70,26 @@ export default function Products() {
       <div className="container py-20">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {products.map((product) => (
-            <Link key={product.title} href={product.link}>
-              <a className="group block overflow-hidden bg-white/5 border border-white/10 rounded-xl hover:border-[#00FF00]/50 transition-all hover:shadow-[0_0_30px_rgba(0,255,0,0.1)]">
-                <div className="relative aspect-video overflow-hidden">
+            <Link key={product.id} href={product.link}>
+              <a className="group block bg-white/5 border border-white/10 rounded-2xl overflow-hidden hover:border-[#00FF00]/50 transition-all hover:shadow-[0_0_30px_rgba(0,255,0,0.1)] flex flex-col h-full">
+                <div className="relative h-48 overflow-hidden">
                   <img 
                     src={product.image} 
                     alt={product.title} 
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#02040A] to-transparent opacity-80"></div>
+                  <div className="absolute bottom-4 left-6">
+                    {product.icon}
+                  </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-[#00FF00] transition-colors">
+                <div className="p-8 flex-1 flex flex-col">
+                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-[#00FF00] transition-colors">
                     {product.title}
                   </h3>
-                  <p className="text-gray-400 mb-6">{product.desc}</p>
-                  <div className="flex items-center text-[#00FF00] font-bold text-sm">
-                    Saiba Mais <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  <p className="text-gray-400 mb-6 flex-1 leading-relaxed">{product.desc}</p>
+                  <div className="flex items-center text-[#00FF00] font-bold text-sm uppercase tracking-wider mt-auto">
+                    Conhecer Solução <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
               </a>
@@ -85,13 +100,15 @@ export default function Products() {
 
       <div className="bg-[#050A1F] py-20 border-t border-white/5">
         <div className="container text-center">
-          <h2 className="text-3xl font-bold mb-6 text-white">Precisa de uma solução personalizada?</h2>
+          <h2 className="text-3xl font-bold mb-6 text-white">Precisa de ajuda para escolher?</h2>
           <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
-            Nossos especialistas podem desenhar o fluxo ideal para o seu negócio de mídia.
+            Nossos consultores podem analisar sua infraestrutura e indicar a melhor solução.
           </p>
-          <Button className="bg-[#00FF00] hover:bg-green-400 text-black font-bold px-8 py-3 h-auto text-lg rounded-full shadow-[0_0_20px_rgba(0,255,0,0.3)]">
-            Falar com Consultor
-          </Button>
+          <Link href="/contact">
+            <Button className="bg-[#00FF00] hover:bg-green-400 text-black font-bold px-8 py-3 h-auto text-lg rounded-full shadow-[0_0_20px_rgba(0,255,0,0.3)]">
+              Falar com Especialista
+            </Button>
+          </Link>
         </div>
       </div>
     </Layout>

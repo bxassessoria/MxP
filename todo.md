@@ -1,0 +1,5 @@
+- [ ] Atualizar página `Products.tsx` com a lista dos 6 produtos específicos (CloudFly, Gems in a box, etc.)
+- [ ] Atualizar página `Home.tsx` para exibir os novos produtos na seção de soluções/destaque
+- [ ] Atualizar `ProductDetail.tsx` para suportar os detalhes técnicos de cada um dos 6 novos produtos
+- [ ] Atualizar links do rodapé (`Footer.tsx`) para apontar para os novos produtos
+- [ ] Revisar ícones e imagens para garantir que correspondam à natureza de cada produto (Cloud vs On-Premises vs Broadcast)

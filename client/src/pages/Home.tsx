@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, Server, Cloud, Database, Shield, Zap, Play } from "lucide-react";
+import { ArrowRight, CheckCircle2, Server, Cloud, Database, Shield, Zap, Play, Box, Settings, Tv, Newspaper, Link as LinkIcon } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Home() {
@@ -81,9 +81,78 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Segments Section */}
+      {/* Solutions Grid Section (New Products) */}
       <section className="py-24 bg-[#02040A]">
         <div className="container">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">Nossas Soluções</h2>
+            <p className="text-gray-400 text-lg">
+              Conheça o portfólio completo da Media Portal para gestão, processamento e distribuição de mídia.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                title: "CloudFly",
+                desc: "Gestão e processamento de acervo digital 100% em nuvem permitindo a visualização em baixa resolução e download da mídia mezanino.",
+                icon: <Cloud className="text-[#00FF00]" size={32} />,
+                link: "/products/cloudfly"
+              },
+              {
+                title: "Gems in a box",
+                desc: "Projetos com infraestrutura on-premises dimensionados de acordo com a carga de conteúdo arquivado.",
+                icon: <Box className="text-[#00FF00]" size={32} />,
+                link: "/products/gems-in-a-box"
+              },
+              {
+                title: "CloudLink",
+                desc: "Solução híbrida para gestão de conteúdo digital mesclando vantagens do cloud computing aliado a infraestrutura on-premises.",
+                icon: <LinkIcon className="text-[#00FF00]" size={32} />,
+                link: "/products/cloudlink"
+              },
+              {
+                title: "Custom PRJ",
+                desc: "Projetos customizados com aproveitamento da infraestrutura existente para potencializar o poder do seu conteúdo.",
+                icon: <Settings className="text-[#00FF00]" size={32} />,
+                link: "/products/custom-prj"
+              },
+              {
+                title: "Gendai TV",
+                desc: "Gestão de todo o seu fluxo de produção, integrando ingest, distribuição (broadband) e exibição (broadcast).",
+                icon: <Tv className="text-[#00FF00]" size={32} />,
+                link: "/products/gendai-tv"
+              },
+              {
+                title: "Gendai News",
+                desc: "Gestão de todo o seu fluxo de produção televisiva e jornalística, integrando ingest, jornalismo, distribuição e exibição.",
+                icon: <Newspaper className="text-[#00FF00]" size={32} />,
+                link: "/products/gendai-news"
+              }
+            ].map((item, idx) => (
+              <Link key={idx} href={item.link}>
+                <a className="bg-white/5 border border-white/10 p-8 rounded-2xl hover:border-[#00FF00]/50 hover:bg-white/10 transition-all group flex flex-col h-full cursor-pointer">
+                  <div className="bg-[#00FF00]/10 w-16 h-16 rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#00FF00] transition-colors duration-300">
+                    <div className="text-[#00FF00] group-hover:text-black transition-colors">
+                      {item.icon}
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-4 group-hover:text-[#00FF00] transition-colors">{item.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-1">{item.desc}</p>
+                  <div className="flex items-center text-[#00FF00] font-bold text-sm uppercase tracking-wider mt-auto">
+                    Saiba Mais <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </a>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Segments Section */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[#050A1F]"></div>
+        <div className="container relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">Segmentos de negócio</h2>
             <p className="text-gray-400 text-lg">
@@ -111,7 +180,7 @@ export default function Home() {
 
       {/* Advantages Section */}
       <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[#050A1F]"></div>
+        <div className="absolute inset-0 bg-[#02040A]"></div>
         <div className="absolute top-0 right-0 w-1/2 h-full bg-[url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-5 mix-blend-overlay"></div>
         
         <div className="container relative z-10">
@@ -156,35 +225,6 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Workflow Section */}
-      <section className="py-24 bg-[#02040A]">
-        <div className="container">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">Fluxos de Mídia</h2>
-            <p className="text-gray-400 text-lg">
-              Alguns exemplos do que você pode fazer com a Media Portal para otimizar sua produção.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { title: "Arquivamento automático", desc: "Catalogação e indexação nos padrões LTO, RDX e ODA." },
-              { title: "Solução flexível", desc: "Escolha uma solução on premises, nuvem ou híbrida." },
-              { title: "Inteligência Artificial", desc: "Geração automática de metadados, legendas e análise de faces e objetos." },
-              { title: "Gestão inteligente", desc: "Gestão do fluxo de produção, arquivamento seguro e recuperação rápida." }
-            ].map((item, idx) => (
-              <div key={idx} className="bg-gradient-to-br from-white/5 to-transparent border border-white/10 p-8 rounded-2xl hover:border-[#00FF00]/30 transition-all group">
-                <div className="w-12 h-12 bg-[#00FF00]/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-[#00FF00] transition-colors duration-300">
-                  <CheckCircle2 className="text-[#00FF00] group-hover:text-black transition-colors" size={24} />
-                </div>
-                <h3 className="text-xl font-bold text-white mb-4">{item.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{item.desc}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
