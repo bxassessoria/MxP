@@ -1,168 +1,170 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, PlayCircle } from "lucide-react";
+import { ArrowRight, PlayCircle, Quote } from "lucide-react";
+import { Link } from "wouter";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 
 const cases = [
   {
+    id: "uol",
     client: "Canal UOL",
-    title: "Gestão completa de acervo para jornalismo digital",
-    image: "https://images.unsplash.com/photo-1586899028174-e7098604235b?q=80&w=2071&auto=format&fit=crop",
-    desc: "O Canal UOL precisava de uma solução ágil para indexar e recuperar milhares de horas de conteúdo jornalístico. Com o Media Portal, a produtividade da redação aumentou em 40%.",
-    challenge: "Indexar 10 anos de acervo e integrar com sistema de edição em nuvem.",
-    solution: "Implementação do CloudFly com reconhecimento facial e transcrição automática.",
-    result: "Redução de 60% no tempo de busca de imagens de arquivo."
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/UOL_logo.svg/2560px-UOL_logo.svg.png",
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
+    title: "Gestão completa do acervo de jornalismo e entretenimento",
+    desc: "Implementação do Media Portal MAM para centralizar a ingestão, catalogação e distribuição de conteúdo para TV e Web.",
+    challenge: "O UOL precisava de uma solução robusta para gerenciar o volume crescente de vídeos gerados diariamente por sua redação e estúdios, integrando fluxos de publicação rápida para o portal e para o canal linear.",
+    solution: "Implantamos o Media Portal em arquitetura híbrida, permitindo que editores acessem o acervo de qualquer lugar. A integração com sistemas de edição (Adobe Premiere) agilizou o corte e publicação de breaking news.",
+    result: "Redução de 40% no tempo de busca de arquivos e aumento significativo na produtividade da equipe de vídeo."
   },
   {
+    id: "redetv",
     client: "Rede TV!",
-    title: "Modernização do fluxo de broadcast",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
-    desc: "A Rede TV! buscou a Media Portal para renovar seu parque de exibição e arquivamento, garantindo segurança e redundância para operação 24/7.",
-    challenge: "Substituir sistema legado sem interromper a operação on-air.",
-    solution: "Gems in a Box com redundância geográfica e playout automatizado.",
-    result: "Zero downtime durante a migração e economia de 30% em manutenção."
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/RedeTV%21.svg/1200px-RedeTV%21.svg.png",
+    image: "https://images.unsplash.com/photo-1598550476439-6847785fcea6?q=80&w=2070&auto=format&fit=crop",
+    title: "Digitalização e preservação do acervo histórico",
+    desc: "Projeto de migração de fitas físicas para digital, com indexação automática e preservação de longo prazo.",
+    challenge: "Milhares de horas de conteúdo histórico armazenadas em fitas magnéticas corriam risco de degradação. A emissora precisava digitalizar e tornar esse material acessível para reprises e novos programas.",
+    solution: "Utilizamos o módulo de Ingest Automatizado do Media Portal, conectado a robôs de LTO. O sistema gerou proxies para visualização imediata e arquivou os arquivos em alta resolução em fitas de dados seguras.",
+    result: "Acervo histórico 100% preservado e acessível digitalmente para os produtores da emissora."
   },
   {
-    client: "TV Cultura",
-    title: "Preservação de patrimônio histórico audiovisual",
-    image: "https://images.unsplash.com/photo-1590055531615-f16d36ffe8ec?q=80&w=1974&auto=format&fit=crop",
-    desc: "Um dos maiores acervos do Brasil foi digitalizado e organizado com a tecnologia Media Portal, garantindo a perpetuidade da memória televisiva nacional.",
-    challenge: "Digitalizar fitas analógicas e catalogar metadados complexos.",
-    solution: "Custom PRJ focado em digitalização massiva e enriquecimento de metadados.",
-    result: "Mais de 50 mil horas de conteúdo preservadas e acessíveis online."
+    id: "gazeta",
+    client: "TV Gazeta",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/TV_Gazeta_logo_2016.svg/1200px-TV_Gazeta_logo_2016.svg.png",
+    image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2070&auto=format&fit=crop",
+    title: "Fluxo de produção jornalística integrado",
+    desc: "Automação do fluxo de notícias, do recebimento de pautas à exibição no ar.",
+    challenge: "A TV Gazeta buscava modernizar seu jornalismo, eliminando processos manuais e fitas físicas no fluxo diário de notícias.",
+    solution: "Integração total do Media Portal com o sistema de NRCS (Newsroom Computer System). Jornalistas agora podem visualizar e editar matérias diretamente de suas estações de trabalho.",
+    result: "Maior agilidade no fechamento dos jornais e eliminação total do uso de mídias físicas na redação."
   },
   {
-    client: "Igreja Universal",
-    title: "Distribuição global de conteúdo religioso",
-    image: "https://images.unsplash.com/photo-1438232992991-995b7058bbb3?q=80&w=2073&auto=format&fit=crop",
-    desc: "Gestão centralizada de cultos e programas para distribuição em centenas de países, com legendagem e dublagem integradas ao fluxo.",
-    challenge: "Gerenciar versões de conteúdo em 10 idiomas diferentes.",
-    solution: "CloudLink conectando sedes internacionais para troca rápida de arquivos.",
-    result: "Sincronização global de conteúdo em menos de 2 horas após o evento ao vivo."
+    id: "almg",
+    client: "Assembleia Legislativa de MG",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Bras%C3%A3o_de_Minas_Gerais.svg/1200px-Bras%C3%A3o_de_Minas_Gerais.svg.png",
+    image: "https://images.unsplash.com/photo-1577495508048-b635879837f1?q=80&w=1974&auto=format&fit=crop",
+    title: "Transparência e acesso público ao acervo legislativo",
+    desc: "Portal de vídeos para acesso cidadão às sessões plenárias e comissões.",
+    challenge: "Disponibilizar o vasto conteúdo gerado pelas sessões legislativas de forma organizada e pesquisável para o público e imprensa.",
+    solution: "Criação de um portal público alimentado automaticamente pelo MAM Media Portal. As sessões são gravadas, catalogadas com metadados (oradores, temas) e publicadas instantaneamente.",
+    result: "Democratização do acesso à informação legislativa com um portal de vídeo moderno e fácil de usar."
   }
 ];
 
 export default function Cases() {
   return (
     <Layout>
-      <div className="bg-[#263858] text-white py-24">
-        <div className="container text-center max-w-4xl">
-          <span className="text-[#EE6025] font-bold tracking-widest uppercase text-sm mb-4 block">Histórias de Sucesso</span>
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">Quem confia na Media Portal</h1>
-          <p className="text-xl text-gray-300">
-            Descubra como ajudamos grandes empresas a superar desafios complexos de gestão de mídia.
-          </p>
+      {/* 1. HERO SECTION PADRONIZADA */}
+      <section className="relative min-h-[60vh] flex items-center bg-[#263858] overflow-hidden">
+        <div className="absolute inset-0 z-0 opacity-20">
+             <img 
+               src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2070&auto=format&fit=crop" 
+               alt="Background Cases" 
+               className="w-full h-full object-cover"
+             />
         </div>
-      </div>
+        <div className="container relative z-10 grid lg:grid-cols-2 gap-12 items-center pt-20">
+          <div className="text-white space-y-6">
+            <div className="inline-block bg-[#EE6025] px-4 py-1 rounded-full text-sm font-bold tracking-wider uppercase mb-2">
+              Histórias de Sucesso
+            </div>
+            <h1 className="text-5xl md:text-6xl font-bold leading-tight">
+              Quem confia na <span className="text-[#EE6025]">Media Portal</span>
+            </h1>
+            <p className="text-xl text-gray-300 max-w-xl leading-relaxed">
+              Descubra como grandes empresas de mídia transformaram seus fluxos de trabalho com nossas soluções.
+            </p>
+          </div>
+        </div>
+      </section>
 
-      <div className="container py-20">
-        <div className="grid md:grid-cols-2 gap-12">
-          {cases.map((item, idx) => (
-            <Dialog key={idx}>
-              <DialogTrigger asChild>
-                <div className="group cursor-pointer bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-xl transition-all flex flex-col h-full">
-                  <div className="relative h-64 overflow-hidden">
-                    <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                    <div className="absolute inset-0 bg-[#263858]/60 group-hover:bg-[#263858]/40 transition-colors flex items-center justify-center">
-                        <div className="bg-white/20 backdrop-blur-sm p-4 rounded-full border border-white/30 opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">
-                            <span className="text-white font-bold uppercase text-sm tracking-wider">Ver Case Completo</span>
+      {/* CASES GRID */}
+      <section className="py-24 bg-gray-50">
+        <div className="container">
+          <div className="grid md:grid-cols-2 gap-10">
+            {cases.map((item) => (
+              <div key={item.id} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition-all group flex flex-col h-full">
+                <div className="h-64 overflow-hidden relative">
+                  <img 
+                    src={item.image} 
+                    alt={item.title} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#263858]/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white w-full font-bold">
+                          Ler Case Completo
+                        </Button>
+                      </DialogTrigger>
+                      <DialogContent className="max-w-3xl bg-white border-none p-0 overflow-hidden">
+                        <div className="h-48 bg-[#263858] relative">
+                            <img src={item.image} className="w-full h-full object-cover opacity-40" />
+                            <div className="absolute bottom-6 left-8">
+                                <img src={item.logo} className="h-12 w-auto bg-white/90 p-2 rounded mb-4" />
+                                <DialogTitle className="text-2xl font-bold text-white">{item.client}</DialogTitle>
+                            </div>
                         </div>
-                    </div>
-                    <div className="absolute top-4 left-4 bg-[#EE6025] text-white text-xs font-bold px-3 py-1 rounded shadow-md">
-                      {item.client}
-                    </div>
-                  </div>
-                  <div className="p-8 flex-1 flex flex-col">
-                    <h3 className="text-2xl font-bold text-[#263858] mb-3 group-hover:text-[#EE6025] transition-colors">
-                      {item.title}
-                    </h3>
-                    <p className="text-gray-600 mb-6 flex-1 leading-relaxed">
-                      {item.desc}
-                    </p>
-                    <div className="flex items-center text-[#EE6025] font-bold text-sm uppercase tracking-wider mt-auto group-hover:underline">
-                      Ler História <ArrowRight size={16} className="ml-2" />
-                    </div>
+                        <div className="p-8 space-y-6 max-h-[70vh] overflow-y-auto">
+                            <div>
+                                <h3 className="text-[#EE6025] font-bold uppercase tracking-wide text-sm mb-2">O Desafio</h3>
+                                <p className="text-gray-700 leading-relaxed">{item.challenge}</p>
+                            </div>
+                            <div>
+                                <h3 className="text-[#EE6025] font-bold uppercase tracking-wide text-sm mb-2">A Solução</h3>
+                                <p className="text-gray-700 leading-relaxed">{item.solution}</p>
+                            </div>
+                            <div className="bg-gray-50 p-6 rounded-xl border-l-4 border-[#EE6025]">
+                                <h3 className="text-[#263858] font-bold uppercase tracking-wide text-sm mb-2">Resultados</h3>
+                                <p className="text-gray-700 font-medium">{item.result}</p>
+                            </div>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
                   </div>
                 </div>
-              </DialogTrigger>
-              <DialogContent className="sm:max-w-[700px]">
-                <DialogHeader>
-                  <DialogTitle className="text-3xl font-bold text-[#263858] mb-2">{item.client}</DialogTitle>
-                  <DialogDescription className="text-lg text-gray-600 font-medium">
+                
+                <div className="p-8 flex-1 flex flex-col">
+                  <div className="h-12 mb-6">
+                    <img src={item.logo} alt={item.client} className="h-full w-auto object-contain object-left" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-[#263858] mb-4 group-hover:text-[#EE6025] transition-colors">
                     {item.title}
-                  </DialogDescription>
-                </DialogHeader>
-                <div className="mt-6 space-y-6">
-                    <img src={item.image} alt={item.client} className="w-full h-64 object-cover rounded-lg shadow-sm" />
-                    
-                    <div className="grid md:grid-cols-3 gap-6 bg-gray-50 p-6 rounded-lg border border-gray-100">
-                        <div>
-                            <h4 className="font-bold text-[#EE6025] text-sm uppercase mb-2">Desafio</h4>
-                            <p className="text-sm text-gray-700">{item.challenge}</p>
-                        </div>
-                        <div>
-                            <h4 className="font-bold text-[#EE6025] text-sm uppercase mb-2">Solução</h4>
-                            <p className="text-sm text-gray-700">{item.solution}</p>
-                        </div>
-                        <div>
-                            <h4 className="font-bold text-[#EE6025] text-sm uppercase mb-2">Resultado</h4>
-                            <p className="text-sm text-gray-700">{item.result}</p>
-                        </div>
-                    </div>
-                    
-                    <p className="text-gray-600 leading-relaxed">
-                        {item.desc} A implementação permitiu não apenas resolver o gargalo inicial, mas também abriu novas frentes de receita através da monetização do acervo organizado.
-                    </p>
-
-                    <Button className="w-full bg-[#263858] hover:bg-[#1a2840] text-white font-bold py-3">
-                        Quero um resultado assim na minha empresa
-                    </Button>
+                  </h3>
+                  <p className="text-gray-600 mb-6 flex-1">
+                    {item.desc}
+                  </p>
+                  <div className="mt-auto pt-6 border-t border-gray-100 flex items-center text-[#EE6025] font-bold text-sm uppercase tracking-wide">
+                    Saiba mais <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </div>
-              </DialogContent>
-            </Dialog>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* FAQ Section */}
-      <div className="bg-gray-50 py-20 border-t border-gray-200">
+      {/* CTA FINAL */}
+      <section className="py-24 bg-[#263858] text-white text-center">
         <div className="container max-w-3xl">
-          <h2 className="text-3xl font-bold mb-8 text-center text-[#263858]">Perguntas Frequentes</h2>
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="item-1">
-              <AccordionTrigger className="text-lg font-bold text-[#263858]">Quais tipos de projetos vocês atendem?</AccordionTrigger>
-              <AccordionContent className="text-gray-600 leading-relaxed">
-                Atendemos desde pequenas produtoras que precisam organizar seus arquivos em nuvem até grandes redes de televisão com operações complexas de 24 horas.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-2">
-              <AccordionTrigger className="text-lg font-bold text-[#263858]">Quanto tempo leva para ver resultados?</AccordionTrigger>
-              <AccordionContent className="text-gray-600 leading-relaxed">
-                A organização do acervo traz ganhos imediatos de produtividade. Em média, nossos clientes relatam uma redução de 40% no tempo de busca de arquivos já no primeiro mês de uso.
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-3">
-              <AccordionTrigger className="text-lg font-bold text-[#263858]">Atendem outros segmentos além de TV?</AccordionTrigger>
-              <AccordionContent className="text-gray-600 leading-relaxed">
-                Sim! Temos forte atuação em corporações (bancos, varejo), instituições de ensino (EAD), igrejas e setor público.
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+          <Quote className="mx-auto text-[#EE6025] mb-8 opacity-50" size={64} />
+          <h2 className="text-4xl font-bold mb-6">Pronto para escrever sua história de sucesso?</h2>
+          <p className="text-xl text-gray-300 mb-10">
+            Junte-se aos maiores players do mercado e transforme a gestão do seu acervo.
+          </p>
+          <Link href="/contact">
+            <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white font-bold text-lg px-10 py-6 h-auto rounded shadow-xl hover:scale-105 transition-transform">
+              Agendar Consultoria Gratuita
+            </Button>
+          </Link>
         </div>
-      </div>
+      </section>
     </Layout>
   );
 }

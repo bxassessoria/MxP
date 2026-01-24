@@ -1,0 +1,6 @@
+- [ ] Verificar e corrigir contraste de texto em todas as páginas (evitar fundo branco com texto branco ou fundo escuro com texto escuro).
+- [ ] Forçar atualização do logo no Header e Footer usando o arquivo `MediaPortal.jpg` correto.
+- [ ] Ajustar carrossel de Segmentos e Tecnologias na Home para rolagem contínua (linear infinite scroll) sem pausas.
+- [ ] Corrigir funcionalidade da página de Integrações (verificar erros de renderização ou JS).
+- [ ] Atualizar página de Cases com conteúdo real e coerente com o site original (UOL, Rede TV, etc.).
+- [ ] Padronizar Hero Section de TODAS as páginas (Home, Blog, Produtos, Integrações, Cases, Sobre): Imagem de fundo + Texto à esquerda.
