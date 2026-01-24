@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { Check, Plus, ExternalLink } from "lucide-react";
+import { Check, Plus } from "lucide-react";
 import {
   Dialog,
   DialogContent,

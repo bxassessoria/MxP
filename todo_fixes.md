@@ -1,0 +1,12 @@
+- [ ] Diagnosticar e corrigir páginas quebradas (Produtos, Integrações, Sobre)
+    - [ ] Verificar App.tsx
+    - [ ] Verificar Products.tsx (erros de sintaxe/importação)
+    - [ ] Verificar Integrations.tsx
+    - [ ] Verificar About.tsx
+- [ ] Corrigir contraste de texto (azul no azul) em todo o site
+    - [ ] Verificar Home.tsx
+    - [ ] Verificar Footer.tsx
+    - [ ] Verificar páginas internas
+- [ ] Ajustar seção "Soluções Especializadas" (Segmentos) na Home para usar AutoScroll (igual Tecnologias Integradas)
+- [ ] Verificar responsividade Mobile First em todas as páginas
+- [ ] Garantir que nada foi removido indevidamente

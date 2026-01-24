@@ -15,13 +15,12 @@ import About from "./pages/About";
 import Integrations from "./pages/Integrations";
 import Cases from "./pages/Cases";
 
-
 function Router() {
   return (
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/products"} component={Products} />
-      <Route path="/products/:id" component={ProductDetail} />
+      <Route path="/product/:id" component={ProductDetail} />
       <Route path="/seo/mam" component={MAMPage} />
       <Route path="/seo/dam" component={DAMPage} />
       <Route path="/seo/broadcast" component={BroadcastPage} />
@@ -39,9 +38,7 @@ function Router() {
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider
-        defaultTheme="light"
-      >
+      <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
           <Router />

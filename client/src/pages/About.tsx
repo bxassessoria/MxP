@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import { CheckCircle2, MapPin, Phone, Mail, Globe } from "lucide-react";
+import { CheckCircle2, MapPin, Phone, Mail } from "lucide-react";
 
 export default function About() {
   return (
