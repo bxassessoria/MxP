@@ -1,89 +1,116 @@
 import Layout from "@/components/Layout";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft, Search, Calendar, User, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 
 const posts = [
   {
-    title: "Media Portal celebra balanço positivo em 2024",
-    category: "Notícias",
-    date: "20 Nov 2024",
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop",
-    excerpt: "Com projetos de destaque e expansão de negócios, a Media Portal encerra o ano com crescimento expressivo no mercado broadcast."
+    id: 1,
+    title: "A evolução do MAM na era Cloud Computing",
+    excerpt: "Como a migração para a nuvem está transformando a gestão de ativos digitais em grandes emissoras.",
+    date: "24 Jan, 2026",
+    author: "Equipe Media Portal",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop",
+    category: "Tecnologia"
   },
   {
-    title: "16 anos de inovação e excelência",
-    category: "Institucional",
-    date: "15 Out 2024",
-    image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop",
-    excerpt: "Celebramos mais de uma década e meia transformando a gestão de ativos digitais no Brasil e no mundo."
+    id: 2,
+    title: "Segurança de dados em acervos históricos",
+    excerpt: "Práticas essenciais para garantir a integridade e a perenidade de conteúdos audiovisuais digitalizados.",
+    date: "15 Jan, 2026",
+    author: "Equipe Media Portal",
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1470&auto=format&fit=crop",
+    category: "Segurança"
   },
   {
-    title: "Canal UOL amplia cobertura e estreia na Vivo TV",
-    category: "Clientes",
-    date: "10 Set 2024",
-    image: "https://images.unsplash.com/photo-1586899028174-e7098604235b?q=80&w=2071&auto=format&fit=crop",
-    excerpt: "O Canal UOL, cliente Media Portal, expande sua distribuição alcançando milhões de novos telespectadores."
+    id: 3,
+    title: "Media Portal marca presença na NAB Show 2026",
+    excerpt: "Confira as novidades que apresentamos no maior evento de broadcast do mundo em Las Vegas.",
+    date: "10 Jan, 2026",
+    author: "Marketing",
+    image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=1470&auto=format&fit=crop",
+    category: "Eventos"
   },
   {
-    title: "A importância da IA na catalogação de vídeos",
-    category: "Tecnologia",
-    date: "05 Ago 2024",
-    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1965&auto=format&fit=crop",
-    excerpt: "Como algoritmos de inteligência artificial estão revolucionando a velocidade de busca em grandes acervos."
-  },
-  {
-    title: "Media Portal na SET Expo 2024",
-    category: "Eventos",
-    date: "25 Jul 2024",
-    image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop",
-    excerpt: "Confira os destaques da nossa participação no maior evento de broadcast e novas mídias da América Latina."
-  },
-  {
-    title: "Segurança de dados na nuvem híbrida",
-    category: "Segurança",
-    date: "12 Jun 2024",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
-    excerpt: "Melhores práticas para proteger seu acervo digital em ambientes híbridos e multi-cloud."
+    id: 4,
+    title: "Inteligência Artificial na indexação de vídeos",
+    excerpt: "O impacto do reconhecimento facial e de voz na velocidade de busca de arquivos de mídia.",
+    date: "05 Jan, 2026",
+    author: "Tech Team",
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1530&auto=format&fit=crop",
+    category: "Inovação"
   }
 ];
 
 export default function Blog() {
   return (
     <Layout>
-      <div className="bg-[#02040A] text-white py-24 border-b border-white/5">
-        <div className="container text-center max-w-3xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white">Blog Media Portal</h1>
-          <p className="text-xl text-gray-300">
-            Notícias, tendências e novidades sobre o mercado de broadcast e tecnologia.
-          </p>
+      {/* Clean Hero Section */}
+      <div className="bg-white border-b border-gray-200 py-16">
+        <div className="container max-w-4xl text-center">
+            <h1 className="text-4xl md:text-5xl font-bold text-[#263858] mb-6">Blog & Notícias</h1>
+            <p className="text-xl text-gray-600 mb-8">
+                Insights sobre gestão de mídia, tecnologia broadcast e novidades da Media Portal.
+            </p>
+            
+            {/* Search Bar */}
+            <div className="max-w-xl mx-auto relative">
+                <input 
+                    type="text" 
+                    placeholder="Buscar artigos..." 
+                    className="w-full pl-12 pr-4 py-3 rounded-full border border-gray-300 focus:border-[#EE6025] focus:ring-2 focus:ring-[#EE6025]/20 outline-none transition-all shadow-sm"
+                />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+            </div>
         </div>
       </div>
 
-      <div className="container py-20">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post, idx) => (
-            <div key={idx} className="bg-white/5 border border-white/10 rounded-xl overflow-hidden hover:border-[#00FF00]/50 transition-all group cursor-pointer hover:transform hover:-translate-y-1">
-              <div className="relative aspect-video overflow-hidden">
-                <img 
-                  src={post.image} 
-                  alt={post.title} 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-                <div className="absolute top-4 left-4 bg-[#00FF00] text-black text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-                  {post.category}
+      {/* Breadcrumb / Back Button */}
+      <div className="container py-8">
+        <Link href="/">
+            <Button variant="ghost" className="text-gray-500 hover:text-[#EE6025] pl-0">
+                <ArrowLeft size={16} className="mr-2" /> Voltar para Home
+            </Button>
+        </Link>
+      </div>
+
+      {/* Posts Grid */}
+      <div className="container pb-24">
+        <div className="grid md:grid-cols-2 gap-10">
+            {posts.map((post) => (
+                <div key={post.id} className="group cursor-pointer flex flex-col h-full bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#EE6025]/30">
+                    <div className="h-64 overflow-hidden relative">
+                        <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <div className="absolute top-4 left-4 bg-[#EE6025] text-white text-xs font-bold px-3 py-1 rounded shadow-md">
+                            {post.category}
+                        </div>
+                    </div>
+                    <div className="p-8 flex-1 flex flex-col">
+                        <div className="flex items-center gap-4 text-xs text-gray-400 mb-4 font-medium uppercase tracking-wide">
+                            <span className="flex items-center gap-1"><Calendar size={12} /> {post.date}</span>
+                            <span className="flex items-center gap-1"><User size={12} /> {post.author}</span>
+                        </div>
+                        <h2 className="text-2xl font-bold text-[#263858] mb-4 group-hover:text-[#EE6025] transition-colors leading-tight">
+                            {post.title}
+                        </h2>
+                        <p className="text-gray-600 mb-6 flex-1 leading-relaxed">
+                            {post.excerpt}
+                        </p>
+                        <span className="text-[#EE6025] font-bold text-sm uppercase flex items-center gap-2 mt-auto group-hover:translate-x-1 transition-transform">
+                            Ler Artigo Completo <ArrowRight size={16} />
+                        </span>
+                    </div>
                 </div>
-              </div>
-              <div className="p-6">
-                <div className="text-sm text-gray-400 mb-3 font-mono">{post.date}</div>
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#00FF00] transition-colors leading-tight">
-                  {post.title}
-                </h3>
-                <p className="text-gray-400 text-sm mb-6 line-clamp-3 leading-relaxed">
-                  {post.excerpt}
-                </p>
-                <span className="text-[#00FF00] font-bold text-sm uppercase tracking-wider group-hover:underline decoration-[#00FF00] underline-offset-4">Ler Artigo Completo</span>
-              </div>
-            </div>
-          ))}
+            ))}
+        </div>
+
+        {/* Pagination (Visual Only) */}
+        <div className="flex justify-center mt-16 gap-2">
+            <Button variant="outline" disabled className="border-gray-200 text-gray-400">Anterior</Button>
+            <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white">1</Button>
+            <Button variant="outline" className="border-gray-200 text-gray-600 hover:border-[#EE6025] hover:text-[#EE6025]">2</Button>
+            <Button variant="outline" className="border-gray-200 text-gray-600 hover:border-[#EE6025] hover:text-[#EE6025]">3</Button>
+            <Button variant="outline" className="border-gray-200 text-gray-600 hover:border-[#EE6025] hover:text-[#EE6025]">Próxima</Button>
         </div>
       </div>
     </Layout>
