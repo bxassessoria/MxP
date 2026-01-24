@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Server, Cloud, Globe, Tv, Database, Radio, BarChart3, Lock, Zap, RefreshCw, Check } from "lucide-react";
+import { ArrowRight, Play, Server, Cloud, Globe, Tv, Database, Radio, BarChart3, Lock, Zap, RefreshCw, Check, Settings } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import AutoScroll from "embla-carousel-auto-scroll";
@@ -66,8 +66,6 @@ const solutions = [
   }
 ];
 
-import { Settings } from "lucide-react";
-
 export default function Home() {
   const [segmentsRef] = useEmblaCarousel({ loop: true }, [
     Autoplay({ delay: 3000, stopOnInteraction: false })
@@ -75,6 +73,11 @@ export default function Home() {
   
   const [partnersRef] = useEmblaCarousel({ loop: true, dragFree: true }, [
     AutoScroll({ speed: 1, stopOnInteraction: false })
+  ]);
+
+  // Novo hook para o carrossel de soluções (igual ao de partners)
+  const [solutionsRef] = useEmblaCarousel({ loop: true, dragFree: true }, [
+    AutoScroll({ speed: 0.8, stopOnInteraction: false })
   ]);
 
   return (
@@ -179,37 +182,41 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. SOLUÇÕES (Grid 6 Produtos) */}
-      <section className="py-24 bg-white">
-        <div className="container">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+      {/* 4. SOLUÇÕES (Carrossel Contínuo) */}
+      <section className="py-24 bg-white overflow-hidden">
+        <div className="container mb-16">
+          <div className="text-center max-w-3xl mx-auto">
             <span className="text-[#EE6025] font-bold uppercase tracking-widest text-sm">Nossos Produtos</span>
             <h2 className="text-4xl font-bold text-[#263858] mt-2 mb-6">Tecnologia adaptada à sua necessidade</h2>
             <p className="text-gray-600 text-lg">
               Do cloud ao on-premises, oferecemos a arquitetura ideal para o seu fluxo de trabalho.
             </p>
           </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        </div>
+        
+        <div className="w-full" ref={solutionsRef}>
+          <div className="flex gap-8 px-4">
             {solutions.map((sol, idx) => (
-              <Link key={idx} href={sol.link}>
-                <div className="group bg-white p-8 rounded-2xl border border-gray-200 hover:border-[#EE6025] hover:shadow-xl transition-all cursor-pointer h-full flex flex-col">
-                  <div className="mb-6 bg-orange-50 w-16 h-16 rounded-xl flex items-center justify-center group-hover:bg-[#EE6025] transition-colors duration-300">
-                    <div className="text-[#EE6025] group-hover:text-white transition-colors">
-                        {sol.icon}
+              <div key={idx} className="flex-[0_0_350px] min-w-0">
+                <Link href={sol.link}>
+                  <div className="group bg-white p-8 rounded-2xl border border-gray-200 hover:border-[#EE6025] hover:shadow-xl transition-all cursor-pointer h-full flex flex-col min-h-[320px]">
+                    <div className="mb-6 bg-orange-50 w-16 h-16 rounded-xl flex items-center justify-center group-hover:bg-[#EE6025] transition-colors duration-300">
+                      <div className="text-[#EE6025] group-hover:text-white transition-colors">
+                          {sol.icon}
+                      </div>
+                    </div>
+                    <h3 className="text-2xl font-bold text-[#263858] mb-3 group-hover:text-[#EE6025] transition-colors">
+                      {sol.title}
+                    </h3>
+                    <p className="text-gray-600 mb-6 leading-relaxed flex-1 text-sm">
+                      {sol.desc}
+                    </p>
+                    <div className="flex items-center text-[#EE6025] font-bold text-sm uppercase tracking-wide mt-auto">
+                      Saiba Mais <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
                     </div>
                   </div>
-                  <h3 className="text-2xl font-bold text-[#263858] mb-3 group-hover:text-[#EE6025] transition-colors">
-                    {sol.title}
-                  </h3>
-                  <p className="text-gray-600 mb-6 leading-relaxed flex-1">
-                    {sol.desc}
-                  </p>
-                  <div className="flex items-center text-[#EE6025] font-bold text-sm uppercase tracking-wide mt-auto">
-                    Saiba Mais <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </div>
-              </Link>
+                </Link>
+              </div>
             ))}
           </div>
         </div>
@@ -230,102 +237,111 @@ export default function Home() {
                     <div className="bg-[#EE6025] w-12 h-12 rounded-lg flex items-center justify-center mb-6 mx-auto md:mx-0">
                         <Zap size={24} />
                     </div>
-                    <h3 className="text-xl font-bold mb-3">Flexibilidade</h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">Workflows customizáveis que se adaptam ao seu processo, não o contrário.</p>
+                    <h3 className="text-xl font-bold mb-3">Alta Performance</h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">Processamento distribuído para lidar com Petabytes de dados.</p>
                 </div>
                 <div className="text-center md:text-left">
                     <div className="bg-[#EE6025] w-12 h-12 rounded-lg flex items-center justify-center mb-6 mx-auto md:mx-0">
                         <Lock size={24} />
                     </div>
-                    <h3 className="text-xl font-bold mb-3">Segurança</h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">Criptografia de ponta a ponta e controle granular de permissões.</p>
+                    <h3 className="text-xl font-bold mb-3">Segurança Máxima</h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">Criptografia de ponta a ponta e controle granular de acesso.</p>
                 </div>
                 <div className="text-center md:text-left">
                     <div className="bg-[#EE6025] w-12 h-12 rounded-lg flex items-center justify-center mb-6 mx-auto md:mx-0">
-                        <Database size={24} />
+                        <Check size={24} />
                     </div>
-                    <h3 className="text-xl font-bold mb-3">Inteligência</h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">IA aplicada para catalogação automática e reconhecimento facial.</p>
+                    <h3 className="text-xl font-bold mb-3">Interface Intuitiva</h3>
+                    <p className="text-gray-400 text-sm leading-relaxed">UX desenhada para editores e arquivistas, sem curva de aprendizado.</p>
                 </div>
             </div>
         </div>
       </section>
 
-      {/* 6. FLUXO DE MÍDIA (Nova) */}
-      <section className="py-24 bg-gray-50 overflow-hidden">
+      {/* 6. FLUXO DE MÍDIA (Nova Seção) */}
+      <section className="py-24 bg-gray-50">
         <div className="container">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
                 <div className="order-2 lg:order-1 relative">
-                    <div className="absolute -inset-4 bg-orange-200/30 rounded-full blur-3xl"></div>
+                    <div className="absolute inset-0 bg-[#EE6025] rounded-3xl rotate-3 opacity-10"></div>
                     <img 
-                        src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop" 
-                        alt="Fluxo de Mídia" 
-                        className="relative rounded-2xl shadow-2xl z-10"
+                        src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2034&auto=format&fit=crop" 
+                        alt="Fluxo de Mídia Inteligente" 
+                        className="relative rounded-3xl shadow-2xl w-full"
                     />
-                    <div className="absolute -bottom-10 -right-10 bg-white p-6 rounded-xl shadow-xl z-20 max-w-xs hidden md:block">
-                        <div className="flex items-center gap-4 mb-4">
-                            <div className="bg-green-100 p-3 rounded-full text-green-600">
-                                <Check size={24} />
-                            </div>
-                            <div>
-                                <p className="font-bold text-[#263858]">Processo Concluído</p>
-                                <p className="text-xs text-gray-500">Transcodificação finalizada</p>
-                            </div>
-                        </div>
-                        <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
-                            <div className="h-full bg-green-500 w-full"></div>
-                        </div>
-                    </div>
                 </div>
-                <div className="order-1 lg:order-2">
-                    <span className="text-[#EE6025] font-bold uppercase tracking-widest text-sm">Workflow Inteligente</span>
-                    <h2 className="text-4xl font-bold text-[#263858] mt-2 mb-6">Domine seu Fluxo de Mídia</h2>
-                    <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                        Do ingest à distribuição, nossa plataforma orquestra cada etapa do ciclo de vida do seu conteúdo. Automatize tarefas repetitivas e libere sua equipe criativa.
+                <div className="order-1 lg:order-2 space-y-8">
+                    <h2 className="text-4xl font-bold text-[#263858]">Fluxo de Mídia Inteligente</h2>
+                    <p className="text-gray-600 text-lg leading-relaxed">
+                        Nossa plataforma orquestra todo o ciclo de vida do conteúdo, desde a ingestão até a distribuição e arquivamento profundo.
                     </p>
                     <ul className="space-y-4">
-                        {["Ingestão Automatizada", "Catalogação com IA", "Edição Remota", "Distribuição Multiplataforma"].map((item, i) => (
-                            <li key={i} className="flex items-center gap-3 text-[#263858] font-medium">
-                                <div className="bg-[#EE6025]/10 p-1 rounded text-[#EE6025]">
-                                    <Check size={16} />
-                                </div>
-                                {item}
-                            </li>
-                        ))}
+                        <li className="flex items-start gap-3">
+                            <div className="mt-1 bg-green-100 p-1 rounded-full text-green-600"><Check size={16} /></div>
+                            <span className="text-gray-700">Arquivamento Automático baseado em regras de negócio</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <div className="mt-1 bg-green-100 p-1 rounded-full text-green-600"><Check size={16} /></div>
+                            <span className="text-gray-700">Transcodificação multiformato transparente</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                            <div className="mt-1 bg-green-100 p-1 rounded-full text-green-600"><Check size={16} /></div>
+                            <span className="text-gray-700">Enriquecimento de metadados com IA</span>
+                        </li>
                     </ul>
                 </div>
             </div>
         </div>
       </section>
 
-      {/* 7. PARCEIROS (Tecnologias Integradas - Auto Scroll) */}
-      <section className="py-20 bg-white border-t border-gray-100">
-        <div className="container mb-10 text-center">
-            <h3 className="text-2xl font-bold text-[#263858]">Tecnologias Integradas</h3>
-        </div>
-        <div className="overflow-hidden" ref={partnersRef}>
-            <div className="flex gap-16 select-none">
-                {[...partners, ...partners].map((logo, idx) => (
-                    <div key={idx} className="flex-[0_0_150px] min-w-0 flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity grayscale hover:grayscale-0">
-                        <img src={logo} alt="Partner" className="h-12 w-auto object-contain" />
+      {/* 7. NOSSO CONTEÚDO (Nova Seção) */}
+      <section className="py-24 bg-white">
+        <div className="container text-center">
+            <h2 className="text-3xl font-bold text-[#263858] mb-12">Nosso Conteúdo</h2>
+            <div className="grid md:grid-cols-3 gap-8">
+                {[1, 2, 3].map((i) => (
+                    <div key={i} className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-shadow text-left group">
+                        <div className="h-48 bg-gray-200 overflow-hidden">
+                            <img 
+                                src={i === 1 ? "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop" : i === 2 ? "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=800&auto=format&fit=crop" : "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop"}
+                                alt="Blog Post" 
+                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            />
+                        </div>
+                        <div className="p-6">
+                            <span className="text-[#EE6025] text-xs font-bold uppercase tracking-wider">Novidade</span>
+                            <h3 className="text-xl font-bold text-[#263858] mt-2 mb-3">Transformação Digital no Broadcast: O Futuro é Agora</h3>
+                            <Link href="/blog">
+                                <span className="text-sm font-medium text-gray-500 hover:text-[#EE6025] cursor-pointer flex items-center gap-1">
+                                    Ler artigo <ArrowRight size={14} />
+                                </span>
+                            </Link>
+                        </div>
                     </div>
                 ))}
             </div>
         </div>
       </section>
 
-      {/* 8. CTA FINAL */}
-      <section className="py-24 bg-[#EE6025] text-white text-center">
-        <div className="container max-w-4xl">
-          <h2 className="text-4xl font-bold mb-6">Pronto para transformar sua gestão de mídia?</h2>
-          <p className="text-xl text-white/90 mb-10">
-            Agende uma demonstração personalizada e descubra o poder do Media Portal.
-          </p>
-          <Link href="/contact">
-            <Button className="bg-white text-[#EE6025] hover:bg-gray-100 font-bold text-lg px-10 py-6 h-auto rounded shadow-xl hover:scale-105 transition-transform">
-              Solicitar Demo
-            </Button>
-          </Link>
+      {/* 8. TECNOLOGIAS INTEGRADAS (Carrossel Contínuo) */}
+      <section className="py-20 bg-gray-50 overflow-hidden">
+        <div className="container mb-12 text-center">
+          <h2 className="text-2xl font-bold text-[#263858] opacity-80">Tecnologias Integradas</h2>
+        </div>
+        <div className="w-full" ref={partnersRef}>
+          <div className="flex gap-16 px-8 items-center">
+            {partners.map((logo, index) => (
+              <div key={index} className="flex-[0_0_150px] min-w-0 grayscale hover:grayscale-0 transition-all duration-500 opacity-60 hover:opacity-100">
+                <img src={logo} alt="Partner Logo" className="w-full h-auto object-contain max-h-16" />
+              </div>
+            ))}
+            {/* Duplicar para garantir loop infinito visualmente suave */}
+            {partners.map((logo, index) => (
+              <div key={`dup-${index}`} className="flex-[0_0_150px] min-w-0 grayscale hover:grayscale-0 transition-all duration-500 opacity-60 hover:opacity-100">
+                <img src={logo} alt="Partner Logo" className="w-full h-auto object-contain max-h-16" />
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </Layout>
