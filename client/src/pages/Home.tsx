@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Cloud, Server, Settings } from "lucide-react";
+import { ArrowRight, Cloud, Server, Settings, Brain, Archive, LayoutTemplate } from "lucide-react";
 import { Link } from "wouter";
 import SegmentsSection from "@/components/SegmentsSection";
 import ClientsSection from "@/components/ClientsSection";
@@ -69,7 +69,7 @@ export default function Home() {
       {/* 2. SEGMENTOS DE NEGÓCIOS */}
       <SegmentsSection />
 
-      {/* 3. VANTAGENS */}
+      {/* 3. VANTAGENS (Textos em branco) */}
       <section className="py-24 bg-[#263858] text-white">
         <div className="container">
             <div className="grid md:grid-cols-3 gap-12 text-center">
@@ -78,8 +78,8 @@ export default function Home() {
                         <Settings size={48} />
                     </div>
                     <h3 className="text-xl font-bold mb-4">Flexibilidade Total</h3>
-                    <p className="text-gray-300 leading-relaxed">
-                        Adaptamos nossos fluxos à sua operação, não o contrário. Soluções modulares que crescem com você.
+                    <p className="text-gray-300 leading-relaxed min-h-[3rem]">
+                        
                     </p>
                 </div>
                 <div className="p-6 border-x border-white/10">
@@ -87,8 +87,8 @@ export default function Home() {
                         <Cloud size={48} />
                     </div>
                     <h3 className="text-xl font-bold mb-4">Nuvem Inteligente</h3>
-                    <p className="text-gray-300 leading-relaxed">
-                        Acesse seu acervo de qualquer lugar com segurança de nível bancário e redundância global.
+                    <p className="text-gray-300 leading-relaxed min-h-[3rem]">
+                        
                     </p>
                 </div>
                 <div className="p-6">
@@ -96,8 +96,8 @@ export default function Home() {
                         <Server size={48} />
                     </div>
                     <h3 className="text-xl font-bold mb-4">Integração Legada</h3>
-                    <p className="text-gray-300 leading-relaxed">
-                        Conectamos com seus sistemas atuais (NRCS, Playout, Edição) sem descartar seu investimento.
+                    <p className="text-gray-300 leading-relaxed min-h-[3rem]">
+                        
                     </p>
                 </div>
             </div>
@@ -122,24 +122,39 @@ export default function Home() {
                     <h2 className="text-4xl font-bold text-[#263858]">Fluxo de Mídia Otimizado</h2>
                     <div className="space-y-6">
                         <div className="flex gap-4">
-                            <div className="w-12 h-12 rounded-full bg-[#EE6025] text-white flex items-center justify-center font-bold text-xl shrink-0">1</div>
+                            <div className="w-12 h-12 rounded-full bg-[#EE6025] text-white flex items-center justify-center shrink-0">
+                                <Archive size={24} />
+                            </div>
                             <div>
-                                <h3 className="text-xl font-bold text-[#263858] mb-2">Ingest Automático</h3>
-                                <p className="text-gray-600">Captura de múltiplas fontes com catalogação inicial automática via IA.</p>
+                                <h3 className="text-xl font-bold text-[#263858] mb-2">Arquivamento automático</h3>
+                                <p className="text-gray-600">Catalogação e indexação nos padrões LTO, RDX e ODA</p>
                             </div>
                         </div>
                         <div className="flex gap-4">
-                            <div className="w-12 h-12 rounded-full bg-[#263858] text-white flex items-center justify-center font-bold text-xl shrink-0">2</div>
+                            <div className="w-12 h-12 rounded-full bg-[#263858] text-white flex items-center justify-center shrink-0">
+                                <LayoutTemplate size={24} />
+                            </div>
                             <div>
-                                <h3 className="text-xl font-bold text-[#263858] mb-2">Processamento Inteligente</h3>
-                                <p className="text-gray-600">Transcodificação, proxy generation e enriquecimento de metadados.</p>
+                                <h3 className="text-xl font-bold text-[#263858] mb-2">Solução flexível</h3>
+                                <p className="text-gray-600">Escolha uma solução on premises, nuvem ou híbrida para todas as aplicações</p>
                             </div>
                         </div>
                         <div className="flex gap-4">
-                            <div className="w-12 h-12 rounded-full bg-gray-200 text-[#263858] flex items-center justify-center font-bold text-xl shrink-0">3</div>
+                            <div className="w-12 h-12 rounded-full bg-[#EE6025] text-white flex items-center justify-center shrink-0">
+                                <Brain size={24} />
+                            </div>
                             <div>
-                                <h3 className="text-xl font-bold text-[#263858] mb-2">Distribuição Multi-plataforma</h3>
-                                <p className="text-gray-600">Entrega automática para TV, Web, Redes Sociais e Arquivo.</p>
+                                <h3 className="text-xl font-bold text-[#263858] mb-2">Inteligência artificial</h3>
+                                <p className="text-gray-600">Geração automática de metadados, legendas e análise de faces e objetos</p>
+                            </div>
+                        </div>
+                        <div className="flex gap-4">
+                            <div className="w-12 h-12 rounded-full bg-[#263858] text-white flex items-center justify-center shrink-0">
+                                <Settings size={24} />
+                            </div>
+                            <div>
+                                <h3 className="text-xl font-bold text-[#263858] mb-2">Gestão inteligente</h3>
+                                <p className="text-gray-600">Gestão do fluxo de produção, arquivamento seguro e recuperação rápida.</p>
                             </div>
                         </div>
                     </div>
@@ -148,8 +163,27 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. NOSSO CONTEÚDO (Blog Posts) */}
+      {/* 6. VÍDEO INSTITUCIONAL (Reposicionado) */}
       <section className="py-24 bg-[#F8F9FA]">
+        <div className="container text-center max-w-5xl">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#263858] mb-12">Conheça mais em 1 minuto</h2>
+            <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black">
+                <iframe 
+                    width="100%" 
+                    height="100%" 
+                    src="https://www.youtube.com/embed/ZepJRvf_elo?controls=1&rel=0" 
+                    title="Media Portal Video" 
+                    frameBorder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowFullScreen
+                    className="absolute inset-0"
+                ></iframe>
+            </div>
+        </div>
+      </section>
+
+      {/* 7. NOSSO CONTEÚDO (Blog Posts) */}
+      <section className="py-24 bg-white">
         <div className="container text-center">
             <h2 className="text-3xl font-bold text-[#263858] mb-12">Nosso Conteúdo</h2>
             <div className="grid md:grid-cols-3 gap-8">

@@ -1,15 +1,14 @@
 import { useRef } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import AutoScroll from 'embla-carousel-auto-scroll';
-import { Tv, Globe, Radio, Film, Building2, GraduationCap } from "lucide-react";
+import { Tv, Radio, Church, Users, GraduationCap } from "lucide-react";
 
 const segments = [
-  { id: 1, title: "Emissoras de TV", icon: <Tv size={48} />, desc: "Gestão completa de grade e acervo" },
-  { id: 2, title: "Portais de Notícias", icon: <Globe size={48} />, desc: "Publicação ágil para web e redes" },
-  { id: 3, title: "Produtoras", icon: <Film size={48} />, desc: "Workflow de pós-produção integrado" },
-  { id: 4, title: "Rádios", icon: <Radio size={48} />, desc: "Visual radio e podcasting" },
-  { id: 5, title: "Corporativo", icon: <Building2 size={48} />, desc: "Comunicação interna e treinamentos" },
-  { id: 6, title: "Educação", icon: <GraduationCap size={48} />, desc: "Acervo de aulas e EAD" },
+  { id: 1, title: "Televisão", icon: <Tv size={48} />, desc: "Gestão completa de grade e acervo" },
+  { id: 2, title: "Rádio", icon: <Radio size={48} />, desc: "Visual radio e podcasting" },
+  { id: 3, title: "TV Igreja", icon: <Church size={48} />, desc: "Gestão de conteúdo religioso" },
+  { id: 4, title: "Público", icon: <Users size={48} />, desc: "Transparência e acesso cidadão" },
+  { id: 5, title: "EAD", icon: <GraduationCap size={48} />, desc: "Acervo de aulas e educação" },
 ];
 
 export default function SegmentsSection() {
