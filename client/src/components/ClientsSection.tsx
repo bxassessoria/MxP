@@ -48,9 +48,12 @@ export default function ClientsSection() {
                 className="w-full h-full object-contain mix-blend-multiply"
                 onError={(e) => {
                     // Fallback para nome se imagem falhar
-                    e.currentTarget.style.display = 'none';
-                    e.currentTarget.parentElement!.innerText = client.name;
-                    e.currentTarget.parentElement!.className = "flex-[0_0_150px] min-w-0 font-bold text-gray-400 text-center flex items-center justify-center h-24 border border-dashed border-gray-300 rounded";
+                    const parent = e.currentTarget.parentElement;
+                    if (parent) {
+                        e.currentTarget.style.display = 'none';
+                        parent.innerText = client.name;
+                        parent.className = "flex-[0_0_150px] min-w-0 font-bold text-gray-400 text-center flex items-center justify-center h-24 border border-dashed border-gray-300 rounded";
+                    }
                 }}
               />
             </div>
@@ -63,9 +66,12 @@ export default function ClientsSection() {
                 alt={client.name} 
                 className="w-full h-full object-contain mix-blend-multiply"
                 onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                    e.currentTarget.parentElement!.innerText = client.name;
-                    e.currentTarget.parentElement!.className = "flex-[0_0_150px] min-w-0 font-bold text-gray-400 text-center flex items-center justify-center h-24 border border-dashed border-gray-300 rounded";
+                    const parent = e.currentTarget.parentElement;
+                    if (parent) {
+                        e.currentTarget.style.display = 'none';
+                        parent.innerText = client.name;
+                        parent.className = "flex-[0_0_150px] min-w-0 font-bold text-gray-400 text-center flex items-center justify-center h-24 border border-dashed border-gray-300 rounded";
+                    }
                 }}
               />
             </div>
