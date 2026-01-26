@@ -1,39 +1,11 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Cloud, Server, Database, Tv, Globe, Settings, ChevronRight } from "lucide-react";
+import { ArrowRight, Cloud, Server, Settings } from "lucide-react";
 import { Link } from "wouter";
-import useEmblaCarousel from 'embla-carousel-react';
-import AutoScroll from 'embla-carousel-auto-scroll';
-
-const solutions = [
-  { id: "cloudfly", title: "CloudFly", icon: <Cloud size={32} />, desc: "MAM 100% Cloud" },
-  { id: "gems", title: "Gems in a Box", icon: <Server size={32} />, desc: "MAM On-Premises" },
-  { id: "cloudlink", title: "CloudLink", icon: <Database size={32} />, desc: "MAM Híbrido" },
-  { id: "custom", title: "Custom PRJ", icon: <Settings size={32} />, desc: "Projetos Sob Medida" },
-  { id: "gendai-tv", title: "Gendai TV", icon: <Tv size={32} />, desc: "Fluxo Broadcast" },
-  { id: "gendai-news", title: "Gendai News", icon: <Globe size={32} />, desc: "Fluxo Jornalístico" }
-];
-
-const partners = [
-  { name: "Adobe", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Adobe_Premiere_Pro_CC_icon.svg/1200px-Adobe_Premiere_Pro_CC_icon.svg.png" },
-  { name: "AWS", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1200px-Amazon_Web_Services_Logo.svg.png" },
-  { name: "Google Cloud", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Google_Cloud_logo.svg/1200px-Google_Cloud_logo.svg.png" },
-  { name: "Avid", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Avid_Technology_logo.svg/1200px-Avid_Technology_logo.svg.png" },
-  { name: "Sony", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Sony_logo.svg/1200px-Sony_logo.svg.png" },
-  { name: "Microsoft Azure", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Microsoft_Azure.svg/1200px-Microsoft_Azure.svg.png" },
-  { name: "Telestream", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/3/39/Telestream_Logo.png/220px-Telestream_Logo.png" },
-  { name: "Harmonic", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Harmonic_Inc_Logo.svg/1200px-Harmonic_Inc_Logo.svg.png" }
-];
+import SegmentsSection from "@/components/SegmentsSection";
+import ClientsSection from "@/components/ClientsSection";
 
 export default function Home() {
-  const [emblaRef] = useEmblaCarousel({ loop: true }, [
-    AutoScroll({ speed: 1, stopOnInteraction: false })
-  ]);
-  
-  const [solutionsRef] = useEmblaCarousel({ loop: true }, [
-    AutoScroll({ speed: 1, stopOnInteraction: false, direction: 'forward' }) // Direção oposta para diferenciar
-  ]);
-
   return (
     <Layout>
       {/* 1. HERO SECTION (Texto Esq / Vídeo Dir) */}
@@ -94,75 +66,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. SOLUÇÕES ESPECIALIZADAS (Novo AutoScroll) */}
-      <section className="py-20 bg-[#F8F9FA] overflow-hidden border-y border-gray-200">
-        <div className="container mb-10">
-             <h2 className="text-3xl font-bold text-[#263858] text-center">Soluções Especializadas</h2>
-        </div>
-        
-        <div className="embla" ref={solutionsRef}>
-          <div className="flex gap-8 px-4">
-            {solutions.map((sol) => (
-              <div key={sol.id} className="flex-[0_0_300px] min-w-0">
-                 <Link href={`/products#${sol.id}`}>
-                    <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:border-[#EE6025] hover:shadow-lg transition-all cursor-pointer group h-full">
-                        <div className="text-[#263858] group-hover:text-[#EE6025] transition-colors mb-6 bg-gray-50 w-16 h-16 rounded-lg flex items-center justify-center">
-                            {sol.icon}
-                        </div>
-                        <h3 className="text-xl font-bold text-[#263858] mb-2 group-hover:text-[#EE6025] transition-colors">{sol.title}</h3>
-                        <p className="text-gray-500 text-sm leading-relaxed mb-4">
-                            {sol.desc}
-                        </p>
-                        <div className="flex items-center text-[#EE6025] font-bold text-sm opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
-                            Saiba mais <ChevronRight size={16} className="ml-1" />
-                        </div>
-                    </div>
-                 </Link>
-              </div>
-            ))}
-             {/* Duplicar para loop infinito visual */}
-             {solutions.map((sol) => (
-              <div key={`${sol.id}-dup`} className="flex-[0_0_300px] min-w-0">
-                 <Link href={`/products#${sol.id}`}>
-                    <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:border-[#EE6025] hover:shadow-lg transition-all cursor-pointer group h-full">
-                        <div className="text-[#263858] group-hover:text-[#EE6025] transition-colors mb-6 bg-gray-50 w-16 h-16 rounded-lg flex items-center justify-center">
-                            {sol.icon}
-                        </div>
-                        <h3 className="text-xl font-bold text-[#263858] mb-2 group-hover:text-[#EE6025] transition-colors">{sol.title}</h3>
-                        <p className="text-gray-500 text-sm leading-relaxed mb-4">
-                            {sol.desc}
-                        </p>
-                         <div className="flex items-center text-[#EE6025] font-bold text-sm opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
-                            Saiba mais <ChevronRight size={16} className="ml-1" />
-                        </div>
-                    </div>
-                 </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* 2. SEGMENTOS DE NEGÓCIOS */}
+      <SegmentsSection />
 
-      {/* 3. VÍDEO INSTITUCIONAL (Seção Dedicada) */}
-      <section className="py-24 bg-white">
-        <div className="container text-center max-w-5xl">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#263858] mb-12">Conheça mais em 1 minuto</h2>
-            <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black">
-                <iframe 
-                    width="100%" 
-                    height="100%" 
-                    src="https://www.youtube.com/embed/ZepJRvf_elo?controls=1&rel=0" 
-                    title="Media Portal Video" 
-                    frameBorder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen
-                    className="absolute inset-0"
-                ></iframe>
-            </div>
-        </div>
-      </section>
-
-      {/* 4. VANTAGENS (Restaurada) */}
+      {/* 3. VANTAGENS */}
       <section className="py-24 bg-[#263858] text-white">
         <div className="container">
             <div className="grid md:grid-cols-3 gap-12 text-center">
@@ -197,7 +104,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5. FLUXO DE MÍDIA (Nova Seção) */}
+      {/* 4. NOSSOS CLIENTES */}
+      <ClientsSection />
+
+      {/* 5. FLUXO DE MÍDIA */}
       <section className="py-24 bg-white">
         <div className="container">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -238,7 +148,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. NOSSO CONTEÚDO (Nova Seção) */}
+      {/* 6. NOSSO CONTEÚDO (Blog Posts) */}
       <section className="py-24 bg-[#F8F9FA]">
         <div className="container text-center">
             <h2 className="text-3xl font-bold text-[#263858] mb-12">Nosso Conteúdo</h2>
@@ -266,29 +176,6 @@ export default function Home() {
                     </div>
                 ))}
             </div>
-        </div>
-      </section>
-
-      {/* 7. TECNOLOGIAS INTEGRADAS (Carrossel AutoScroll) */}
-      <section className="py-20 bg-white border-t border-gray-200 overflow-hidden">
-        <div className="container mb-10 text-center">
-            <h2 className="text-2xl font-bold text-[#263858] uppercase tracking-widest opacity-60">Tecnologias Integradas</h2>
-        </div>
-        
-        <div className="embla" ref={emblaRef}>
-          <div className="flex gap-16 items-center px-4">
-            {partners.map((partner, index) => (
-              <div key={index} className="flex-[0_0_150px] min-w-0 grayscale hover:grayscale-0 transition-all duration-500 opacity-50 hover:opacity-100 cursor-pointer">
-                <img src={partner.logo} alt={partner.name} className="w-full h-auto object-contain max-h-12" />
-              </div>
-            ))}
-             {/* Duplicar para loop infinito visual */}
-             {partners.map((partner, index) => (
-              <div key={`dup-${index}`} className="flex-[0_0_150px] min-w-0 grayscale hover:grayscale-0 transition-all duration-500 opacity-50 hover:opacity-100 cursor-pointer">
-                <img src={partner.logo} alt={partner.name} className="w-full h-auto object-contain max-h-12" />
-              </div>
-            ))}
-          </div>
         </div>
       </section>
     </Layout>
