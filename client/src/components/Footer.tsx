@@ -11,7 +11,7 @@ export default function Footer() {
             <div className="bg-white p-2 inline-block rounded mb-6">
                 <img src="/MediaPortal.jpg" alt="Media Portal" className="h-8 w-auto" />
             </div>
-            <p className="text-gray-300 text-sm leading-relaxed mb-6">
+            <p className="text-gray-200 text-sm leading-relaxed mb-6">
               Fluxos digitais inteligentes para gestão de acervos e monetização de conteúdo.
             </p>
             <div className="flex gap-4">
@@ -25,7 +25,7 @@ export default function Footer() {
           {/* Coluna 2: Links Rápidos */}
           <div>
             <h3 className="font-bold text-lg mb-6 border-l-4 border-[#EE6025] pl-3">Navegação</h3>
-            <ul className="space-y-3 text-gray-300 text-sm">
+            <ul className="space-y-3 text-gray-200 text-sm">
               <li><Link href="/" className="hover:text-[#EE6025] transition-colors">Home</Link></li>
               <li><Link href="/products" className="hover:text-[#EE6025] transition-colors">Produtos</Link></li>
               <li><Link href="/integrations" className="hover:text-[#EE6025] transition-colors">Integrações</Link></li>
@@ -38,7 +38,7 @@ export default function Footer() {
           {/* Coluna 3: Produtos */}
           <div>
             <h3 className="font-bold text-lg mb-6 border-l-4 border-[#EE6025] pl-3">Soluções</h3>
-            <ul className="space-y-3 text-gray-300 text-sm">
+            <ul className="space-y-3 text-gray-200 text-sm">
               <li><Link href="/products" className="hover:text-[#EE6025] transition-colors">CloudFly</Link></li>
               <li><Link href="/products" className="hover:text-[#EE6025] transition-colors">Gems in a Box</Link></li>
               <li><Link href="/products" className="hover:text-[#EE6025] transition-colors">CloudLink</Link></li>
@@ -50,7 +50,7 @@ export default function Footer() {
           {/* Coluna 4: Contato */}
           <div>
             <h3 className="font-bold text-lg mb-6 border-l-4 border-[#EE6025] pl-3">Contato</h3>
-            <ul className="space-y-4 text-gray-300 text-sm">
+            <ul className="space-y-4 text-gray-200 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-[#EE6025] mt-1 shrink-0" />
                 <span>
@@ -74,7 +74,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 text-center text-gray-500 text-xs">
+        <div className="border-t border-white/10 pt-8 text-center text-gray-400 text-xs">
           <p>&copy; {new Date().getFullYear()} Media Portal. Todos os direitos reservados.</p>
         </div>
       </div>

@@ -237,7 +237,7 @@ export default function ProductDetail() {
           </Button>
           
           <h1 className="text-5xl md:text-6xl font-bold mb-6">{product.title}</h1>
-          <p className="text-xl md:text-2xl text-gray-300 max-w-2xl font-light mb-8">
+          <p className="text-xl md:text-2xl text-gray-200 max-w-2xl font-light mb-8">
             {product.subtitle}
           </p>
           <div className="flex gap-4">
@@ -334,7 +334,7 @@ export default function ProductDetail() {
             
             <div className="relative z-10 text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">Vamos conversar sobre o seu projeto?</h2>
-              <p className="text-gray-300">
+              <p className="text-gray-200">
                 Entre em contato com nosso time de vendas para realizarmos uma precificação adequada ao seu fluxo de trabalho.
               </p>
             </div>
@@ -342,14 +342,14 @@ export default function ProductDetail() {
             <form className="space-y-6 relative z-10">
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-300">Nome Completo</label>
+                  <label className="text-sm font-medium text-gray-200">Nome Completo</label>
                   <div className="relative">
                     <User className="absolute left-3 top-3 text-gray-400" size={18} />
                     <input type="text" className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 pl-10 pr-4 text-white placeholder:text-gray-500 focus:outline-none focus:border-[#EE6025] transition-colors" placeholder="Seu nome" />
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-300">Email Corporativo</label>
+                  <label className="text-sm font-medium text-gray-200">Email Corporativo</label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-3 text-gray-400" size={18} />
                     <input type="email" className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 pl-10 pr-4 text-white placeholder:text-gray-500 focus:outline-none focus:border-[#EE6025] transition-colors" placeholder="voce@empresa.com" />
@@ -359,14 +359,14 @@ export default function ProductDetail() {
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-300">Empresa</label>
+                  <label className="text-sm font-medium text-gray-200">Empresa</label>
                   <div className="relative">
                     <Building2 className="absolute left-3 top-3 text-gray-400" size={18} />
                     <input type="text" className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 pl-10 pr-4 text-white placeholder:text-gray-500 focus:outline-none focus:border-[#EE6025] transition-colors" placeholder="Nome da empresa" />
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-300">Telefone</label>
+                  <label className="text-sm font-medium text-gray-200">Telefone</label>
                   <div className="relative">
                     <Phone className="absolute left-3 top-3 text-gray-400" size={18} />
                     <input type="tel" className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 pl-10 pr-4 text-white placeholder:text-gray-500 focus:outline-none focus:border-[#EE6025] transition-colors" placeholder="(11) 99999-9999" />

@@ -78,7 +78,7 @@ export default function Home() {
                         <Settings size={48} />
                     </div>
                     <h3 className="text-xl font-bold mb-4">Flexibilidade Total</h3>
-                    <p className="text-gray-300 leading-relaxed min-h-[3rem]">
+                    <p className="text-gray-200 leading-relaxed min-h-[3rem]">
                         
                     </p>
                 </div>
@@ -87,7 +87,7 @@ export default function Home() {
                         <Cloud size={48} />
                     </div>
                     <h3 className="text-xl font-bold mb-4">Nuvem Inteligente</h3>
-                    <p className="text-gray-300 leading-relaxed min-h-[3rem]">
+                    <p className="text-gray-200 leading-relaxed min-h-[3rem]">
                         
                     </p>
                 </div>
@@ -96,7 +96,7 @@ export default function Home() {
                         <Server size={48} />
                     </div>
                     <h3 className="text-xl font-bold mb-4">Integração Legada</h3>
-                    <p className="text-gray-300 leading-relaxed min-h-[3rem]">
+                    <p className="text-gray-200 leading-relaxed min-h-[3rem]">
                         
                     </p>
                 </div>
