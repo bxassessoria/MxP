@@ -45,25 +45,41 @@ const posts = [
 export default function Blog() {
   return (
     <Layout>
-      {/* Clean Hero Section */}
-      <div className="bg-white border-b border-gray-200 py-16">
-        <div className="container max-w-4xl text-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-[#263858] mb-6">Blog & Notícias</h1>
-            <p className="text-xl text-gray-600 mb-8">
-                Insights sobre gestão de mídia, tecnologia broadcast e novidades da Media Portal.
+      {/* HERO SECTION - PADRÃO HOME */}
+      <section className="relative min-h-[90vh] flex items-center bg-[#263858] overflow-hidden">
+        <div className="absolute inset-0 z-0">
+             <img 
+               src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop" 
+               alt="Background Blog" 
+               className="w-full h-full object-cover opacity-30"
+             />
+             <div className="absolute inset-0 bg-gradient-to-r from-[#263858] to-transparent"></div>
+        </div>
+        
+        <div className="container relative z-10">
+          <div className="max-w-2xl bg-white/5 backdrop-blur-md border border-white/10 p-10 md:p-14 rounded-3xl shadow-2xl">
+            <div className="inline-block bg-[#EE6025] px-4 py-1 rounded-full text-sm font-bold tracking-wider uppercase mb-6 text-white">
+              Conteúdo & Insights
+            </div>
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
+              Blog & <span className="text-[#EE6025]">Notícias</span>
+            </h1>
+            <p className="text-xl text-gray-200 leading-relaxed mb-8">
+              Insights sobre gestão de mídia, tecnologia broadcast e novidades da Media Portal.
             </p>
             
-            {/* Search Bar */}
-            <div className="max-w-xl mx-auto relative">
+            {/* Search Bar no Card */}
+            <div className="relative max-w-lg">
                 <input 
                     type="text" 
                     placeholder="Buscar artigos..." 
-                    className="w-full pl-12 pr-4 py-3 rounded-full border border-gray-300 focus:border-[#EE6025] focus:ring-2 focus:ring-[#EE6025]/20 outline-none transition-all shadow-sm"
+                    className="w-full pl-12 pr-4 py-4 rounded-xl border border-white/20 bg-white/10 text-white placeholder:text-gray-300 focus:border-[#EE6025] focus:bg-white/20 outline-none transition-all"
                 />
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300" size={20} />
             </div>
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* Breadcrumb / Back Button */}
       <div className="container py-8">

@@ -39,26 +39,29 @@ const categories = [
 export default function Integrations() {
   return (
     <Layout>
-      {/* 1. HERO SECTION PADRONIZADA */}
-      <section className="relative min-h-[60vh] flex items-center bg-[#263858] overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-20">
+      {/* HERO SECTION - PADRÃO HOME */}
+      <section className="relative min-h-[90vh] flex items-center bg-[#263858] overflow-hidden">
+        <div className="absolute inset-0 z-0">
              <img 
                src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop" 
                alt="Background Integrações" 
-               className="w-full h-full object-cover"
+               className="w-full h-full object-cover opacity-30"
              />
+             <div className="absolute inset-0 bg-gradient-to-r from-[#263858] to-transparent"></div>
         </div>
-        <div className="container relative z-10 grid lg:grid-cols-2 gap-12 items-center pt-20">
-          <div className="text-white space-y-6">
-            <div className="inline-block bg-[#EE6025] px-4 py-1 rounded-full text-sm font-bold tracking-wider uppercase mb-2">
+        
+        <div className="container relative z-10">
+          <div className="max-w-2xl bg-white/5 backdrop-blur-md border border-white/10 p-10 md:p-14 rounded-3xl shadow-2xl">
+            <div className="inline-block bg-[#EE6025] px-4 py-1 rounded-full text-sm font-bold tracking-wider uppercase mb-6 text-white">
               Ecossistema Conectado
             </div>
-            <h1 className="text-5xl md:text-6xl font-bold leading-tight">
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
               Integrações Nativas
             </h1>
-            <p className="text-xl text-gray-300 max-w-xl leading-relaxed">
+            <p className="text-xl text-gray-200 leading-relaxed mb-8">
               Conecte o Media Portal às ferramentas que você já usa e potencialize seu fluxo de trabalho.
             </p>
+            <div className="h-1 w-20 bg-[#EE6025] rounded-full"></div>
           </div>
         </div>
       </section>

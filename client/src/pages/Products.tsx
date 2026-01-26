@@ -100,25 +100,30 @@ const featuresList = [
 export default function Products() {
   return (
     <Layout>
-      {/* HERO SECTION */}
-      <section className="relative py-20 bg-[#263858] overflow-hidden">
-        <div className="absolute inset-0 z-0 opacity-10">
+      {/* HERO SECTION - PADRÃO HOME */}
+      <section className="relative min-h-[90vh] flex items-center bg-[#263858] overflow-hidden">
+        <div className="absolute inset-0 z-0">
              <img 
                src="https://images.unsplash.com/photo-1597852074816-d933c7d2b988?q=80&w=2070&auto=format&fit=crop" 
                alt="Background Produtos" 
-               className="w-full h-full object-cover"
+               className="w-full h-full object-cover opacity-30"
              />
+             <div className="absolute inset-0 bg-gradient-to-r from-[#263858] to-transparent"></div>
         </div>
-        <div className="container relative z-10 text-center">
-          <div className="inline-block bg-[#EE6025] px-4 py-1 rounded-full text-sm font-bold tracking-wider uppercase mb-4 text-white">
-            Portfólio Completo
+        
+        <div className="container relative z-10">
+          <div className="max-w-2xl bg-white/5 backdrop-blur-md border border-white/10 p-10 md:p-14 rounded-3xl shadow-2xl">
+            <div className="inline-block bg-[#EE6025] px-4 py-1 rounded-full text-sm font-bold tracking-wider uppercase mb-6 text-white">
+              Portfólio Completo
+            </div>
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
+              Soluções para cada <span className="text-[#EE6025]">desafio</span>
+            </h1>
+            <p className="text-xl text-gray-200 leading-relaxed mb-8">
+              Conheça nossa linha completa de produtos para gestão, processamento e distribuição de mídia. Modelos flexíveis para sua necessidade.
+            </p>
+            <div className="h-1 w-20 bg-[#EE6025] rounded-full"></div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Soluções para cada <span className="text-[#EE6025]">desafio</span>
-          </h1>
-          <p className="text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed">
-            Conheça nossa linha completa de produtos para gestão, processamento e distribuição de mídia. Modelos flexíveis para sua necessidade.
-          </p>
         </div>
       </section>
 

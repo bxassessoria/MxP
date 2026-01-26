@@ -4,15 +4,32 @@ import { CheckCircle2, MapPin, Phone, Mail } from "lucide-react";
 export default function About() {
   return (
     <Layout>
-      {/* Hero Section */}
-      <div className="bg-[#263858] text-white py-24">
-        <div className="container text-center max-w-4xl">
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">Sobre Nós</h1>
-          <p className="text-xl text-gray-300">
-            Transformando a gestão de conteúdo digital e monetização de acervos desde 2008.
-          </p>
+      {/* HERO SECTION - PADRÃO HOME */}
+      <section className="relative min-h-[90vh] flex items-center bg-[#263858] overflow-hidden">
+        <div className="absolute inset-0 z-0">
+             <img 
+               src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" 
+               alt="Background Sobre" 
+               className="w-full h-full object-cover opacity-30"
+             />
+             <div className="absolute inset-0 bg-gradient-to-r from-[#263858] to-transparent"></div>
         </div>
-      </div>
+        
+        <div className="container relative z-10">
+          <div className="max-w-2xl bg-white/5 backdrop-blur-md border border-white/10 p-10 md:p-14 rounded-3xl shadow-2xl">
+            <div className="inline-block bg-[#EE6025] px-4 py-1 rounded-full text-sm font-bold tracking-wider uppercase mb-6 text-white">
+              Nossa História
+            </div>
+            <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
+              Sobre a <span className="text-[#EE6025]">Media Portal</span>
+            </h1>
+            <p className="text-xl text-gray-200 leading-relaxed mb-8">
+              Transformando a gestão de conteúdo digital e monetização de acervos desde 2008.
+            </p>
+            <div className="h-1 w-20 bg-[#EE6025] rounded-full"></div>
+          </div>
+        </div>
+      </section>
 
       {/* A Empresa */}
       <div className="container py-20">

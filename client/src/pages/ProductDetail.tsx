@@ -216,37 +216,40 @@ export default function ProductDetail() {
 
   return (
     <Layout>
-      {/* Hero Section do Produto */}
-      <section className="relative py-24 bg-[#263858] text-white overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
+      {/* Hero Section do Produto - PADRÃO HOME */}
+      <section className="relative min-h-[90vh] flex items-center bg-[#263858] text-white overflow-hidden">
+        <div className="absolute inset-0 z-0">
           <img 
             src={product.image} 
             alt={product.title} 
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover opacity-30"
           />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#263858] to-transparent"></div>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#263858] via-[#263858]/90 to-transparent"></div>
         
-        <div className="container relative z-10">
-          <Button 
-            variant="ghost" 
-            className="text-white/70 hover:text-white mb-8 pl-0 hover:bg-transparent"
-            onClick={() => setLocation("/products")}
-          >
-            <ArrowLeft className="mr-2 h-4 w-4" /> Voltar para Produtos
-          </Button>
-          
-          <h1 className="text-5xl md:text-6xl font-bold mb-6">{product.title}</h1>
-          <p className="text-xl md:text-2xl text-gray-200 max-w-2xl font-light mb-8">
-            {product.subtitle}
-          </p>
-          <div className="flex gap-4">
-            <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white font-bold h-12 px-8 rounded-lg shadow-lg">
-              Solicitar Demonstração
+        <div className="container relative z-10 pt-16">
+          <div className="max-w-3xl bg-white/5 backdrop-blur-md border border-white/10 p-10 md:p-14 rounded-3xl shadow-2xl">
+            <Button 
+                variant="ghost" 
+                className="text-white/70 hover:text-white mb-6 pl-0 hover:bg-transparent -ml-2"
+                onClick={() => setLocation("/products")}
+            >
+                <ArrowLeft className="mr-2 h-4 w-4" /> Voltar para Produtos
             </Button>
-            <Button variant="outline" className="border-white text-[#263858] hover:bg-white/10 hover:text-white h-12 px-8 rounded-lg">
-              Baixar PDF Técnico
-            </Button>
+            
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">{product.title}</h1>
+            <p className="text-xl md:text-2xl text-gray-200 font-light mb-10 leading-relaxed border-l-4 border-[#EE6025] pl-6">
+                {product.subtitle}
+            </p>
+            
+            <div className="flex flex-wrap gap-4">
+                <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white font-bold h-14 px-8 rounded-lg shadow-lg text-lg">
+                Solicitar Demonstração
+                </Button>
+                <Button variant="outline" className="border-white text-white hover:bg-white/10 h-14 px-8 rounded-lg text-lg">
+                Baixar PDF Técnico
+                </Button>
+            </div>
           </div>
         </div>
       </section>
