@@ -1,9 +1,39 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, Cloud, Server, RefreshCw, Settings, Tv, Globe, FileText, Mic, Scissors, Search, Database, BarChart } from "lucide-react";
+import { CheckCircle2, Cloud, Server, RefreshCw, Settings, Tv, Globe, FileText, Mic, Scissors, Search, Database, BarChart, Layers, FolderArchive, Link as LinkIcon, Newspaper } from "lucide-react";
 import { Link } from "wouter";
 
 const products = [
+  {
+    id: "mam",
+    title: "MAM",
+    subtitle: "Media Asset Management",
+    desc: "Gestão de Ativos de Mídia para emissoras e produtores de conteúdo. Organize, catalogue e distribua seu acervo de vídeo com eficiência máxima.",
+    icon: <Layers size={48} />,
+    features: ["Organização centralizada", "Busca avançada", "Distribuição multi-plataforma"],
+    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1974&auto=format&fit=crop",
+    hasDetail: false
+  },
+  {
+    id: "pam",
+    title: "PAM",
+    subtitle: "Production Asset Management",
+    desc: "Gestão de Ativos de Produção, com controle de multiversões e catalogação avançada para fluxos de trabalho de edição complexos.",
+    icon: <FolderArchive size={48} />,
+    features: ["Controle de versão", "Colaboração em edição", "Integração com NLEs"],
+    image: "https://images.unsplash.com/photo-1579548122080-c35fd6820ecb?q=80&w=2070&auto=format&fit=crop",
+    hasDetail: false
+  },
+  {
+    id: "dam",
+    title: "DAM",
+    subtitle: "Digital Asset Management",
+    desc: "Gestão de Ativos Digitais corporativos. Centralize imagens, documentos, marcas e materiais de marketing em um único repositório seguro.",
+    icon: <Database size={48} />,
+    features: ["Gestão de marca", "Portal de marketing", "Controle de direitos"],
+    image: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?q=80&w=2074&auto=format&fit=crop",
+    hasDetail: false
+  },
   {
     id: "cloudfly",
     title: "CloudFly",
@@ -11,52 +41,58 @@ const products = [
     desc: "Gestão e processamento de acervo digital 100% em nuvem permitindo a visualização em baixa resolução e download da mídia mezanino.",
     icon: <Cloud size={48} />,
     features: ["Acesso remoto total", "Escalabilidade elástica", "Sem custo de hardware"],
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop",
+    hasDetail: true
   },
   {
-    id: "gems",
+    id: "gems-in-a-box",
     title: "Gems in a Box",
     subtitle: "MAM On-Premises",
-    desc: "Projetos com infraestrutura on premises dimensionados de acordo com a carga de conteúdo arquivado.",
+    desc: "Projetos com infraestrutura on premises dimensionados de acordo com a carga de conteúdo arquivado, do pequeno ao grande volume.",
     icon: <Server size={48} />,
     features: ["Alta performance local", "Segurança de dados isolada", "Sem latência de rede"],
-    image: "https://images.unsplash.com/photo-1597852074816-d933c7d2b988?q=80&w=2070&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
+    hasDetail: true
   },
   {
     id: "cloudlink",
     title: "CloudLink",
     subtitle: "MAM Híbrido",
     desc: "Solução híbrida para gestão de conteúdo digital mesclando vantagens do cloud computing aliado a infraestrutura on premises.",
-    icon: <RefreshCw size={48} />,
+    icon: <LinkIcon size={48} />,
     features: ["O melhor dos dois mundos", "Backup automático na nuvem", "Edição local rápida"],
-    image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=2070&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=2070&auto=format&fit=crop",
+    hasDetail: true
   },
   {
-    id: "custom",
+    id: "custom-prj",
     title: "Custom PRJ",
     subtitle: "Projetos Sob Medida",
-    desc: "Projetos customizados com aproveitamento da infraestrutura existente para potencializar o poder do seu conteúdo.",
+    desc: "Projetos customizados com aproveitamento da infraestrutura existente para potencializar o poder do seu conteúdo e maximizar ROI.",
     icon: <Settings size={48} />,
     features: ["Aproveitamento de legado", "Fluxos específicos", "Consultoria dedicada"],
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop",
+    hasDetail: true
   },
   {
     id: "gendai-tv",
     title: "Gendai TV",
     subtitle: "Fluxo Broadcast Completo",
-    desc: "Gestão de todo o seu fluxo de produção, integrando ingest, distribuição (broadband) e exibição (broadcast).",
+    desc: "Gestão de todo o seu fluxo de produção, integrando ingest, distribuição (broadband) e exibição (broadcast) em uma plataforma unificada.",
     icon: <Tv size={48} />,
     features: ["Ingest automatizado", "Playout integrado", "Gestão de grade"],
-    image: "https://images.unsplash.com/photo-1598550476439-6847785fcea6?q=80&w=2070&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop",
+    hasDetail: true
   },
   {
     id: "gendai-news",
     title: "Gendai News",
     subtitle: "Fluxo Jornalístico",
-    desc: "Gestão de todo o seu fluxo de produção televisiva e jornalística, integrando ingest, jornalismo, distribuição e exibição.",
-    icon: <Globe size={48} />,
+    desc: "Gestão de todo o seu fluxo de produção televisiva e jornalística, integrando ingest, redação, distribuição e exibição com agilidade.",
+    icon: <Newspaper size={48} />,
     features: ["Integração NRCS", "Edição rápida de notícias", "Publicação multi-tela"],
-    image: "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?q=80&w=2070&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=2070&auto=format&fit=crop",
+    hasDetail: true
   }
 ];
 
@@ -92,7 +128,7 @@ export default function Products() {
               Soluções para cada <span className="text-[#EE6025]">desafio</span>
             </h1>
             <p className="text-xl text-gray-300 max-w-xl leading-relaxed">
-              Conheça nossa linha completa de produtos para gestão, processamento e distribuição de mídia.
+              Conheça nossa linha completa de produtos para gestão, processamento e distribuição de mídia. Modelos flexíveis para sua necessidade.
             </p>
           </div>
         </div>
@@ -126,11 +162,17 @@ export default function Products() {
                   </ul>
 
                   <div className="pt-4">
-                    <Link href={`/product/${prod.id}`}>
-                      <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white h-12 px-8 rounded-lg font-bold shadow-lg hover:shadow-xl transition-all">
-                        Ver Detalhes Técnicos
-                      </Button>
-                    </Link>
+                    {prod.hasDetail ? (
+                      <Link href={`/product/${prod.id}`}>
+                        <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white h-12 px-8 rounded-lg font-bold shadow-lg hover:shadow-xl transition-all">
+                          Ver Detalhes Técnicos
+                        </Button>
+                      </Link>
+                    ) : (
+                      <div className="inline-flex items-center text-gray-400 bg-gray-100 px-4 py-2 rounded-lg text-sm font-medium">
+                        Módulo integrado à plataforma
+                      </div>
+                    )}
                   </div>
                 </div>
                 
