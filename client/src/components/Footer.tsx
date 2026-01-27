@@ -24,7 +24,7 @@ export default function Footer() {
 
           {/* Coluna 2: Links Rápidos */}
           <div>
-            <h3 className="font-bold text-lg mb-6 border-l-4 border-[#EE6025] pl-3">Navegação</h3>
+            <h3 className="font-bold text-white text-lg mb-6 border-l-4 border-[#EE6025] pl-3">Navegação</h3>
             <ul className="space-y-3 text-gray-200 text-sm">
               <li><Link href="/" className="hover:text-[#EE6025] transition-colors">Home</Link></li>
               <li><Link href="/products" className="hover:text-[#EE6025] transition-colors">Produtos</Link></li>
@@ -37,7 +37,7 @@ export default function Footer() {
 
           {/* Coluna 3: Produtos */}
           <div>
-            <h3 className="font-bold text-lg mb-6 border-l-4 border-[#EE6025] pl-3">Soluções</h3>
+            <h3 className="font-bold text-white text-lg mb-6 border-l-4 border-[#EE6025] pl-3">Soluções</h3>
             <ul className="space-y-3 text-gray-200 text-sm">
               <li><Link href="/products" className="hover:text-[#EE6025] transition-colors">CloudFly</Link></li>
               <li><Link href="/products" className="hover:text-[#EE6025] transition-colors">Gems in a Box</Link></li>
@@ -49,7 +49,7 @@ export default function Footer() {
 
           {/* Coluna 4: Contato */}
           <div>
-            <h3 className="font-bold text-lg mb-6 border-l-4 border-[#EE6025] pl-3">Contato</h3>
+            <h3 className="font-bold text-white text-lg mb-6 border-l-4 border-[#EE6025] pl-3">Contato</h3>
             <ul className="space-y-4 text-gray-200 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin size={18} className="text-[#EE6025] mt-1 shrink-0" />
