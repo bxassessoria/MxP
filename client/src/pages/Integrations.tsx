@@ -129,16 +129,18 @@ export default function Integrations() {
                   <div className="flex items-center gap-4 mb-4">
                     <div className="h-12 w-12 shrink-0 bg-gray-50 rounded-lg p-2 flex items-center justify-center border border-gray-100">
                         {/* Tenta carregar logo, fallback para ícone */}
-                        <img 
-                            src={partner.logo || ""} 
+                        {partner.logo ? (
+                          <img 
+                            src={partner.logo} 
                             alt={partner.name}
                             onError={(e) => {
                                 e.currentTarget.style.display = 'none';
-                                e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                                e.currentTarget.parentElement?.querySelector('svg')?.classList.remove('hidden');
                             }}
                             className="max-h-full max-w-full object-contain"
-                        />
-                        <partner.icon className="hidden text-[#EE6025] w-6 h-6" />
+                          />
+                        ) : null}
+                        <partner.icon className={`${partner.logo ? 'hidden' : ''} text-[#EE6025] w-6 h-6`} />
                     </div>
                     <div>
                         <h3 className="font-bold text-[#263858] group-hover:text-[#EE6025] transition-colors">
