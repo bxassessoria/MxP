@@ -237,7 +237,7 @@ export default function ProductDetail() {
                 <ArrowLeft className="mr-2 h-4 w-4" /> Voltar para Produtos
             </Button>
             
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">{product.title}</h1>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white">{product.title}</h1>
             <p className="text-xl md:text-2xl text-gray-200 font-light mb-10 leading-relaxed border-l-4 border-[#EE6025] pl-6">
                 {product.subtitle}
             </p>
