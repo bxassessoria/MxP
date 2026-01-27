@@ -1,7 +1,9 @@
 import Layout from "@/components/Layout";
 import { useState } from "react";
-import { Search } from "lucide-react";
+import { Search, ArrowLeft } from "lucide-react";
 import FAQSection from "@/components/FAQSection";
+import { Link } from "wouter";
+import { Button } from "@/components/ui/button";
 
 // Definição das categorias
 const categories = [
@@ -13,22 +15,38 @@ const categories = [
   "Outros"
 ];
 
-// Helper para categorizar (mantido da versão anterior para consistência de dados)
+// Helper para categorizar e buscar logos
 const getPartnerInfo = (name: string) => {
   const n = name.toLowerCase();
+  let logoDomain = `${n.replace(/\s/g, '')}.com`;
+  
+  // Ajustes manuais de domínio para logos mais precisos
+  if (n.includes("aws")) logoDomain = "aws.amazon.com";
+  if (n.includes("google")) logoDomain = "cloud.google.com";
+  if (n.includes("azure")) logoDomain = "azure.microsoft.com";
+  if (n.includes("sony")) logoDomain = "sony.com";
+  if (n.includes("canon")) logoDomain = "canon.com";
+  if (n.includes("adobe")) logoDomain = "adobe.com";
+  if (n.includes("avid")) logoDomain = "avid.com";
+  if (n.includes("dell")) logoDomain = "dell.com";
+  if (n.includes("hp")) logoDomain = "hp.com";
+  if (n.includes("ibm")) logoDomain = "ibm.com";
+  
+  const logoUrl = `https://logo.clearbit.com/${logoDomain}`;
+
   if (n.includes("aws") || n.includes("google") || n.includes("azure") || n.includes("cloud") || n.includes("dropbox") || n.includes("blackbaze") || n.includes("owncloud")) {
-    return { category: "Cloud & Storage", logo: `https://logo.clearbit.com/${n.replace(/\s/g, '')}.com` };
+    return { category: "Cloud & Storage", logo: logoUrl };
   }
   if (n.includes("sony") || n.includes("canon") || n.includes("panasonic") || n.includes("grass") || n.includes("harmonic") || n.includes("pebble") || n.includes("telestream") || n.includes("tektronix") || n.includes("orad") || n.includes("qualstar")) {
-    return { category: "Broadcast Hardware", logo: `https://logo.clearbit.com/${n.replace(/\s/g, '')}.com` };
+    return { category: "Broadcast Hardware", logo: logoUrl };
   }
   if (n.includes("adobe") || n.includes("avid") || n.includes("apple") || n.includes("final") || n.includes("edit") || n.includes("cinegy") || n.includes("main concept")) {
-    return { category: "Edição & Post", logo: `https://logo.clearbit.com/${n.replace(/\s/g, '')}.com` };
+    return { category: "Edição & Post", logo: logoUrl };
   }
   if (n.includes("dell") || n.includes("hp") || n.includes("ibm") || n.includes("quantum") || n.includes("hitachi") || n.includes("supermicro") || n.includes("vmware") || n.includes("xen") || n.includes("hyper-v")) {
-    return { category: "Infraestrutura IT", logo: `https://logo.clearbit.com/${n.replace(/\s/g, '')}.com` };
+    return { category: "Infraestrutura IT", logo: logoUrl };
   }
-  return { category: "Outros", logo: null };
+  return { category: "Outros", logo: logoUrl };
 };
 
 const partnerNames = [
@@ -92,7 +110,13 @@ export default function Integrations() {
              <div className="absolute inset-0 bg-gradient-to-r from-[#263858] to-transparent"></div>
         </div>
         
-        <div className="container relative z-10">
+        <div className="container relative z-10 pt-20">
+          <Link href="/">
+            <Button variant="ghost" className="text-white/80 hover:text-white hover:bg-white/10 mb-8 pl-0">
+              <ArrowLeft className="mr-2 h-4 w-4" /> Voltar para Home
+            </Button>
+          </Link>
+
           <div className="max-w-2xl bg-white/5 backdrop-blur-md border border-white/10 p-10 md:p-14 rounded-3xl shadow-2xl">
             <div className="inline-block bg-[#EE6025] px-4 py-1 rounded-full text-sm font-bold tracking-wider uppercase mb-6 text-white">
               Conectividade Total
@@ -156,7 +180,7 @@ export default function Integrations() {
                         e.currentTarget.style.display = 'none';
                         e.currentTarget.parentElement?.querySelector('.fallback-text')?.classList.remove('hidden');
                     }}
-                    className="max-w-[80%] max-h-[80%] object-contain transition-all duration-300 opacity-90 group-hover:opacity-100 group-hover:scale-110"
+                    className="max-w-[80%] max-h-[80%] object-contain transition-all duration-300 group-hover:scale-110"
                   />
                 ) : null}
                 
@@ -175,9 +199,9 @@ export default function Integrations() {
           </div>
           
           {filteredPartners.length === 0 && (
-             <div className="text-center py-20">
-                <p className="text-gray-400 text-lg">Nenhum parceiro encontrado nesta categoria.</p>
-             </div>
+            <div className="text-center py-20">
+               <p className="text-gray-400 text-lg">Nenhum parceiro encontrado nesta categoria.</p>
+            </div>
           )}
 
         </div>
