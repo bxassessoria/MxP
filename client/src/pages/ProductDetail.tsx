@@ -261,15 +261,12 @@ export default function ProductDetail() {
   const [match, params] = useRoute("/product/:id");
   const [, setLocation] = useLocation();
   
-  // Se não houver match ou ID inválido, redirecionar (ou mostrar erro)
-  // Como estamos dentro do componente roteado, params deve existir se a rota bater
   const productId = params?.id;
   const product = productId ? productsData[productId] : null;
 
   useEffect(() => {
     if (!product) {
       // Opcional: Redirecionar para lista de produtos se ID não existir
-      // setLocation("/products");
     }
     window.scrollTo(0, 0);
   }, [product, setLocation]);
@@ -289,37 +286,39 @@ export default function ProductDetail() {
 
   return (
     <Layout>
-      {/* Hero Section do Produto - PADRÃO HOME */}
-      <section className="relative min-h-[90vh] flex items-center bg-[#263858] text-white overflow-hidden">
+      {/* Hero Section do Produto - RESTAURADO COM GLASSMORPHISM */}
+      <section className="relative min-h-screen flex items-center bg-[#263858] text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             src={product.image} 
             alt={product.title} 
-            className="w-full h-full object-cover opacity-30"
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#263858]/90 to-[#263858]/70"></div>
+          {/* Overlay gradiente mais suave para permitir ver a imagem */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#263858]/80 to-[#263858]/40"></div>
         </div>
         
-        <div className="container relative z-10">
-          <div className="max-w-4xl">
-            <Link href="/products">
-              <Button variant="ghost" className="text-white/70 hover:text-white hover:bg-white/10 mb-8 pl-0">
-                <ArrowLeft className="mr-2 h-4 w-4" /> Voltar para Produtos
-              </Button>
-            </Link>
-            
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white">
+        <div className="container relative z-10 pt-20">
+          <Link href="/products">
+            <Button variant="ghost" className="text-white/80 hover:text-white hover:bg-white/10 mb-8 pl-0">
+              <ArrowLeft className="mr-2 h-4 w-4" /> Voltar para Produtos
+            </Button>
+          </Link>
+          
+          {/* Card Translúcido (Glassmorphism) Restaurado */}
+          <div className="max-w-3xl bg-white/10 backdrop-blur-md border border-white/20 p-8 md:p-12 rounded-2xl shadow-2xl">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white drop-shadow-lg">
               {product.title}
             </h1>
-            <p className="text-xl md:text-2xl text-gray-200 mb-8 leading-relaxed max-w-2xl">
+            <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed font-light drop-shadow-md">
               {product.subtitle}
             </p>
             
             <div className="flex flex-wrap gap-4">
-              <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white h-14 px-8 rounded-lg text-lg font-bold shadow-lg hover:shadow-xl transition-all">
+              <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white h-14 px-8 rounded-lg text-lg font-bold shadow-lg hover:shadow-xl transition-all border-none">
                 Solicitar Demonstração
               </Button>
-              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-[#263858] h-14 px-8 rounded-lg text-lg font-bold transition-all bg-transparent">
+              <Button variant="outline" className="border-white/50 text-white hover:bg-white hover:text-[#263858] h-14 px-8 rounded-lg text-lg font-bold transition-all bg-transparent backdrop-blur-sm">
                 <Download className="mr-2 h-5 w-5" /> Datasheet
               </Button>
             </div>
@@ -340,7 +339,7 @@ export default function ProductDetail() {
               </div>
             </div>
             
-            <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100">
+            <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100 shadow-sm">
               <h3 className="text-2xl font-bold text-[#263858] mb-6">Principais Recursos</h3>
               <ul className="space-y-4">
                 {product.features.map((feature: string, index: number) => (
@@ -358,7 +357,7 @@ export default function ProductDetail() {
       </section>
 
       {/* Benefícios */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-24 bg-gray-50 border-t border-gray-200">
         <div className="container">
           <h2 className="text-3xl font-bold text-[#263858] mb-12 text-center">Por que escolher o {product.title}?</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -392,25 +391,25 @@ export default function ProductDetail() {
           </p>
           
           <div className="grid md:grid-cols-3 gap-8 text-left mb-12">
-            <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm">
+            <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/5 hover:bg-white/20 transition-colors">
               <Phone className="h-8 w-8 text-[#EE6025] mb-4" />
-              <h3 className="font-bold text-lg mb-2">Ligue para nós</h3>
+              <h3 className="font-bold text-lg mb-2 text-white">Ligue para nós</h3>
               <p className="text-gray-300">+55 (11) 1234-5678</p>
             </div>
-            <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm">
+            <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/5 hover:bg-white/20 transition-colors">
               <Mail className="h-8 w-8 text-[#EE6025] mb-4" />
-              <h3 className="font-bold text-lg mb-2">Mande um e-mail</h3>
+              <h3 className="font-bold text-lg mb-2 text-white">Mande um e-mail</h3>
               <p className="text-gray-300">contato@mediaportal.com.br</p>
             </div>
-            <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm">
+            <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/5 hover:bg-white/20 transition-colors">
               <Building2 className="h-8 w-8 text-[#EE6025] mb-4" />
-              <h3 className="font-bold text-lg mb-2">Visite-nos</h3>
+              <h3 className="font-bold text-lg mb-2 text-white">Visite-nos</h3>
               <p className="text-gray-300">São Paulo, SP</p>
             </div>
           </div>
 
           <Link href="/contact">
-            <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white h-16 px-12 rounded-lg text-xl font-bold shadow-lg hover:shadow-xl transition-all w-full md:w-auto">
+            <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white h-16 px-12 rounded-lg text-xl font-bold shadow-lg hover:shadow-xl transition-all w-full md:w-auto border-none">
               Falar com Consultor
             </Button>
           </Link>
