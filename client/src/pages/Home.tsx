@@ -164,9 +164,9 @@ export default function Home() {
       </section>
 
       {/* 6. VÍDEO INSTITUCIONAL (Reposicionado) */}
-      <section className="py-24 bg-[#F8F9FA]">
+      <section className="py-24 bg-[#263858]">
         <div className="container text-center max-w-5xl">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#263858] mb-12">Conheça mais em 1 minuto</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-12">Conheça mais em 1 minuto</h2>
             <div className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black">
                 <iframe 
                     width="100%" 
