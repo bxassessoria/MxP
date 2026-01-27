@@ -13,6 +13,7 @@ import DAMPage from "./pages/seo/DAM";
 import BroadcastPage from "./pages/seo/Broadcast";
 import Blog from "./pages/Blog";
 import About from "./pages/About";
+import Contact from "./pages/Contact";
 import Integrations from "./pages/Integrations";
 import Cases from "./pages/Cases";
 
@@ -27,6 +28,7 @@ function Router() {
       <Route path="/seo/broadcast" component={BroadcastPage} />
       <Route path={"/blog"} component={Blog} />
       <Route path={"/about"} component={About} />
+      <Route path={"/contact"} component={Contact} />
       <Route path={"/integrations"} component={Integrations} />
       <Route path={"/cases"} component={Cases} />
       <Route path={"/404"} component={NotFound} />

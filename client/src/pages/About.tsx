@@ -23,7 +23,7 @@ export default function About() {
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
               Sobre a <span className="text-[#EE6025]">Media Portal</span>
             </h1>
-            <p className="text-xl text-gray-200 leading-relaxed mb-8">
+            <p className="text-xl text-gray-100 leading-relaxed mb-8">
               Transformando a gestão de conteúdo digital e monetização de acervos desde 2008.
             </p>
             <div className="h-1 w-20 bg-[#EE6025] rounded-full"></div>
@@ -93,9 +93,9 @@ export default function About() {
                             <MapPin className="text-[#EE6025] mt-1 shrink-0" />
                             <div>
                                 <p className="font-bold text-lg">Sede São Paulo</p>
-                                <p className="text-gray-300">Praça Dom José Gaspar nº 30 – 20º andar</p>
-                                <p className="text-gray-300">República – São Paulo/SP</p>
-                                <p className="text-gray-300">CEP 01047-010 – Brasil</p>
+                                <p className="text-gray-100">Praça Dom José Gaspar nº 30 – 20º andar</p>
+                                <p className="text-gray-100">República – São Paulo/SP</p>
+                                <p className="text-gray-100">CEP 01047-010 – Brasil</p>
                             </div>
                         </div>
                         
@@ -105,14 +105,14 @@ export default function About() {
                         <div className="space-y-3">
                             <div className="flex items-center gap-4">
                                 <Mail className="text-[#EE6025]" />
-                                <div className="text-gray-300">
+                                <div className="text-gray-100">
                                     <p>comercial@mediaportal.com.br</p>
                                     <p>contato@mediaportal.com.br</p>
                                 </div>
                             </div>
                             <div className="flex items-center gap-4">
                                 <Phone className="text-[#EE6025]" />
-                                <div className="text-gray-300">
+                                <div className="text-gray-100">
                                     <p>+55 (11) 9 4389 6879</p>
                                     <p>+55 (11) 3063 4411</p>
                                 </div>
