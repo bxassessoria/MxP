@@ -69,7 +69,7 @@ export default function Home() {
       {/* 2. SEGMENTOS DE NEGÓCIOS */}
       <SegmentsSection />
 
-      {/* 3. VANTAGENS (Textos em branco) */}
+      {/* 3. VANTAGENS (Textos preenchidos e em branco) */}
       <section className="py-24 bg-[#263858] text-white">
         <div className="container">
             <div className="grid md:grid-cols-3 gap-12 text-center">
@@ -77,27 +77,27 @@ export default function Home() {
                     <div className="text-[#EE6025] mb-6 flex justify-center">
                         <Settings size={48} />
                     </div>
-                    <h3 className="text-xl font-bold mb-4">Flexibilidade Total</h3>
-                    <p className="text-gray-200 leading-relaxed min-h-[3rem]">
-                        
+                    <h3 className="text-xl font-bold mb-4 text-white">Flexibilidade Total</h3>
+                    <p className="text-white/90 leading-relaxed min-h-[3rem]">
+                        Adapte seus fluxos de trabalho às necessidades reais da sua operação, seja ela pequena, média ou grande, com escalabilidade garantida.
                     </p>
                 </div>
                 <div className="p-6 border-x border-white/10">
                     <div className="text-[#EE6025] mb-6 flex justify-center">
                         <Cloud size={48} />
                     </div>
-                    <h3 className="text-xl font-bold mb-4">Nuvem Inteligente</h3>
-                    <p className="text-gray-200 leading-relaxed min-h-[3rem]">
-                        
+                    <h3 className="text-xl font-bold mb-4 text-white">Nuvem Inteligente</h3>
+                    <p className="text-white/90 leading-relaxed min-h-[3rem]">
+                        Acesse, edite e distribua seu conteúdo de qualquer lugar do mundo com segurança e rapidez, aproveitando o poder da computação em nuvem.
                     </p>
                 </div>
                 <div className="p-6">
                     <div className="text-[#EE6025] mb-6 flex justify-center">
                         <Server size={48} />
                     </div>
-                    <h3 className="text-xl font-bold mb-4">Integração Legada</h3>
-                    <p className="text-gray-200 leading-relaxed min-h-[3rem]">
-                        
+                    <h3 className="text-xl font-bold mb-4 text-white">Integração Legada</h3>
+                    <p className="text-white/90 leading-relaxed min-h-[3rem]">
+                        Conecte-se perfeitamente aos seus sistemas e hardwares existentes, preservando seus investimentos anteriores enquanto moderniza sua gestão.
                     </p>
                 </div>
             </div>
