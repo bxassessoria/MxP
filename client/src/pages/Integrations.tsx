@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import { useState } from "react";
-import { ArrowRight, Search } from "lucide-react";
+import { Search } from "lucide-react";
 
 // Definição das categorias
 const categories = [
@@ -136,7 +136,7 @@ export default function Integrations() {
                         e.currentTarget.style.display = 'none';
                         e.currentTarget.parentElement?.querySelector('.fallback-text')?.classList.remove('hidden');
                     }}
-                    className="max-w-[80%] max-h-[80%] object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-80 group-hover:opacity-100"
+                    className="max-w-[80%] max-h-[80%] object-contain transition-all duration-300 opacity-90 group-hover:opacity-100 group-hover:scale-110"
                   />
                 ) : null}
                 
@@ -145,13 +145,10 @@ export default function Integrations() {
                     {partner.name}
                 </span>
 
-                {/* HOVER OVERLAY */}
-                <div className="absolute inset-0 bg-[#263858]/90 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-6 text-center">
+                {/* HOVER OVERLAY - SIMPLIFICADO (SEM BOTÃO VER DETALHES) */}
+                <div className="absolute inset-0 bg-[#263858]/90 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-6 text-center pointer-events-none">
                   <h3 className="text-white font-bold text-lg mb-2">{partner.name}</h3>
-                  <span className="text-[#EE6025] text-sm font-bold uppercase tracking-wider mb-4">{partner.category}</span>
-                  <button className="inline-flex items-center gap-2 text-white text-sm font-bold border-b border-[#EE6025] pb-1 hover:text-[#EE6025] transition-colors">
-                    Ver Detalhes <ArrowRight size={14} />
-                  </button>
+                  <span className="text-[#EE6025] text-sm font-bold uppercase tracking-wider">{partner.category}</span>
                 </div>
               </div>
             ))}
