@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout";
 import { useState } from "react";
 import { Search } from "lucide-react";
+import FAQSection from "@/components/FAQSection";
 
 // Definição das categorias
 const categories = [
@@ -58,6 +59,25 @@ export default function Integrations() {
     const matchesSearch = partner.name.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
   });
+
+  const integrationFAQs = [
+    {
+      question: "O Media Portal integra com Adobe Premiere?",
+      answer: "Sim, possuímos um painel nativo para Adobe Premiere Pro que permite aos editores buscar, importar e exportar conteúdo do MAM sem sair da interface de edição."
+    },
+    {
+      question: "É possível integrar com sistemas de arquivamento em fita (LTO)?",
+      answer: "Sim, suportamos integração com bibliotecas de fitas LTO através de middlewares de mercado (como XenData e Front Porch) ou drivers nativos, gerenciando o ciclo de vida do conteúdo entre disco e fita."
+    },
+    {
+      question: "Vocês possuem API aberta?",
+      answer: "Sim, o Media Portal disponibiliza uma API RESTful completa e documentada, permitindo que sua equipe de desenvolvimento crie integrações customizadas, automações e workflows específicos."
+    },
+    {
+      question: "Como funciona a integração com Cloud Storage (S3)?",
+      answer: "O sistema trata buckets S3 (AWS, Google, Azure) como volumes de armazenamento nativos, permitindo mover, copiar e arquivar mídia para a nuvem de forma transparente para o usuário final."
+    }
+  ];
 
   return (
     <Layout>
@@ -162,6 +182,9 @@ export default function Integrations() {
 
         </div>
       </section>
+
+      {/* FAQ SECTION */}
+      <FAQSection items={integrationFAQs} title="Dúvidas sobre Integração" subtitle="Conectividade é o nosso forte" />
 
       {/* CTA SECTION */}
       <section className="py-24 bg-[#F8F9FA] border-t border-gray-200">

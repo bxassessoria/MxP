@@ -1,8 +1,9 @@
 import { useEffect } from "react";
-import { useRoute, useLocation } from "wouter";
+import { useRoute, useLocation, Link } from "wouter";
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Check, Download, Mail, Phone, Building2, User } from "lucide-react";
+import FAQSection from "@/components/FAQSection";
 
 // Definição dos dados dos produtos
 const productsData: Record<string, any> = {
@@ -33,7 +34,21 @@ const productsData: Record<string, any> = {
       "Redução de custos eliminando mídias físicas",
       "Gerenciamento de qualquer formato e tamanho de arquivo"
     ],
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop",
+    faq: [
+      {
+        question: "Preciso de hardware específico para usar o CloudFly?",
+        answer: "Não. Por ser 100% em nuvem, o CloudFly pode ser acessado através de qualquer navegador web moderno, sem necessidade de servidores ou estações de trabalho dedicadas no local."
+      },
+      {
+        question: "O armazenamento é ilimitado?",
+        answer: "O CloudFly é altamente escalável. Oferecemos planos com diferentes faixas de armazenamento que crescem conforme a necessidade do seu acervo, sem necessidade de migração."
+      },
+      {
+        question: "Como funciona a segurança dos meus vídeos na nuvem?",
+        answer: "Utilizamos criptografia de ponta a ponta e servidores seguros com redundância. Todo o tráfego é protegido por SSL e o acesso é controlado por permissões granulares de usuário."
+      }
+    ]
   },
   "gems-in-a-box": {
     title: "Gems in a box",
@@ -63,7 +78,21 @@ const productsData: Record<string, any> = {
       "Investimento único em hardware (CAPEX)",
       "Flexibilidade para expansão física"
     ],
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
+    faq: [
+      {
+        question: "O Gems in a box inclui o hardware?",
+        answer: "Sim, a solução Gems in a box é entregue como um appliance completo (hardware + software) dimensionado especificamente para sua carga de trabalho."
+      },
+      {
+        question: "Posso expandir o armazenamento depois?",
+        answer: "Sim. A arquitetura é modular, permitindo adicionar mais unidades de armazenamento (storage) conforme seu acervo cresce, sem interromper a operação."
+      },
+      {
+        question: "Funciona sem internet?",
+        answer: "Sim. Sendo uma solução on-premises, toda a operação de ingest, catalogação e busca funciona localmente na sua rede, garantindo operação mesmo sem conexão externa."
+      }
+    ]
   },
   "cloudlink": {
     title: "CloudLink",
@@ -92,7 +121,21 @@ const productsData: Record<string, any> = {
       "Colaboração remota sem latência",
       "Segurança duplicada (física e lógica)"
     ],
-    image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=2070&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=2070&auto=format&fit=crop",
+    faq: [
+      {
+        question: "Como funciona a sincronização híbrida?",
+        answer: "O CloudLink mantém os arquivos originais pesados no servidor local para edição rápida e envia automaticamente versões leves (proxies) para a nuvem, permitindo visualização remota."
+      },
+      {
+        question: "O que acontece se a internet cair?",
+        answer: "A operação local continua funcionando normalmente. A sincronização com a nuvem é retomada automaticamente assim que a conexão for restabelecida."
+      },
+      {
+        question: "É compatível com meu storage atual?",
+        answer: "Na maioria dos casos, sim. O CloudLink pode ser configurado para gerenciar volumes de armazenamento já existentes na sua infraestrutura."
+      }
+    ]
   },
   "custom-prj": {
     title: "Custom PRJ",
@@ -121,7 +164,17 @@ const productsData: Record<string, any> = {
       "Otimização de recursos de hardware",
       "Evolução gradual da tecnologia"
     ],
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop",
+    faq: [
+      {
+        question: "Qual o prazo médio de um projeto customizado?",
+        answer: "O prazo varia conforme a complexidade. Projetos típicos de integração levam de 4 a 12 semanas, desde o levantamento de requisitos até a entrega final."
+      },
+      {
+        question: "Vocês desenvolvem integrações com softwares legados?",
+        answer: "Sim, nossa equipe de engenharia é especializada em criar conectores e APIs para integrar o Media Portal a sistemas legados ou proprietários da sua empresa."
+      }
+    ]
   },
   "gendai-tv": {
     title: "Gendai TV",
@@ -150,7 +203,17 @@ const productsData: Record<string, any> = {
       "Rastreabilidade total do conteúdo",
       "Custo total de propriedade reduzido"
     ],
-    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop",
+    faq: [
+      {
+        question: "O Gendai TV suporta transmissão 4K?",
+        answer: "Sim, nossa plataforma de playout e ingest é totalmente compatível com fluxos de trabalho em 4K UHD, garantindo a máxima qualidade de imagem."
+      },
+      {
+        question: "É possível gerenciar múltiplos canais?",
+        answer: "Perfeitamente. O Gendai TV é multi-canal, permitindo operar e supervisionar a grade de programação de diversos canais a partir de uma única interface centralizada."
+      }
+    ]
   },
   "gendai-news": {
     title: "Gendai News",
@@ -180,7 +243,17 @@ const productsData: Record<string, any> = {
       "Monetização de conteúdo facilitada",
       "Integração nativa com agências de notícias"
     ],
-    image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=2070&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=2070&auto=format&fit=crop",
+    faq: [
+      {
+        question: "O sistema integra com teleprompter?",
+        answer: "Sim, o módulo de redação (NRCS) do Gendai News envia os scripts automaticamente para o sistema de teleprompter, sincronizando o texto com o rundown do jornal."
+      },
+      {
+        question: "Como funciona a integração com redes sociais?",
+        answer: "O Gendai News permite publicar cortes de vídeo e chamadas diretamente para plataformas como YouTube, Facebook e Twitter com apenas alguns cliques, agilizando a presença digital do seu jornalismo."
+      }
+    ]
   }
 };
 
@@ -224,171 +297,123 @@ export default function ProductDetail() {
             alt={product.title} 
             className="w-full h-full object-cover opacity-30"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#263858] to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#263858]/90 to-[#263858]/70"></div>
         </div>
         
-        <div className="container relative z-10 pt-16">
-          <div className="max-w-3xl bg-white/5 backdrop-blur-md border border-white/10 p-10 md:p-14 rounded-3xl shadow-2xl">
-            <Button 
-                variant="ghost" 
-                className="text-white/70 hover:text-white mb-6 pl-0 hover:bg-transparent -ml-2"
-                onClick={() => setLocation("/products")}
-            >
+        <div className="container relative z-10">
+          <div className="max-w-4xl">
+            <Link href="/products">
+              <Button variant="ghost" className="text-white/70 hover:text-white hover:bg-white/10 mb-8 pl-0">
                 <ArrowLeft className="mr-2 h-4 w-4" /> Voltar para Produtos
-            </Button>
+              </Button>
+            </Link>
             
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white">{product.title}</h1>
-            <p className="text-xl md:text-2xl text-gray-200 font-light mb-10 leading-relaxed border-l-4 border-[#EE6025] pl-6">
-                {product.subtitle}
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white">
+              {product.title}
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-200 mb-8 leading-relaxed max-w-2xl">
+              {product.subtitle}
             </p>
             
             <div className="flex flex-wrap gap-4">
-                <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white font-bold h-14 px-8 rounded-lg shadow-lg text-lg">
+              <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white h-14 px-8 rounded-lg text-lg font-bold shadow-lg hover:shadow-xl transition-all">
                 Solicitar Demonstração
-                </Button>
-                <Button variant="outline" className="border-white text-white hover:bg-white/10 h-14 px-8 rounded-lg text-lg">
-                Baixar PDF Técnico
-                </Button>
+              </Button>
+              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-[#263858] h-14 px-8 rounded-lg text-lg font-bold transition-all bg-transparent">
+                <Download className="mr-2 h-5 w-5" /> Datasheet
+              </Button>
             </div>
           </div>
         </div>
       </section>
 
       {/* Descrição Detalhada */}
-      <section className="py-20 bg-white">
-        <div className="container grid lg:grid-cols-2 gap-16">
-          <div>
-            <h2 className="text-3xl font-bold text-[#263858] mb-8">O que é e como funciona</h2>
-            <div className="space-y-6 text-gray-600 leading-relaxed text-lg">
-              {product.fullDescription.map((paragraph: string, idx: number) => (
-                <p key={idx}>{paragraph}</p>
-              ))}
-            </div>
-          </div>
-          
-          <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100 h-fit">
-            <h3 className="text-xl font-bold text-[#263858] mb-6 flex items-center gap-2">
-              <Download className="text-[#EE6025]" /> Materiais Relacionados
-            </h3>
-            <ul className="space-y-4">
-              <li className="flex items-center justify-between p-4 bg-white rounded-lg border border-gray-200 hover:border-[#EE6025] transition-colors cursor-pointer group">
-                <span className="font-medium text-gray-700 group-hover:text-[#EE6025]">Datasheet Técnico {product.title}</span>
-                <Download size={18} className="text-gray-400 group-hover:text-[#EE6025]" />
-              </li>
-              <li className="flex items-center justify-between p-4 bg-white rounded-lg border border-gray-200 hover:border-[#EE6025] transition-colors cursor-pointer group">
-                <span className="font-medium text-gray-700 group-hover:text-[#EE6025]">Guia de Implementação</span>
-                <Download size={18} className="text-gray-400 group-hover:text-[#EE6025]" />
-              </li>
-              <li className="flex items-center justify-between p-4 bg-white rounded-lg border border-gray-200 hover:border-[#EE6025] transition-colors cursor-pointer group">
-                <span className="font-medium text-gray-700 group-hover:text-[#EE6025]">Case de Sucesso</span>
-                <Download size={18} className="text-gray-400 group-hover:text-[#EE6025]" />
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      {/* Recursos e Benefícios */}
-      <section className="py-20 bg-[#F8F9FA]">
+      <section className="py-24 bg-white">
         <div className="container">
-          <div className="grid md:grid-cols-2 gap-12">
-            {/* Recursos */}
-            <div>
-              <h2 className="text-2xl font-bold text-[#263858] mb-8 border-l-4 border-[#EE6025] pl-4">
-                Recursos Principais
-              </h2>
+          <div className="grid lg:grid-cols-2 gap-16">
+            <div className="space-y-6">
+              <h2 className="text-3xl font-bold text-[#263858]">Sobre a Solução</h2>
+              <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
+                {product.fullDescription.map((paragraph: string, index: number) => (
+                  <p key={index}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+            
+            <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100">
+              <h3 className="text-2xl font-bold text-[#263858] mb-6">Principais Recursos</h3>
               <ul className="space-y-4">
-                {product.features.map((feature: string, idx: number) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <div className="mt-1 w-5 h-5 rounded-full bg-[#EE6025]/10 flex items-center justify-center shrink-0">
-                      <Check size={12} className="text-[#EE6025]" />
+                {product.features.map((feature: string, index: number) => (
+                  <li key={index} className="flex items-start gap-3">
+                    <div className="mt-1 bg-[#EE6025]/10 p-1 rounded-full">
+                      <Check className="h-4 w-4 text-[#EE6025]" />
                     </div>
                     <span className="text-gray-700 font-medium">{feature}</span>
                   </li>
                 ))}
               </ul>
             </div>
-
-            {/* Benefícios */}
-            <div>
-              <h2 className="text-2xl font-bold text-[#263858] mb-8 border-l-4 border-[#263858] pl-4">
-                Ganhos Operacionais
-              </h2>
-              <ul className="space-y-4">
-                {product.benefits.map((benefit: string, idx: number) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <div className="mt-1 w-5 h-5 rounded-full bg-[#263858]/10 flex items-center justify-center shrink-0">
-                      <Check size={12} className="text-[#263858]" />
-                    </div>
-                    <span className="text-gray-700 font-medium">{benefit}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* Formulário de Contato */}
-      <section className="py-24 bg-white">
-        <div className="container max-w-4xl">
-          <div className="bg-[#263858] rounded-3xl p-8 md:p-12 text-white shadow-2xl overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#EE6025] rounded-full blur-3xl opacity-20 -mr-16 -mt-16"></div>
-            
-            <div className="relative z-10 text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4 text-white">Vamos conversar sobre o seu projeto?</h2>
-              <p className="text-gray-200">
-                Entre em contato com nosso time de vendas para realizarmos uma precificação adequada ao seu fluxo de trabalho.
-              </p>
-            </div>
-
-            <form className="space-y-6 relative z-10">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-200">Nome Completo</label>
-                  <div className="relative">
-                    <User className="absolute left-3 top-3 text-gray-400" size={18} />
-                    <input type="text" className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 pl-10 pr-4 text-white placeholder:text-gray-500 focus:outline-none focus:border-[#EE6025] transition-colors" placeholder="Seu nome" />
-                  </div>
+      {/* Benefícios */}
+      <section className="py-24 bg-gray-50">
+        <div className="container">
+          <h2 className="text-3xl font-bold text-[#263858] mb-12 text-center">Por que escolher o {product.title}?</h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {product.benefits.map((benefit: string, index: number) => (
+              <div key={index} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-[#263858]/5 rounded-lg flex items-center justify-center mb-4 text-[#263858]">
+                  <Check className="h-6 w-6" />
                 </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-200">Email Corporativo</label>
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-3 text-gray-400" size={18} />
-                    <input type="email" className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 pl-10 pr-4 text-white placeholder:text-gray-500 focus:outline-none focus:border-[#EE6025] transition-colors" placeholder="voce@empresa.com" />
-                  </div>
-                </div>
+                <p className="text-lg font-medium text-gray-800">{benefit}</p>
               </div>
-
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-200">Empresa</label>
-                  <div className="relative">
-                    <Building2 className="absolute left-3 top-3 text-gray-400" size={18} />
-                    <input type="text" className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 pl-10 pr-4 text-white placeholder:text-gray-500 focus:outline-none focus:border-[#EE6025] transition-colors" placeholder="Nome da empresa" />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-200">Telefone</label>
-                  <div className="relative">
-                    <Phone className="absolute left-3 top-3 text-gray-400" size={18} />
-                    <input type="tel" className="w-full bg-white/10 border border-white/20 rounded-lg py-2.5 pl-10 pr-4 text-white placeholder:text-gray-500 focus:outline-none focus:border-[#EE6025] transition-colors" placeholder="(11) 99999-9999" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3 pt-4">
-                <input type="checkbox" id="marketing" className="mt-1 rounded border-white/20 bg-white/10 text-[#EE6025] focus:ring-[#EE6025]" />
-                <label htmlFor="marketing" className="text-sm text-gray-400">
-                  Autorizo o envio de conteúdo e material promocional da Media Portal.
-                </label>
-              </div>
-
-              <Button className="w-full bg-[#EE6025] hover:bg-[#d55015] text-white font-bold h-12 rounded-lg text-lg shadow-lg mt-4">
-                Solicitar Orçamento
-              </Button>
-            </form>
+            ))}
           </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      {product.faq && (
+        <FAQSection 
+          items={product.faq} 
+          title={`Perguntas Frequentes sobre ${product.title}`}
+          subtitle="Esclareça suas dúvidas técnicas e operacionais"
+        />
+      )}
+
+      {/* CTA Final */}
+      <section className="py-24 bg-[#263858] text-white">
+        <div className="container text-center max-w-4xl">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Vamos conversar sobre o seu projeto?</h2>
+          <p className="text-xl text-gray-200 mb-12">
+            Nossa equipe de especialistas está pronta para desenhar a solução ideal para o seu fluxo de trabalho.
+          </p>
+          
+          <div className="grid md:grid-cols-3 gap-8 text-left mb-12">
+            <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm">
+              <Phone className="h-8 w-8 text-[#EE6025] mb-4" />
+              <h3 className="font-bold text-lg mb-2">Ligue para nós</h3>
+              <p className="text-gray-300">+55 (11) 1234-5678</p>
+            </div>
+            <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm">
+              <Mail className="h-8 w-8 text-[#EE6025] mb-4" />
+              <h3 className="font-bold text-lg mb-2">Mande um e-mail</h3>
+              <p className="text-gray-300">contato@mediaportal.com.br</p>
+            </div>
+            <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm">
+              <Building2 className="h-8 w-8 text-[#EE6025] mb-4" />
+              <h3 className="font-bold text-lg mb-2">Visite-nos</h3>
+              <p className="text-gray-300">São Paulo, SP</p>
+            </div>
+          </div>
+
+          <Link href="/contact">
+            <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white h-16 px-12 rounded-lg text-xl font-bold shadow-lg hover:shadow-xl transition-all w-full md:w-auto">
+              Falar com Consultor
+            </Button>
+          </Link>
         </div>
       </section>
     </Layout>

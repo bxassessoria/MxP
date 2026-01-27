@@ -4,8 +4,28 @@ import { ArrowRight, Cloud, Server, Settings, Brain, Archive, LayoutTemplate } f
 import { Link } from "wouter";
 import SegmentsSection from "@/components/SegmentsSection";
 import ClientsSection from "@/components/ClientsSection";
+import FAQSection from "@/components/FAQSection";
 
 export default function Home() {
+  const homeFAQs = [
+    {
+      question: "O que é o Media Portal?",
+      answer: "O Media Portal é uma plataforma completa de gestão de ativos digitais (MAM - Media Asset Management) que permite armazenar, organizar, editar e distribuir conteúdos audiovisuais de forma eficiente e segura."
+    },
+    {
+      question: "Qual a diferença entre as soluções Cloud e On-Premises?",
+      answer: "A solução Cloud oferece flexibilidade total e acesso remoto via nuvem, ideal para equipes distribuídas. Já a On-Premises é instalada localmente em seus servidores, oferecendo controle total e máxima performance para grandes volumes de dados internos. Também oferecemos modelos híbridos."
+    },
+    {
+      question: "O sistema integra com quais editores de vídeo?",
+      answer: "Nossa plataforma possui integração nativa com os principais softwares de edição do mercado, incluindo Adobe Premiere Pro, Avid Media Composer e DaVinci Resolve, permitindo editar diretamente na nuvem ou no servidor local."
+    },
+    {
+      question: "Como funciona o suporte técnico?",
+      answer: "Oferecemos suporte técnico especializado 24/7 para clientes com contratos de manutenção, com equipe local no Brasil pronta para atender demandas críticas e garantir a continuidade da sua operação."
+    }
+  ];
+
   return (
     <Layout>
       {/* 1. HERO SECTION (Texto Esq / Vídeo Dir) */}
@@ -212,6 +232,9 @@ export default function Home() {
             </div>
         </div>
       </section>
+
+      {/* 8. FAQ SECTION (SEO) */}
+      <FAQSection items={homeFAQs} />
     </Layout>
   );
 }
