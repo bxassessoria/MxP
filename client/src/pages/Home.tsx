@@ -66,8 +66,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. SEGMENTOS DE NEGÓCIOS */}
-      <SegmentsSection />
+      {/* 2. QUEM CONFIA NA MEDIA PORTAL (Invertido: agora é a 2ª seção) */}
+      <ClientsSection />
 
       {/* 3. VANTAGENS (Textos preenchidos e em branco) */}
       <section className="py-24 bg-[#263858] text-white">
@@ -104,8 +104,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. NOSSOS CLIENTES */}
-      <ClientsSection />
+      {/* 4. SEGMENTOS DE NEGÓCIOS (Invertido: agora é a 4ª seção) */}
+      <SegmentsSection />
 
       {/* 5. FLUXO DE MÍDIA */}
       <section className="py-24 bg-white">
