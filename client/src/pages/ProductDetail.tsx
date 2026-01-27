@@ -286,16 +286,16 @@ export default function ProductDetail() {
 
   return (
     <Layout>
-      {/* Hero Section do Produto - RESTAURADO COM GLASSMORPHISM */}
-      <section className="relative min-h-screen flex items-center bg-[#263858] text-white overflow-hidden">
+      {/* Hero Section do Produto */}
+      <section className="relative h-screen flex items-center bg-[#263858] text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             src={product.image} 
             alt={product.title} 
             className="w-full h-full object-cover"
           />
-          {/* Overlay gradiente mais suave para permitir ver a imagem */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#263858]/80 to-[#263858]/40"></div>
+          {/* Overlay gradiente mais suave */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#263858]/90 via-[#263858]/70 to-transparent"></div>
         </div>
         
         <div className="container relative z-10 pt-20">
@@ -305,8 +305,7 @@ export default function ProductDetail() {
             </Button>
           </Link>
           
-          {/* Card Translúcido (Glassmorphism) Restaurado */}
-          <div className="max-w-3xl bg-white/10 backdrop-blur-md border border-white/20 p-8 md:p-12 rounded-2xl shadow-2xl">
+          <div className="max-w-3xl">
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white drop-shadow-lg">
               {product.title}
             </h1>
