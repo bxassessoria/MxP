@@ -111,14 +111,14 @@ export default function Home() {
       <section className="py-24 bg-white">
         <div className="container">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
-                <div className="order-2 lg:order-1">
+                <div className="order-2 lg:order-2">
                     <img 
                         src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" 
                         alt="Fluxo de Mídia" 
                         className="rounded-2xl shadow-xl"
                     />
                 </div>
-                <div className="order-1 lg:order-2 space-y-8">
+                <div className="order-1 lg:order-1 space-y-8">
                     <h2 className="text-4xl font-bold text-[#263858]">Fluxo de Mídia Otimizado</h2>
                     <div className="space-y-6">
                         <div className="flex gap-4">
