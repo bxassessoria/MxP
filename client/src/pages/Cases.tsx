@@ -1,70 +1,56 @@
 import Layout from "@/components/Layout";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, PlayCircle, Quote } from "lucide-react";
-import { Link } from "wouter";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { useState } from "react";
+import { ArrowRight } from "lucide-react";
 
-const cases = [
-  {
-    id: "uol",
-    client: "Canal UOL",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/UOL_logo.svg/2560px-UOL_logo.svg.png",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop",
-    title: "Gestão completa do acervo de jornalismo e entretenimento",
-    desc: "Implementação do Media Portal MAM para centralizar a ingestão, catalogação e distribuição de conteúdo para TV e Web.",
-    challenge: "O UOL precisava de uma solução robusta para gerenciar o volume crescente de vídeos gerados diariamente por sua redação e estúdios, integrando fluxos de publicação rápida para o portal e para o canal linear.",
-    solution: "Implantamos o Media Portal em arquitetura híbrida, permitindo que editores acessem o acervo de qualquer lugar. A integração com sistemas de edição (Adobe Premiere) agilizou o corte e publicação de breaking news.",
-    result: "Redução de 40% no tempo de busca de arquivos e aumento significativo na produtividade da equipe de vídeo."
-  },
-  {
-    id: "redetv",
-    client: "Rede TV!",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/RedeTV%21.svg/1200px-RedeTV%21.svg.png",
-    image: "https://images.unsplash.com/photo-1598550476439-6847785fcea6?q=80&w=2070&auto=format&fit=crop",
-    title: "Digitalização e preservação do acervo histórico",
-    desc: "Projeto de migração de fitas físicas para digital, com indexação automática e preservação de longo prazo.",
-    challenge: "Milhares de horas de conteúdo histórico armazenadas em fitas magnéticas corriam risco de degradação. A emissora precisava digitalizar e tornar esse material acessível para reprises e novos programas.",
-    solution: "Utilizamos o módulo de Ingest Automatizado do Media Portal, conectado a robôs de LTO. O sistema gerou proxies para visualização imediata e arquivou os arquivos em alta resolução em fitas de dados seguras.",
-    result: "Acervo histórico 100% preservado e acessível digitalmente para os produtores da emissora."
-  },
-  {
-    id: "gazeta",
-    client: "TV Gazeta",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/TV_Gazeta_logo_2016.svg/1200px-TV_Gazeta_logo_2016.svg.png",
-    image: "https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2070&auto=format&fit=crop",
-    title: "Fluxo de produção jornalística integrado",
-    desc: "Automação do fluxo de notícias, do recebimento de pautas à exibição no ar.",
-    challenge: "A TV Gazeta buscava modernizar seu jornalismo, eliminando processos manuais e fitas físicas no fluxo diário de notícias.",
-    solution: "Integração total do Media Portal com o sistema de NRCS (Newsroom Computer System). Jornalistas agora podem visualizar e editar matérias diretamente de suas estações de trabalho.",
-    result: "Maior agilidade no fechamento dos jornais e eliminação total do uso de mídias físicas na redação."
-  },
-  {
-    id: "almg",
-    client: "Assembleia Legislativa de MG",
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Bras%C3%A3o_de_Minas_Gerais.svg/1200px-Bras%C3%A3o_de_Minas_Gerais.svg.png",
-    image: "https://images.unsplash.com/photo-1577495508048-b635879837f1?q=80&w=1974&auto=format&fit=crop",
-    title: "Transparência e acesso público ao acervo legislativo",
-    desc: "Portal de vídeos para acesso cidadão às sessões plenárias e comissões.",
-    challenge: "Disponibilizar o vasto conteúdo gerado pelas sessões legislativas de forma organizada e pesquisável para o público e imprensa.",
-    solution: "Criação de um portal público alimentado automaticamente pelo MAM Media Portal. As sessões são gravadas, catalogadas com metadados (oradores, temas) e publicadas instantaneamente.",
-    result: "Democratização do acesso à informação legislativa com um portal de vídeo moderno e fácil de usar."
-  }
+// Definição das categorias e dados dos clientes
+const categories = [
+  "Todos",
+  "TV",
+  "TV Pública",
+  "TV Igreja",
+  "Esportes",
+  "Rádio",
+  "Órgão Público",
+  "Educação"
+];
+
+const casesData = [
+  { name: "TV Cultura", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-01.jpg", category: "TV Pública", hasCase: true },
+  { name: "Rádio Cultura Brasil", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-18.jpg", category: "Rádio", hasCase: false },
+  { name: "EPTV", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/EPTV_ok.jpg", category: "TV", hasCase: true },
+  { name: "TV Centro América", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/centro-pb.jpg", category: "TV", hasCase: false },
+  { name: "TV Tem", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-06.jpg", category: "TV", hasCase: false },
+  { name: "TV Novo Tempo", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-03_c.jpg", category: "TV Igreja", hasCase: true },
+  { name: "TV Morena", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/morena-pb.jpg", category: "TV", hasCase: false },
+  { name: "TV Câmara São Paulo", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/saopaulo_case.jpg", category: "Órgão Público", hasCase: true },
+  { name: "TV Assembleia CE", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/TVALCEBW.png", category: "Órgão Público", hasCase: false },
+  { name: "TV Serra Dourada", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-04.jpg", category: "TV", hasCase: false },
+  { name: "Traffic Sports", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/traffic-sports.jpg", category: "Esportes", hasCase: false },
+  { name: "TV Costa Norte", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/costa-norte2.png", category: "TV", hasCase: false },
+  { name: "TV Câmara SJC", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/saojose.jpg", category: "Órgão Público", hasCase: false },
+  { name: "Instituto Embratel", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/instituto-embratel.jpg", category: "Educação", hasCase: false },
+  { name: "Sports+", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-24.jpg", category: "Esportes", hasCase: false },
+  { name: "Arca Media", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logo-arca-media.jpg", category: "TV Igreja", hasCase: false },
+  { name: "Igreja Adventista", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-21.jpg", category: "TV Igreja", hasCase: false },
+  { name: "MTV", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-27.jpg", category: "TV", hasCase: false },
+  { name: "TV Rá Tim Bum", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-22.jpg", category: "TV", hasCase: false },
+  { name: "Embrapa", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-19.jpg", category: "Órgão Público", hasCase: false },
 ];
 
 export default function Cases() {
+  const [activeCategory, setActiveCategory] = useState("Todos");
+
+  const filteredCases = activeCategory === "Todos" 
+    ? casesData 
+    : casesData.filter(c => c.category === activeCategory);
+
   return (
     <Layout>
       {/* HERO SECTION - PADRÃO HOME */}
-      <section className="relative min-h-[90vh] flex items-center bg-[#263858] overflow-hidden">
+      <section className="relative min-h-screen flex items-center bg-[#263858] overflow-hidden">
         <div className="absolute inset-0 z-0">
              <img 
-               src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?q=80&w=2070&auto=format&fit=crop" 
+               src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" 
                alt="Background Cases" 
                className="w-full h-full object-cover opacity-30"
              />
@@ -77,153 +63,95 @@ export default function Cases() {
               Histórias de Sucesso
             </div>
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
-              Quem confia na <span className="text-[#EE6025]">Media Portal</span>
+              Nossos <span className="text-[#EE6025]">Cases</span>
             </h1>
-            <p className="text-xl text-gray-200 leading-relaxed mb-8">
-              Descubra como grandes emissoras e empresas de mídia transformaram seus fluxos de trabalho com nossa tecnologia.
+            <p className="text-xl text-gray-200 leading-relaxed">
+              Descubra como grandes empresas de mídia transformaram seus fluxos de trabalho com as soluções Media Portal.
             </p>
-            <div className="h-1 w-20 bg-[#EE6025] rounded-full"></div>
           </div>
         </div>
       </section>
 
-      {/* PARCEIROS TECNOLÓGICOS (Antigo Integrações) */}
-      <section className="py-24 bg-white border-b border-gray-100">
+      {/* CASES GRID SECTION */}
+      <section className="py-24 bg-white">
         <div className="container">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold text-[#263858] mb-4">Ecossistema de Parceiros</h2>
-            <p className="text-gray-600 text-lg">
-              Nossa tecnologia se conecta nativamente com as principais ferramentas do mercado para garantir um fluxo de trabalho sem interrupções.
-            </p>
+          
+          {/* CATEGORY FILTERS */}
+          <div className="flex flex-wrap justify-center gap-4 mb-16">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wider transition-all
+                  ${activeCategory === cat 
+                    ? "bg-[#263858] text-white shadow-lg scale-105" 
+                    : "bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-[#263858]"
+                  }`}
+              >
+                {cat}
+              </button>
+            ))}
           </div>
 
-          {[
-            {
-              title: "Edição & Pós-Produção",
-              partners: [
-                { name: "Adobe Premiere", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Adobe_Premiere_Pro_CC_icon.svg/1200px-Adobe_Premiere_Pro_CC_icon.svg.png", desc: "Painel nativo para busca e importação direta na timeline." },
-                { name: "Avid Media Composer", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Avid_Technology_logo.svg/1200px-Avid_Technology_logo.svg.png", desc: "Integração via Interplay e check-in/check-out de assets." },
-                { name: "Final Cut Pro", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Final_Cut_Pro_X_logo.png/1200px-Final_Cut_Pro_X_logo.png", desc: "Exportação de XML e workflow de proxy automatizado." }
-              ]
-            },
-            {
-              title: "Cloud & Storage",
-              partners: [
-                { name: "AWS S3", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1200px-Amazon_Web_Services_Logo.svg.png", desc: "Armazenamento escalável com tiering automático (Glacier)." },
-                { name: "Google Cloud", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Google_Cloud_logo.svg/1200px-Google_Cloud_logo.svg.png", desc: "Processamento de IA e armazenamento nearline." },
-                { name: "Azure", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Microsoft_Azure.svg/1200px-Microsoft_Azure.svg.png", desc: "Integração com serviços cognitivos e AD." }
-              ]
-            },
-            {
-              title: "Transcodificação & IA",
-              partners: [
-                { name: "Telestream Vantage", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/3/39/Telestream_Logo.png/220px-Telestream_Logo.png", desc: "Orquestração de workflows complexos de mídia." },
-                { name: "Harmonic", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Harmonic_Inc_Logo.svg/1200px-Harmonic_Inc_Logo.svg.png", desc: "Playout e encoding de alta densidade." },
-                { name: "Elemental", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1200px-Amazon_Web_Services_Logo.svg.png", desc: "Processamento de vídeo elástico na nuvem." }
-              ]
-            }
-          ].map((category, idx) => (
-            <div key={idx} className="mb-16 last:mb-0">
-              <h3 className="text-xl font-bold text-[#263858] mb-8 border-l-4 border-[#EE6025] pl-4">
-                {category.title}
-              </h3>
-              <div className="grid md:grid-cols-3 gap-6">
-                {category.partners.map((partner, pIdx) => (
-                  <div key={pIdx} className="bg-gray-50 rounded-xl p-6 border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
-                    <div className="h-12 w-12 shrink-0 bg-white rounded-lg p-2 border border-gray-200 flex items-center justify-center">
-                      <img src={partner.logo} alt={partner.name} className="max-h-full max-w-full object-contain" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-[#263858] text-sm">{partner.name}</h4>
-                      <p className="text-xs text-gray-500 line-clamp-2">{partner.desc}</p>
-                    </div>
+          {/* LOGOS GRID */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {filteredCases.map((client, idx) => (
+              <div 
+                key={idx}
+                className="group relative bg-white border border-gray-100 rounded-xl p-8 flex items-center justify-center aspect-[4/3] shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 overflow-hidden"
+              >
+                {/* CASE FLAG */}
+                {client.hasCase && (
+                  <div className="absolute top-0 right-0 bg-[#EE6025] text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg z-10 shadow-md">
+                    CASE
                   </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+                )}
 
-      {/* CASES GRID */}
-      <section className="py-24 bg-gray-50">
-        <div className="container">
-          <div className="grid md:grid-cols-2 gap-10">
-            {cases.map((item) => (
-              <div key={item.id} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition-all group flex flex-col h-full">
-                <div className="h-64 overflow-hidden relative">
-                  <img 
-                    src={item.image} 
-                    alt={item.title} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#263858]/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-8">
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white w-full font-bold">
-                          Ler Case Completo
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent className="max-w-3xl bg-white border-none p-0 overflow-hidden">
-                        <div className="h-48 bg-[#263858] relative">
-                            <img src={item.image} className="w-full h-full object-cover opacity-40" />
-                            <div className="absolute bottom-6 left-8">
-                                <img src={item.logo} className="h-12 w-auto bg-white/90 p-2 rounded mb-4" />
-                                <DialogTitle className="text-2xl font-bold text-white">{item.client}</DialogTitle>
-                            </div>
-                        </div>
-                        <div className="p-8 space-y-6 max-h-[70vh] overflow-y-auto">
-                            <div>
-                                <h3 className="text-[#EE6025] font-bold uppercase tracking-wide text-sm mb-2">O Desafio</h3>
-                                <p className="text-gray-700 leading-relaxed">{item.challenge}</p>
-                            </div>
-                            <div>
-                                <h3 className="text-[#EE6025] font-bold uppercase tracking-wide text-sm mb-2">A Solução</h3>
-                                <p className="text-gray-700 leading-relaxed">{item.solution}</p>
-                            </div>
-                            <div className="bg-gray-50 p-6 rounded-xl border-l-4 border-[#EE6025]">
-                                <h3 className="text-[#263858] font-bold uppercase tracking-wide text-sm mb-2">Resultados</h3>
-                                <p className="text-gray-700 font-medium">{item.result}</p>
-                            </div>
-                        </div>
-                      </DialogContent>
-                    </Dialog>
+                {/* LOGO */}
+                <img 
+                  src={client.logo} 
+                  alt={client.name}
+                  className="max-w-[80%] max-h-[80%] object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-80 group-hover:opacity-100"
+                />
+
+                {/* HOVER OVERLAY FOR "CASE" ITEMS */}
+                {client.hasCase && (
+                  <div className="absolute inset-0 bg-[#263858]/90 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-6 text-center">
+                    <h3 className="text-white font-bold text-lg mb-2">{client.name}</h3>
+                    <span className="text-[#EE6025] text-sm font-bold uppercase tracking-wider mb-4">{client.category}</span>
+                    <button className="inline-flex items-center gap-2 text-white text-sm font-bold border-b border-[#EE6025] pb-1 hover:text-[#EE6025] transition-colors">
+                      Ler Case Completo <ArrowRight size={14} />
+                    </button>
                   </div>
-                </div>
-                
-                <div className="p-8 flex-1 flex flex-col">
-                  <div className="h-12 mb-6">
-                    <img src={item.logo} alt={item.client} className="h-full w-auto object-contain object-left" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-[#263858] mb-4 group-hover:text-[#EE6025] transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-600 mb-6 flex-1">
-                    {item.desc}
-                  </p>
-                  <div className="mt-auto pt-6 border-t border-gray-100 flex items-center text-[#EE6025] font-bold text-sm uppercase tracking-wide">
-                    Saiba mais <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </div>
+                )}
               </div>
             ))}
           </div>
+          
+          {filteredCases.length === 0 && (
+             <div className="text-center py-20">
+                <p className="text-gray-400 text-lg">Nenhum case encontrado nesta categoria.</p>
+             </div>
+          )}
+
         </div>
       </section>
 
-      {/* CTA FINAL */}
-      <section className="py-24 bg-[#263858] text-white text-center">
-        <div className="container max-w-3xl">
-          <Quote className="mx-auto text-[#EE6025] mb-8 opacity-50" size={64} />
-          <h2 className="text-4xl font-bold mb-6">Pronto para escrever sua história de sucesso?</h2>
-          <p className="text-xl text-gray-300 mb-10">
-            Junte-se aos maiores players do mercado e transforme a gestão do seu acervo.
+      {/* CTA SECTION */}
+      <section className="py-24 bg-[#F8F9FA] border-t border-gray-200">
+        <div className="container text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-[#263858] mb-6">
+            Pronto para ser nosso próximo case de sucesso?
+          </h2>
+          <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
+            Junte-se às maiores empresas de mídia do Brasil e transforme sua gestão de conteúdo.
           </p>
-          <Link href="/contact">
-            <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white font-bold text-lg px-10 py-6 h-auto rounded shadow-xl hover:scale-105 transition-transform">
-              Agendar Consultoria Gratuita
-            </Button>
-          </Link>
+          <a 
+            href="/contact" 
+            className="inline-block bg-[#EE6025] text-white font-bold text-lg py-4 px-10 rounded-full hover:bg-[#d94e15] transition-transform hover:scale-105 shadow-lg"
+          >
+            Falar com um Consultor
+          </a>
         </div>
       </section>
     </Layout>
