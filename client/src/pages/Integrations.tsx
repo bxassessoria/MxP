@@ -1,8 +1,51 @@
 import Layout from "@/components/Layout";
-import { Search } from "lucide-react";
+import { Search, Globe, Server, Video, Cloud, Database, Cpu } from "lucide-react";
 import { useState } from "react";
 
-const partners = [
+// Helper para categorizar e atribuir ícones/descrições
+const getPartnerInfo = (name: string) => {
+  const n = name.toLowerCase();
+  if (n.includes("aws") || n.includes("google") || n.includes("azure") || n.includes("cloud") || n.includes("dropbox")) {
+    return { 
+      category: "Cloud & Storage", 
+      icon: Cloud,
+      desc: "Armazenamento e processamento em nuvem escalável.",
+      logo: `https://logo.clearbit.com/${n.replace(/\s/g, '')}.com`
+    };
+  }
+  if (n.includes("sony") || n.includes("canon") || n.includes("panasonic") || n.includes("grass") || n.includes("harmonic")) {
+    return { 
+      category: "Broadcast Hardware", 
+      icon: Video,
+      desc: "Integração direta com câmeras e playout servers.",
+      logo: `https://logo.clearbit.com/${n.replace(/\s/g, '')}.com`
+    };
+  }
+  if (n.includes("adobe") || n.includes("avid") || n.includes("apple") || n.includes("final") || n.includes("edit")) {
+    return { 
+      category: "Edição & Post", 
+      icon: Cpu,
+      desc: "Workflows de edição não-linear integrados.",
+      logo: `https://logo.clearbit.com/${n.replace(/\s/g, '')}.com`
+    };
+  }
+  if (n.includes("dell") || n.includes("hp") || n.includes("ibm") || n.includes("quantum") || n.includes("hitachi")) {
+    return { 
+      category: "Infraestrutura IT", 
+      icon: Server,
+      desc: "Servidores e storage de alta performance.",
+      logo: `https://logo.clearbit.com/${n.replace(/\s/g, '')}.com`
+    };
+  }
+  return { 
+    category: "Tecnologia", 
+    icon: Globe,
+    desc: "Soluções conectadas ao ecossistema Media Portal.",
+    logo: null
+  };
+};
+
+const partnerNames = [
   "Pebble", "Telestream", "Sony", "Tektronix", "IPV", "Harris", "Harmonic",
   "Edit Share", "Seachange", "AP News", "SNews", "Quantum", "Orad", "Qualstar",
   "AWS", "Google Cloud", "Fujitsu", "MDotti", "Embratel", "Grass Valley",
@@ -10,13 +53,23 @@ const partners = [
   "Supermicro", "VMware", "Xen", "Hyper-V", "Vimeo", "YouTube", "BlackBaze",
   "Owncloud", "DropBox", "Front Porch", "Floripa Tecnologia", "Voice Interaction",
   "Rohde & Schwarz", "Overland Tandberg", "Main Concept"
-].sort();
+];
+
+// Gerar lista de objetos
+const partners = partnerNames.map(name => {
+  const info = getPartnerInfo(name);
+  return {
+    name,
+    ...info
+  };
+}).sort((a, b) => a.name.localeCompare(b.name));
 
 export default function Integrations() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredPartners = partners.filter(partner => 
-    partner.toLowerCase().includes(searchTerm.toLowerCase())
+    partner.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    partner.category.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -48,7 +101,7 @@ export default function Integrations() {
             <div className="relative max-w-lg">
                 <input 
                     type="text" 
-                    placeholder="Buscar integração..." 
+                    placeholder="Buscar por nome ou categoria..." 
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="w-full pl-12 pr-4 py-4 rounded-xl border border-white/20 bg-white/10 text-white placeholder:text-gray-300 focus:border-[#EE6025] focus:bg-white/20 outline-none transition-all"
@@ -67,15 +120,38 @@ export default function Integrations() {
                 <p className="text-gray-500 text-lg">Nenhuma integração encontrada para "{searchTerm}".</p>
             </div>
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {filteredPartners.map((partner, idx) => (
                 <div 
                   key={idx} 
-                  className="bg-gray-50 rounded-xl p-6 border border-gray-100 flex items-center justify-center text-center h-32 hover:shadow-md hover:border-[#EE6025]/30 transition-all group"
+                  className="bg-white rounded-xl p-6 border border-gray-100 shadow-sm hover:shadow-lg hover:border-[#EE6025]/30 transition-all group flex flex-col h-full"
                 >
-                  <span className="font-bold text-[#263858] text-lg group-hover:text-[#EE6025] transition-colors">
-                    {partner}
-                  </span>
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="h-12 w-12 shrink-0 bg-gray-50 rounded-lg p-2 flex items-center justify-center border border-gray-100">
+                        {/* Tenta carregar logo, fallback para ícone */}
+                        <img 
+                            src={partner.logo || ""} 
+                            alt={partner.name}
+                            onError={(e) => {
+                                e.currentTarget.style.display = 'none';
+                                e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                            }}
+                            className="max-h-full max-w-full object-contain"
+                        />
+                        <partner.icon className="hidden text-[#EE6025] w-6 h-6" />
+                    </div>
+                    <div>
+                        <h3 className="font-bold text-[#263858] group-hover:text-[#EE6025] transition-colors">
+                            {partner.name}
+                        </h3>
+                        <span className="text-[10px] uppercase font-bold text-gray-400 tracking-wider">
+                            {partner.category}
+                        </span>
+                    </div>
+                  </div>
+                  <p className="text-sm text-gray-500 leading-relaxed line-clamp-2">
+                    {partner.desc}
+                  </p>
                 </div>
               ))}
             </div>
