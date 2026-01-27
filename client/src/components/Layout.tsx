@@ -10,7 +10,7 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className="flex min-h-screen flex-col bg-background font-sans text-foreground antialiased">
       <Header />
-      <main className="flex-1 w-full">
+      <main className="flex-1 w-full pt-20 md:pt-24">
         {children}
       </main>
       <Footer />

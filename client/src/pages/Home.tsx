@@ -10,7 +10,7 @@ export default function Home() {
     <Layout>
       {/* 1. HERO SECTION (Texto Esq / Vídeo Dir) */}
       <section className="relative min-h-[90vh] flex items-center bg-white overflow-hidden">
-        <div className="container relative z-10 pt-20">
+        <div className="container relative z-10">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
                 {/* Coluna Texto */}
                 <div className="space-y-8 max-w-2xl">
