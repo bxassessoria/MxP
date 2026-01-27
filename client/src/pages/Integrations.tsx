@@ -1,42 +1,24 @@
 import Layout from "@/components/Layout";
-import { Button } from "@/components/ui/button";
-import { Check, Plus } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Search } from "lucide-react";
+import { useState } from "react";
 
-const categories = [
-  {
-    title: "Edição & Pós-Produção",
-    partners: [
-      { name: "Adobe Premiere", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Adobe_Premiere_Pro_CC_icon.svg/1200px-Adobe_Premiere_Pro_CC_icon.svg.png", desc: "Painel nativo para busca e importação direta na timeline." },
-      { name: "Avid Media Composer", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Avid_Technology_logo.svg/1200px-Avid_Technology_logo.svg.png", desc: "Integração via Interplay e check-in/check-out de assets." },
-      { name: "Final Cut Pro", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Final_Cut_Pro_X_logo.png/1200px-Final_Cut_Pro_X_logo.png", desc: "Exportação de XML e workflow de proxy automatizado." }
-    ]
-  },
-  {
-    title: "Cloud & Storage",
-    partners: [
-      { name: "AWS S3", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1200px-Amazon_Web_Services_Logo.svg.png", desc: "Armazenamento escalável com tiering automático (Glacier)." },
-      { name: "Google Cloud", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Google_Cloud_logo.svg/1200px-Google_Cloud_logo.svg.png", desc: "Processamento de IA e armazenamento nearline." },
-      { name: "Azure", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Microsoft_Azure.svg/1200px-Microsoft_Azure.svg.png", desc: "Integração com serviços cognitivos e AD." }
-    ]
-  },
-  {
-    title: "Transcodificação & IA",
-    partners: [
-      { name: "Telestream Vantage", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/3/39/Telestream_Logo.png/220px-Telestream_Logo.png", desc: "Orquestração de workflows complexos de mídia." },
-      { name: "Harmonic", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Harmonic_Inc_Logo.svg/1200px-Harmonic_Inc_Logo.svg.png", desc: "Playout e encoding de alta densidade." },
-      { name: "Elemental", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1200px-Amazon_Web_Services_Logo.svg.png", desc: "Processamento de vídeo elástico na nuvem." }
-    ]
-  }
-];
+const partners = [
+  "Pebble", "Telestream", "Sony", "Tektronix", "IPV", "Harris", "Harmonic",
+  "Edit Share", "Seachange", "AP News", "SNews", "Quantum", "Orad", "Qualstar",
+  "AWS", "Google Cloud", "Fujitsu", "MDotti", "Embratel", "Grass Valley",
+  "Apptek", "MOG", "4S", "Cinegy", "Dell", "IBM", "Hitachi", "HP", "Apple",
+  "Supermicro", "VMware", "Xen", "Hyper-V", "Vimeo", "YouTube", "BlackBaze",
+  "Owncloud", "DropBox", "Front Porch", "Floripa Tecnologia", "Voice Interaction",
+  "Rohde & Schwarz", "Overland Tandberg", "Main Concept"
+].sort();
 
 export default function Integrations() {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredPartners = partners.filter(partner => 
+    partner.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <Layout>
       {/* HERO SECTION - PADRÃO HOME */}
@@ -53,15 +35,26 @@ export default function Integrations() {
         <div className="container relative z-10">
           <div className="max-w-2xl bg-white/5 backdrop-blur-md border border-white/10 p-10 md:p-14 rounded-3xl shadow-2xl">
             <div className="inline-block bg-[#EE6025] px-4 py-1 rounded-full text-sm font-bold tracking-wider uppercase mb-6 text-white">
-              Ecossistema Conectado
+              Conectividade Total
             </div>
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
-              Integrações Nativas
+              Lista de <span className="text-[#EE6025]">Integrações</span>
             </h1>
             <p className="text-xl text-gray-200 leading-relaxed mb-8">
-              Conecte o Media Portal às ferramentas que você já usa e potencialize seu fluxo de trabalho.
+              O Media Portal se conecta nativamente com as principais tecnologias do mercado broadcast e TI.
             </p>
-            <div className="h-1 w-20 bg-[#EE6025] rounded-full"></div>
+            
+            {/* Search Bar */}
+            <div className="relative max-w-lg">
+                <input 
+                    type="text" 
+                    placeholder="Buscar integração..." 
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full pl-12 pr-4 py-4 rounded-xl border border-white/20 bg-white/10 text-white placeholder:text-gray-300 focus:border-[#EE6025] focus:bg-white/20 outline-none transition-all"
+                />
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300" size={20} />
+            </div>
           </div>
         </div>
       </section>
@@ -69,80 +62,40 @@ export default function Integrations() {
       {/* INTEGRAÇÕES GRID */}
       <section className="py-24 bg-white">
         <div className="container">
-          {categories.map((category, idx) => (
-            <div key={idx} className="mb-20 last:mb-0">
-              <h2 className="text-2xl font-bold text-[#263858] mb-10 border-l-4 border-[#EE6025] pl-4">
-                {category.title}
-              </h2>
-              <div className="grid md:grid-cols-3 gap-8">
-                {category.partners.map((partner, pIdx) => (
-                  <Dialog key={pIdx}>
-                    <DialogTrigger asChild>
-                      <div className="group bg-white rounded-xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:border-[#EE6025] transition-all cursor-pointer flex flex-col items-center text-center h-full">
-                        <div className="h-16 mb-6 grayscale group-hover:grayscale-0 transition-all duration-500 opacity-70 group-hover:opacity-100">
-                          <img src={partner.logo} alt={partner.name} className="h-full w-auto object-contain" />
-                        </div>
-                        <h3 className="text-lg font-bold text-[#263858] mb-2">{partner.name}</h3>
-                        <p className="text-sm text-gray-500 line-clamp-2">{partner.desc}</p>
-                        <div className="mt-6 text-[#EE6025] text-xs font-bold uppercase tracking-wide opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
-                          <Plus size={12} /> Ver Detalhes
-                        </div>
-                      </div>
-                    </DialogTrigger>
-                    <DialogContent className="sm:max-w-md">
-                      <DialogHeader>
-                        <div className="flex justify-center mb-6">
-                            <img src={partner.logo} alt={partner.name} className="h-16 w-auto object-contain" />
-                        </div>
-                        <DialogTitle className="text-center text-2xl font-bold text-[#263858]">{partner.name}</DialogTitle>
-                      </DialogHeader>
-                      <div className="space-y-4 py-4">
-                        <p className="text-gray-600 text-center leading-relaxed">
-                            {partner.desc}
-                        </p>
-                        <div className="bg-gray-50 p-4 rounded-lg border border-gray-100">
-                            <h4 className="font-bold text-[#263858] text-sm mb-2 flex items-center gap-2">
-                                <Check size={14} className="text-[#EE6025]" /> Recursos da Integração:
-                            </h4>
-                            <ul className="text-sm text-gray-600 space-y-1 pl-6 list-disc">
-                                <li>API Restful bidirecional</li>
-                                <li>Sincronização de metadados</li>
-                                <li>Automação de triggers</li>
-                            </ul>
-                        </div>
-                      </div>
-                      <div className="flex justify-center pt-4">
-                        <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white w-full">
-                            Solicitar Documentação da API
-                        </Button>
-                      </div>
-                    </DialogContent>
-                  </Dialog>
-                ))}
-              </div>
+          {filteredPartners.length === 0 ? (
+            <div className="text-center py-20">
+                <p className="text-gray-500 text-lg">Nenhuma integração encontrada para "{searchTerm}".</p>
             </div>
-          ))}
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+              {filteredPartners.map((partner, idx) => (
+                <div 
+                  key={idx} 
+                  className="bg-gray-50 rounded-xl p-6 border border-gray-100 flex items-center justify-center text-center h-32 hover:shadow-md hover:border-[#EE6025]/30 transition-all group"
+                >
+                  <span className="font-bold text-[#263858] text-lg group-hover:text-[#EE6025] transition-colors">
+                    {partner}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
-      {/* FAQ SECTION */}
-      <section className="py-24 bg-[#F8F9FA] border-t border-gray-200">
-        <div className="container max-w-4xl">
-            <h2 className="text-3xl font-bold text-[#263858] text-center mb-12">Dúvidas Frequentes</h2>
-            <div className="space-y-4">
-                {[
-                    { q: "O Media Portal possui API aberta?", a: "Sim, oferecemos uma API RESTful completa para integração com qualquer sistema de terceiro." },
-                    { q: "Vocês suportam autenticação via SSO?", a: "Sim, suportamos SAML 2.0, OAuth e integração direta com Active Directory/LDAP." },
-                    { q: "É possível desenvolver plugins customizados?", a: "Sim, oferecemos suporte a plugins via Webhooks e SDKs." }
-                ].map((faq, idx) => (
-                    <div key={idx} className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm">
-                        <h3 className="font-bold text-[#263858] mb-2 flex items-start gap-3">
-                            <span className="text-[#EE6025] text-lg">?</span> {faq.q}
-                        </h3>
-                        <p className="text-gray-600 pl-6">{faq.a}</p>
-                    </div>
-                ))}
-            </div>
+      {/* CTA SECTION */}
+      <section className="py-20 bg-[#F8F9FA] border-t border-gray-200 text-center">
+        <div className="container max-w-2xl">
+            <h2 className="text-3xl font-bold text-[#263858] mb-4">Não encontrou o que procurava?</h2>
+            <p className="text-gray-600 mb-8">
+                Nossa arquitetura aberta permite o desenvolvimento rápido de novos drivers e conectores.
+            </p>
+            <a 
+                href="/contact" 
+                className="inline-block bg-[#263858] text-white font-bold py-3 px-8 rounded-lg hover:bg-[#1e2d4a] transition-colors"
+            >
+                Falar com Engenharia
+            </a>
         </div>
       </section>
     </Layout>

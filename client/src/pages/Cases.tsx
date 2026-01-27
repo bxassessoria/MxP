@@ -87,6 +87,64 @@ export default function Cases() {
         </div>
       </section>
 
+      {/* PARCEIROS TECNOLÓGICOS (Antigo Integrações) */}
+      <section className="py-24 bg-white border-b border-gray-100">
+        <div className="container">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl font-bold text-[#263858] mb-4">Ecossistema de Parceiros</h2>
+            <p className="text-gray-600 text-lg">
+              Nossa tecnologia se conecta nativamente com as principais ferramentas do mercado para garantir um fluxo de trabalho sem interrupções.
+            </p>
+          </div>
+
+          {[
+            {
+              title: "Edição & Pós-Produção",
+              partners: [
+                { name: "Adobe Premiere", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Adobe_Premiere_Pro_CC_icon.svg/1200px-Adobe_Premiere_Pro_CC_icon.svg.png", desc: "Painel nativo para busca e importação direta na timeline." },
+                { name: "Avid Media Composer", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Avid_Technology_logo.svg/1200px-Avid_Technology_logo.svg.png", desc: "Integração via Interplay e check-in/check-out de assets." },
+                { name: "Final Cut Pro", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Final_Cut_Pro_X_logo.png/1200px-Final_Cut_Pro_X_logo.png", desc: "Exportação de XML e workflow de proxy automatizado." }
+              ]
+            },
+            {
+              title: "Cloud & Storage",
+              partners: [
+                { name: "AWS S3", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1200px-Amazon_Web_Services_Logo.svg.png", desc: "Armazenamento escalável com tiering automático (Glacier)." },
+                { name: "Google Cloud", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Google_Cloud_logo.svg/1200px-Google_Cloud_logo.svg.png", desc: "Processamento de IA e armazenamento nearline." },
+                { name: "Azure", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Microsoft_Azure.svg/1200px-Microsoft_Azure.svg.png", desc: "Integração com serviços cognitivos e AD." }
+              ]
+            },
+            {
+              title: "Transcodificação & IA",
+              partners: [
+                { name: "Telestream Vantage", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/3/39/Telestream_Logo.png/220px-Telestream_Logo.png", desc: "Orquestração de workflows complexos de mídia." },
+                { name: "Harmonic", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Harmonic_Inc_Logo.svg/1200px-Harmonic_Inc_Logo.svg.png", desc: "Playout e encoding de alta densidade." },
+                { name: "Elemental", logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Amazon_Web_Services_Logo.svg/1200px-Amazon_Web_Services_Logo.svg.png", desc: "Processamento de vídeo elástico na nuvem." }
+              ]
+            }
+          ].map((category, idx) => (
+            <div key={idx} className="mb-16 last:mb-0">
+              <h3 className="text-xl font-bold text-[#263858] mb-8 border-l-4 border-[#EE6025] pl-4">
+                {category.title}
+              </h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                {category.partners.map((partner, pIdx) => (
+                  <div key={pIdx} className="bg-gray-50 rounded-xl p-6 border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
+                    <div className="h-12 w-12 shrink-0 bg-white rounded-lg p-2 border border-gray-200 flex items-center justify-center">
+                      <img src={partner.logo} alt={partner.name} className="max-h-full max-w-full object-contain" />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-[#263858] text-sm">{partner.name}</h4>
+                      <p className="text-xs text-gray-500 line-clamp-2">{partner.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* CASES GRID */}
       <section className="py-24 bg-gray-50">
         <div className="container">
