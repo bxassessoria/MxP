@@ -336,7 +336,7 @@ export default function ProductDetail() {
             <div className="absolute top-0 right-0 w-64 h-64 bg-[#EE6025] rounded-full blur-3xl opacity-20 -mr-16 -mt-16"></div>
             
             <div className="relative z-10 text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Vamos conversar sobre o seu projeto?</h2>
+              <h2 className="text-3xl font-bold mb-4 text-white">Vamos conversar sobre o seu projeto?</h2>
               <p className="text-gray-200">
                 Entre em contato com nosso time de vendas para realizarmos uma precificação adequada ao seu fluxo de trabalho.
               </p>
