@@ -143,7 +143,7 @@ export default function Home() {
                 </div>
                 <div className="order-1 lg:order-1 space-y-8">
                     <h2 className="text-4xl font-bold text-[#263858]">Fluxo de Mídia Otimizado</h2>
-                    <div className="space-y-6">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div className="flex gap-4">
                             <div className="w-12 h-12 rounded-full bg-[#EE6025] text-white flex items-center justify-center shrink-0">
                                 <Archive size={24} />
@@ -209,7 +209,7 @@ export default function Home() {
       <section className="py-24 bg-white">
         <div className="container text-center">
             <h2 className="text-3xl font-bold text-[#263858] mb-12">Nosso Conteúdo</h2>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
                 {[1, 2, 3].map((i) => (
                     <div key={i} className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-shadow text-left group">
                         <div className="h-48 bg-gray-200 overflow-hidden">

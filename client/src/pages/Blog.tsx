@@ -92,16 +92,16 @@ export default function Blog() {
 
       {/* Posts Grid */}
       <div className="container pb-24">
-        <div className="grid md:grid-cols-2 gap-10">
+        <div className="grid grid-cols-2 gap-4 md:gap-10">
             {posts.map((post) => (
                 <div key={post.id} className="group cursor-pointer flex flex-col h-full bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#EE6025]/30">
-                    <div className="h-64 overflow-hidden relative">
+                    <div className="h-40 md:h-64 overflow-hidden relative">
                         <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                         <div className="absolute top-4 left-4 bg-[#EE6025] text-white text-xs font-bold px-3 py-1 rounded shadow-md">
                             {post.category}
                         </div>
                     </div>
-                    <div className="p-8 flex-1 flex flex-col">
+                    <div className="p-4 md:p-8 flex-1 flex flex-col">
                         <div className="flex items-center gap-4 text-xs text-gray-400 mb-4 font-medium uppercase tracking-wide">
                             <span className="flex items-center gap-1"><Calendar size={12} /> {post.date}</span>
                             <span className="flex items-center gap-1"><User size={12} /> {post.author}</span>
@@ -109,7 +109,7 @@ export default function Blog() {
                         <h2 className="text-2xl font-bold text-[#263858] mb-4 group-hover:text-[#EE6025] transition-colors leading-tight">
                             {post.title}
                         </h2>
-                        <p className="text-gray-600 mb-6 flex-1 leading-relaxed">
+                        <p className="text-gray-600 mb-4 md:mb-6 flex-1 leading-relaxed text-sm md:text-base hidden sm:block">
                             {post.excerpt}
                         </p>
                         <span className="text-[#EE6025] font-bold text-sm uppercase flex items-center gap-2 mt-auto group-hover:translate-x-1 transition-transform">

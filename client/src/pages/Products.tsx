@@ -157,7 +157,7 @@ export default function Products() {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
             {detailedProducts.map((prod) => (
               <div key={prod.id} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-gray-100 flex flex-col group">
                 <div className="h-48 overflow-hidden relative">
@@ -205,7 +205,7 @@ export default function Products() {
             </p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {featuresList.map((feat, idx) => (
               <div key={idx} className="bg-gray-50 p-6 rounded-lg border border-gray-100 hover:border-[#EE6025] transition-colors group">
                 <div className="text-[#263858] group-hover:text-[#EE6025] transition-colors mb-3">

@@ -5,9 +5,9 @@ export default function Footer() {
   return (
     <footer className="bg-[#263858] text-white pt-16 pb-8 border-t border-white/10">
       <div className="container">
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-12">
           {/* Coluna 1: Logo e Sobre */}
-          <div>
+          <div className="col-span-2 md:col-span-1">
             <div className="bg-white p-2 inline-block rounded mb-6">
                 <img src="/MediaPortal.jpg" alt="Media Portal" className="h-8 w-auto" />
             </div>
@@ -48,7 +48,7 @@ export default function Footer() {
           </div>
 
           {/* Coluna 4: Contato */}
-          <div>
+          <div className="col-span-2 md:col-span-1">
             <h3 className="font-bold text-white text-lg mb-6 border-l-4 border-[#EE6025] pl-3">Contato</h3>
             <ul className="space-y-4 text-gray-200 text-sm">
               <li className="flex items-start gap-3">
