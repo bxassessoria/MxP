@@ -33,13 +33,8 @@ export default function ClientsSection() {
   ]);
 
   return (
-    <section className="py-24 bg-[#F8F9FA] border-y border-gray-200 overflow-hidden">
-      <div className="container mb-12 text-center">
-        <h2 className="text-3xl font-bold text-[#263858] mb-4">Quem confia na Media Portal</h2>
-        <p className="text-gray-500 max-w-2xl mx-auto mb-10">Grandes empresas que transformaram sua gestão de mídia</p>
-      </div>
-      
-      <div className="embla mb-16" ref={emblaRef}>
+    <div className="w-full overflow-hidden">
+      <div className="embla" ref={emblaRef}>
         <div className="flex gap-8 items-center px-4">
           {/* Mapeamento original */}
           {clients.map((client, index) => (
@@ -90,13 +85,6 @@ export default function ClientsSection() {
         </div>
       </div>
 
-      <div className="text-center">
-        <Link href="/cases">
-            <Button variant="outline" className="border-[#EE6025] text-[#EE6025] hover:bg-[#EE6025] hover:text-white font-bold px-8 py-6 rounded-full transition-all shadow-sm hover:shadow-md">
-                Saiba Mais sobre nossos Cases
-            </Button>
-        </Link>
-      </div>
-    </section>
+    </div>
   );
 }

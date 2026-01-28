@@ -30,8 +30,8 @@ export default function Home() {
     <Layout>
       {/* 1. HERO SECTION (Texto Esq / Vídeo Dir) */}
       <section className="relative min-h-[90vh] flex items-center bg-white overflow-hidden">
-        <div className="container relative z-10">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="container relative z-10 py-12 md:py-20">
+            <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
                 {/* Coluna Texto */}
                 <div className="space-y-8 max-w-2xl">
                     <div className="inline-block bg-[#EE6025]/10 text-[#EE6025] px-4 py-2 rounded-full font-bold tracking-wider text-sm uppercase">
@@ -83,11 +83,14 @@ export default function Home() {
                      </div>
                 </div>
             </div>
+
+            {/* QUEM CONFIA NA MEDIA PORTAL (Integrado ao Hero) */}
+            <div className="border-t border-gray-100 pt-10">
+                <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-8 text-center">Quem confia na Media Portal</p>
+                <ClientsSection />
+            </div>
         </div>
       </section>
-
-      {/* 2. QUEM CONFIA NA MEDIA PORTAL (Invertido: agora é a 2ª seção) */}
-      <ClientsSection />
 
       {/* 3. VANTAGENS (Textos preenchidos e em branco) */}
       <section className="py-24 bg-[#263858] text-white">
