@@ -18,21 +18,25 @@ const categories = [
 // Helper para categorizar e buscar logos
 const getPartnerInfo = (name: string) => {
   const n = name.toLowerCase();
-  let logoDomain = `${n.replace(/\s/g, '')}.com`;
+  let logoUrl = "";
   
-  // Ajustes manuais de domínio para logos mais precisos
-  if (n.includes("aws")) logoDomain = "aws.amazon.com";
-  if (n.includes("google")) logoDomain = "cloud.google.com";
-  if (n.includes("azure")) logoDomain = "azure.microsoft.com";
-  if (n.includes("sony")) logoDomain = "sony.com";
-  if (n.includes("canon")) logoDomain = "canon.com";
-  if (n.includes("adobe")) logoDomain = "adobe.com";
-  if (n.includes("avid")) logoDomain = "avid.com";
-  if (n.includes("dell")) logoDomain = "dell.com";
-  if (n.includes("hp")) logoDomain = "hp.com";
-  if (n.includes("ibm")) logoDomain = "ibm.com";
-  
-  const logoUrl = `https://logo.clearbit.com/${logoDomain}`;
+  // Logos locais prioritários
+  if (n.includes("aws")) logoUrl = "/images/logos/aws.png";
+  else if (n.includes("google")) logoUrl = "/images/logos/google-cloud.png";
+  else if (n.includes("adobe")) logoUrl = "/images/logos/adobe-premiere.png";
+  else if (n.includes("avid")) logoUrl = "/images/logos/avid.png";
+  else if (n.includes("sony")) logoUrl = "/images/logos/sony.png";
+  else if (n.includes("grass")) logoUrl = "/images/logos/grass-valley.png";
+  else {
+      // Fallback para Clearbit
+      let logoDomain = `${n.replace(/\s/g, '')}.com`;
+      if (n.includes("azure")) logoDomain = "azure.microsoft.com";
+      if (n.includes("canon")) logoDomain = "canon.com";
+      if (n.includes("dell")) logoDomain = "dell.com";
+      if (n.includes("hp")) logoDomain = "hp.com";
+      if (n.includes("ibm")) logoDomain = "ibm.com";
+      logoUrl = `https://logo.clearbit.com/${logoDomain}`;
+  }
 
   if (n.includes("aws") || n.includes("google") || n.includes("azure") || n.includes("cloud") || n.includes("dropbox") || n.includes("blackbaze") || n.includes("owncloud")) {
     return { category: "Cloud & Storage", logo: logoUrl };
