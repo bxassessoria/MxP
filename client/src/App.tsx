@@ -1,4 +1,5 @@
 import { Switch, Route } from "wouter";
+import ScrollToTop from "@/components/ScrollToTop";
 import Home from "@/pages/Home";
 import Products from "@/pages/Products";
 import CloudFly from "@/pages/products/CloudFly";
@@ -13,19 +14,22 @@ import NotFound from "@/pages/not-found";
 
 function App() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/products" component={Products} />
-      <Route path="/product/cloudfly" component={CloudFly} />
-      <Route path="/product/cloudlink" component={CloudLink} />
-      <Route path="/product/gendai-tv" component={GendaiTV} />
-      <Route path="/product/gems-in-a-box" component={GemsInABox} />
-      <Route path="/integrations" component={Integrations} />
-      <Route path="/cases" component={Cases} />
-      <Route path="/cases/:id" component={CaseDetail} />
-      <Route path="/contact" component={Contact} />
-      <Route component={NotFound} />
-    </Switch>
+    <>
+      <ScrollToTop />
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/products" component={Products} />
+        <Route path="/product/cloudfly" component={CloudFly} />
+        <Route path="/product/cloudlink" component={CloudLink} />
+        <Route path="/product/gendai-tv" component={GendaiTV} />
+        <Route path="/product/gems-in-a-box" component={GemsInABox} />
+        <Route path="/integrations" component={Integrations} />
+        <Route path="/cases" component={Cases} />
+        <Route path="/cases/:id" component={CaseDetail} />
+        <Route path="/contact" component={Contact} />
+        <Route component={NotFound} />
+      </Switch>
+    </>
   );
 }
 

@@ -30,11 +30,11 @@ export default function Home() {
   return (
     <Layout>
       {/* 1. HERO SECTION (Split Screen: White Left / Video Right with Fade) */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-white">
+      <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-white">
         {/* Background Video Positioned to Right */}
         <div className="absolute top-0 right-0 w-full md:w-[65%] h-full z-0">
           {/* Degradê suavizado e estendido para eliminar linha divisória */}
-          <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-white via-white/90 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute inset-y-0 left-0 w-full bg-gradient-to-r from-white via-white/95 to-transparent z-10 pointer-events-none"></div>
           <video 
             className="w-full h-full object-cover"
             autoPlay 
@@ -47,8 +47,7 @@ export default function Home() {
           </video>
         </div>
 
-        {/* Conteúdo Alinhado à Esquerda */}
-        <div className="container relative z-10 px-4 pt-32 pb-40 md:py-0">
+       {/* Conteúdo Alinhado à Esquerda */}\n        <div className="container relative z-10 px-4 pt-40 pb-20 md:py-0 flex-grow flex flex-col justify-center">
           <div className="max-w-2xl mr-auto text-left space-y-8">
             <div className="inline-block bg-[#EE6025]/10 text-[#EE6025] border border-[#EE6025]/20 px-6 py-2 rounded-full font-bold tracking-wider text-sm uppercase">
               Media Asset Management
@@ -69,16 +68,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Logo Carousel - Bottom - Full Width */}
-        <div className="absolute bottom-0 w-full z-20 bg-gradient-to-t from-white via-white/80 to-transparent py-8">
-          <div className="w-full overflow-hidden">
-            <div className="container mb-6">
-               <p className="text-[#263858]/60 text-xs font-bold uppercase tracking-widest">Quem confia na Media Portal</p>
-            </div>
-            <ClientsSection />
-          </div>
-        </div>
-      </section>
+  {/* Logo Carousel - Bottom - Full Width */}\n        <div className="w-full z-20 bg-gradient-to-t from-white via-white/80 to-transparent py-12">\n          <div className="w-full overflow-hidden">\n            <div className="container mb-6">\n               <p className="text-[#263858]/60 text-xs font-bold uppercase tracking-widest border-b border-[#263858]/10 pb-4 inline-block pr-12">Quem confia na Media Portal</p>\n            </div>\n            <ClientsSection />\n          </div>\n        </div>     </section>
 
       {/* 3. VANTAGENS (Textos preenchidos e em branco) */}
       <section className="py-24 bg-[#263858] text-white">

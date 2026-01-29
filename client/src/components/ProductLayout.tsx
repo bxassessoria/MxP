@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, CheckCircle2 } from "lucide-react";
 
 interface ProductLayoutProps {
   title: string;
@@ -36,7 +36,14 @@ export default function ProductLayout({
           <div className="absolute inset-0 bg-gradient-to-r from-[#263858] via-[#263858]/90 to-transparent"></div>
         </div>
         
-        <div className="container relative z-10 pt-20">
+        <div className="container relative z-10 pt-24 pb-12">
+          {/* Botão de Voltar */}
+          <Link href="/products">
+            <Button variant="ghost" className="text-white/60 hover:text-white hover:bg-white/10 mb-8 pl-0 transition-colors">
+              <ArrowLeft className="mr-2 h-4 w-4" /> Voltar para Produtos
+            </Button>
+          </Link>
+
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-full text-white mb-8">
               {icon && <div className="text-[#EE6025]">{icon}</div>}
