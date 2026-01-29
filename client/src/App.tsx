@@ -1,38 +1,34 @@
 import { Switch, Route } from "wouter";
-import ScrollToTop from "./components/ScrollToTop";
 import Home from "@/pages/Home";
 import Products from "@/pages/Products";
+import ProductDetail from "@/pages/ProductDetail";
 import Cases from "@/pages/Cases";
-import CaseDetail from "@/pages/CaseDetail";
 import Integrations from "@/pages/Integrations";
-import NotFound from "@/pages/not-found";
-import CloudFly from "@/pages/products/CloudFly";
-import CloudLink from "@/pages/products/CloudLink";
-import GendaiTV from "@/pages/products/GendaiTV";
-import GemsInABox from "@/pages/products/GemsInABox";
-import GendaiNews from "@/pages/products/GendaiNews";
-import CustomPrj from "@/pages/products/CustomPrj";
-import TvCultura from "@/pages/cases/TvCultura";
 import About from "@/pages/About";
 import Blog from "@/pages/Blog";
+import BlogPost from "@/pages/BlogPost";
+import NotFound from "@/pages/not-found";
+import BroadcastPage from "@/pages/seo/Broadcast";
+import MAMPage from "@/pages/seo/MAM";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/produtos" component={Products} />
-      <Route path="/produtos/cloudfly" component={CloudFly} />
-      <Route path="/produtos/cloudlink" component={CloudLink} />
-      <Route path="/produtos/gendai-tv" component={GendaiTV} />
-      <Route path="/produtos/gendai-news" component={GendaiNews} />
-      <Route path="/produtos/gems-in-a-box" component={GemsInABox} />
-      <Route path="/produtos/custom-prj" component={CustomPrj} />
+      <Route path="/product/:id" component={ProductDetail} />
+      
+      {/* Rotas legadas/alternativas para produtos SEO */}
+      <Route path="/produtos/gendai-tv" component={BroadcastPage} />
+      <Route path="/produtos/cloudfly" component={MAMPage} />
+      
       <Route path="/cases" component={Cases} />
-      <Route path="/cases/tv-cultura" component={TvCultura} />
-      <Route path="/cases/:slug" component={CaseDetail} />
       <Route path="/integracoes" component={Integrations} />
       <Route path="/sobre" component={About} />
       <Route path="/blog" component={Blog} />
+      <Route path="/blog/:slug" component={BlogPost} />
+      
+      {/* Fallback 404 */}
       <Route component={NotFound} />
     </Switch>
   );
@@ -41,7 +37,6 @@ function Router() {
 function App() {
   return (
     <>
-      <ScrollToTop />
       <Router />
     </>
   );

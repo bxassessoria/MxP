@@ -1,152 +1,145 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Search, Calendar, User, ArrowRight } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Search, Calendar, User, ArrowRight, ArrowLeft } from "lucide-react";
 import { Link } from "wouter";
-
-const posts = [
-  {
-    id: 1,
-    title: "A evolução do MAM na era Cloud Computing",
-    excerpt: "Como a migração para a nuvem está transformando a gestão de ativos digitais em grandes emissoras, permitindo maior flexibilidade e redução de custos operacionais.",
-    date: "24 Jan, 2026",
-    author: "Equipe Media Portal",
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop",
-    category: "Tecnologia"
-  },
-  {
-    id: 2,
-    title: "Segurança de dados em acervos históricos",
-    excerpt: "Práticas essenciais para garantir a integridade e a perenidade de conteúdos audiovisuais digitalizados, protegendo a memória cultural e institucional.",
-    date: "15 Jan, 2026",
-    author: "Equipe Media Portal",
-    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1470&auto=format&fit=crop",
-    category: "Segurança"
-  },
-  {
-    id: 3,
-    title: "Media Portal marca presença na NAB Show 2026",
-    excerpt: "Confira as novidades que apresentamos no maior evento de broadcast do mundo em Las Vegas, incluindo novas integrações com IA e workflows híbridos.",
-    date: "10 Jan, 2026",
-    author: "Marketing",
-    image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=1470&auto=format&fit=crop",
-    category: "Eventos"
-  },
-  {
-    id: 4,
-    title: "Inteligência Artificial na indexação de vídeos",
-    excerpt: "O impacto do reconhecimento facial e de voz na velocidade de busca de arquivos de mídia, reduzindo o tempo de decupagem em até 70%.",
-    date: "05 Jan, 2026",
-    author: "Tech Team",
-    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1530&auto=format&fit=crop",
-    category: "Inovação"
-  },
-  {
-    id: 5,
-    title: "Cases de Sucesso: TV Cultura",
-    excerpt: "Como a TV Cultura modernizou seu acervo histórico utilizando a tecnologia Media Portal para digitalização e gestão de metadados.",
-    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop",
-    date: "20 Nov 2025",
-    author: "Equipe Media Portal",
-    category: "Cases"
-  },
-  {
-    id: 6,
-    title: "Tendências para o Broadcast em 2026",
-    excerpt: "O que esperar do mercado de mídia para este ano? Analisamos as principais tendências tecnológicas que vão pautar o setor.",
-    image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=800&auto=format&fit=crop",
-    date: "15 Dez 2025",
-    author: "Equipe Media Portal",
-    category: "Tendências"
-  }
-];
+import { blogPosts } from "@/data/blog-posts";
+import { useState } from "react";
 
 export default function Blog() {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredPosts = blogPosts.filter(post => 
+    post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    post.excerpt.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <Layout>
-      {/* HERO SECTION - PADRÃO HOME */}
-      <section className="relative min-h-[90vh] flex items-center bg-[#263858] overflow-hidden">
-        <div className="absolute inset-0 z-0">
-             <img 
-               src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop" 
-               alt="Background Blog" 
-               className="w-full h-full object-cover opacity-30"
-             />
-             <div className="absolute inset-0 bg-gradient-to-r from-[#263858] to-transparent"></div>
-        </div>
+      {/* Hero Section */}
+      <section className="bg-[#263858] text-white py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/images/blog-bg.jpg')] bg-cover bg-center opacity-20"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#263858]/80 to-[#263858]/95"></div>
         
-        <div className="container relative z-10">
-          <div className="max-w-2xl bg-white/5 backdrop-blur-md border border-white/10 p-10 md:p-14 rounded-3xl shadow-2xl">
-            <div className="inline-block bg-[#EE6025] px-4 py-1 rounded-full text-sm font-bold tracking-wider uppercase mb-6 text-white">
-              Conteúdo & Insights
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
-              Blog & <span className="text-[#EE6025]">Notícias</span>
-            </h1>
-            <p className="text-xl text-gray-200 leading-relaxed mb-8">
-              Insights sobre gestão de mídia, tecnologia broadcast e novidades da Media Portal.
-            </p>
-            
-            {/* Search Bar no Card */}
-            <div className="relative max-w-lg">
-                <input 
-                    type="text" 
-                    placeholder="Buscar artigos..." 
-                    className="w-full pl-12 pr-4 py-4 rounded-xl border border-white/20 bg-white/10 text-white placeholder:text-gray-300 focus:border-[#EE6025] focus:bg-white/20 outline-none transition-all"
-                />
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-300" size={20} />
-            </div>
+        <div className="container relative z-10 text-center">
+          <div className="mb-8">
+             <Link href="/">
+                <Button variant="ghost" className="text-white/70 hover:text-white hover:bg-white/10 pl-0">
+                    <ArrowLeft size={16} className="mr-2" /> Voltar para Home
+                </Button>
+            </Link>
+          </div>
+          
+          <span className="text-[#EE6025] font-bold tracking-widest uppercase text-sm mb-4 block">Blog Media Portal</span>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">Insights para gestão inteligente de acervos</h1>
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-10">
+            Fique por dentro das novidades, tendências e informações do universo Broadcast.
+          </p>
+          
+          {/* Search Bar */}
+          <div className="max-w-xl mx-auto relative">
+            <Input 
+              type="text" 
+              placeholder="Pesquisar artigos..." 
+              className="h-14 pl-12 pr-4 rounded-full bg-white text-gray-900 border-none shadow-lg focus:ring-2 focus:ring-[#EE6025] text-lg"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
           </div>
         </div>
       </section>
 
-      {/* Breadcrumb / Back Button */}
-      <div className="container py-8">
-        <Link href="/">
-            <Button variant="ghost" className="text-gray-500 hover:text-[#EE6025] pl-0">
-                <ArrowLeft size={16} className="mr-2" /> Voltar para Home
+      {/* Blog Posts Grid */}
+      <section className="py-16 md:py-24 bg-gray-50">
+        <div className="container">
+          {filteredPosts.length > 0 ? (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredPosts.map((post) => (
+                <article key={post.id} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full border border-gray-100 group">
+                  <Link href={`/blog/${post.slug}`}>
+                    <div className="relative h-56 overflow-hidden cursor-pointer">
+                      <img 
+                        src={post.image} 
+                        alt={post.title} 
+                        className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute top-4 left-4 bg-[#EE6025] text-white text-xs font-bold px-3 py-1 rounded-full shadow-md z-10">
+                        {post.category}
+                      </div>
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
+                    </div>
+                  </Link>
+                  
+                  <div className="p-6 flex flex-col flex-grow">
+                    <div className="flex items-center text-xs text-gray-500 mb-4 space-x-4 font-medium uppercase tracking-wide">
+                      <div className="flex items-center">
+                        <Calendar size={14} className="mr-1 text-[#EE6025]" />
+                        {new Date(post.date).toLocaleDateString('pt-BR')}
+                      </div>
+                      <div className="flex items-center">
+                        <User size={14} className="mr-1 text-[#EE6025]" />
+                        {post.author}
+                      </div>
+                    </div>
+                    
+                    <Link href={`/blog/${post.slug}`}>
+                      <h2 className="text-xl font-bold text-[#263858] mb-3 group-hover:text-[#EE6025] transition-colors cursor-pointer line-clamp-2 leading-tight">
+                        {post.title}
+                      </h2>
+                    </Link>
+                    
+                    <p className="text-gray-600 text-sm mb-6 line-clamp-3 flex-grow leading-relaxed">
+                      {post.excerpt}
+                    </p>
+                    
+                    <Link href={`/blog/${post.slug}`}>
+                      <Button variant="link" className="p-0 h-auto text-[#EE6025] font-bold hover:no-underline group-hover:translate-x-1 transition-transform mt-auto self-start">
+                        Ler mais <ArrowRight size={16} className="ml-2" />
+                      </Button>
+                    </Link>
+                  </div>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-20 bg-white rounded-xl shadow-sm border border-gray-100">
+              <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Search className="text-gray-400" size={32} />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-2">Nenhum artigo encontrado</h3>
+              <p className="text-gray-500 text-lg mb-6">Tente buscar por outros termos ou palavras-chave.</p>
+              <Button variant="outline" onClick={() => setSearchTerm("")}>
+                Limpar filtros
+              </Button>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Newsletter Section */}
+      <section className="bg-[#EE6025] py-20 text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/images/pattern-dots.svg')] opacity-10"></div>
+        <div className="container text-center max-w-3xl relative z-10">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Mantenha-se informado</h2>
+          <p className="text-white/90 mb-8 text-lg">
+            Receba em primeira mão artigos, tendências e novidades sobre o mercado Broadcast e tecnologias de mídia.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+            <Input 
+              type="email" 
+              placeholder="Seu melhor e-mail corporativo" 
+              className="bg-white text-gray-900 border-none h-14 text-lg placeholder:text-gray-400"
+            />
+            <Button className="bg-[#263858] hover:bg-[#1a2840] text-white font-bold h-14 px-8 text-lg shadow-lg">
+              Inscrever-se
             </Button>
-        </Link>
-      </div>
-
-      {/* Posts Grid */}
-      <div className="container pb-24">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map((post) => (
-                <div key={post.id} className="group cursor-pointer flex flex-col h-full bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#EE6025]/30">
-                    <div className="h-48 overflow-hidden relative">
-                        <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                        <div className="absolute top-4 left-4 bg-[#EE6025] text-white text-xs font-bold px-3 py-1 rounded shadow-md">
-                            {post.category}
-                        </div>
-                    </div>
-                    <div className="p-6 flex-1 flex flex-col">
-                        <div className="flex items-center gap-4 text-xs text-gray-400 mb-4 font-medium uppercase tracking-wide">
-                            <span className="flex items-center gap-1"><Calendar size={12} /> {post.date}</span>
-                            <span className="flex items-center gap-1"><User size={12} /> {post.author}</span>
-                        </div>
-                        <h2 className="text-xl font-bold text-[#263858] mb-3 group-hover:text-[#EE6025] transition-colors leading-tight line-clamp-2">
-                            {post.title}
-                        </h2>
-                        <p className="text-gray-600 mb-6 flex-1 leading-relaxed text-sm line-clamp-3">
-                            {post.excerpt}
-                        </p>
-                        <span className="text-[#EE6025] font-bold text-sm uppercase flex items-center gap-2 mt-auto group-hover:translate-x-1 transition-transform">
-                            Ler Artigo Completo <ArrowRight size={16} />
-                        </span>
-                    </div>
-                </div>
-            ))}
+          </div>
+          <p className="text-white/60 text-xs mt-4">
+            Respeitamos sua privacidade. Cancele a inscrição a qualquer momento.
+          </p>
         </div>
-
-        {/* Pagination (Visual Only) */}
-        <div className="flex justify-center mt-16 gap-2">
-            <Button variant="outline" disabled className="border-gray-200 text-gray-400">Anterior</Button>
-            <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white">1</Button>
-            <Button variant="outline" className="border-gray-200 text-gray-600 hover:border-[#EE6025] hover:text-[#EE6025]">2</Button>
-            <Button variant="outline" className="border-gray-200 text-gray-600 hover:border-[#EE6025] hover:text-[#EE6025]">3</Button>
-            <Button variant="outline" className="border-gray-200 text-gray-600 hover:border-[#EE6025] hover:text-[#EE6025]">Próxima</Button>
-        </div>
-      </div>
+      </section>
     </Layout>
   );
 }
