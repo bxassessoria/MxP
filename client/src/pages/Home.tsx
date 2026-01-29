@@ -47,7 +47,8 @@ export default function Home() {
           </video>
         </div>
 
-       {/* Conteúdo Alinhado à Esquerda */}\n        <div className="container relative z-10 px-4 pt-40 pb-20 md:py-0 flex-grow flex flex-col justify-center">
+        {/* Conteúdo Alinhado à Esquerda */}
+        <div className="container relative z-10 px-4 pt-40 pb-20 md:py-0 flex-grow flex flex-col justify-center">
           <div className="max-w-2xl mr-auto text-left space-y-8">
             <div className="inline-block bg-[#EE6025]/10 text-[#EE6025] border border-[#EE6025]/20 px-6 py-2 rounded-full font-bold tracking-wider text-sm uppercase">
               Media Asset Management
@@ -59,16 +60,23 @@ export default function Home() {
               Transforme a maneira como sua empresa armazena, organiza e distribui conteúdo com a plataforma MAM mais completa do mercado.
             </p>
             <div className="flex flex-col sm:flex-row items-center gap-8 pt-8">
-              <Link href="/products">
+              <Link href="/produtos">
                 <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white h-14 px-8 rounded-lg text-lg font-bold shadow-lg hover:shadow-xl transition-all w-full sm:w-auto shrink-0">
                   Conhecer Soluções
                 </Button>
               </Link>
             </div>
+            
+            {/* Logo Carousel - Inline with Content */}
+            <div className="pt-12 border-t border-gray-100 mt-8">
+              <p className="text-[#263858]/60 text-xs font-bold uppercase tracking-widest mb-6">Quem confia na Media Portal</p>
+              <div className="w-full max-w-xl">
+                <ClientsSection />
+              </div>
+            </div>
           </div>
         </div>
-
-  {/* Logo Carousel - Bottom - Full Width */}\n        <div className="w-full z-20 bg-gradient-to-t from-white via-white/80 to-transparent py-12">\n          <div className="w-full overflow-hidden">\n            <div className="container mb-6">\n               <p className="text-[#263858]/60 text-xs font-bold uppercase tracking-widest border-b border-[#263858]/10 pb-4 inline-block pr-12">Quem confia na Media Portal</p>\n            </div>\n            <ClientsSection />\n          </div>\n        </div>     </section>
+      </section>
 
       {/* 3. VANTAGENS (Textos preenchidos e em branco) */}
       <section className="py-24 bg-[#263858] text-white">
