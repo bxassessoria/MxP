@@ -1,20 +1,20 @@
 import ProductLayout from "@/components/ProductLayout";
-import { Tv, Radio, Database, Archive, Play, Captions, Globe, Cast, Layers } from "lucide-react";
+import { Newspaper, Radio, Database, Archive, Play, Captions, Globe, Cast, Layers, PenTool } from "lucide-react";
 
-export default function GendaiTV() {
+export default function GendaiNews() {
   return (
     <ProductLayout
-      title="Gendai TV"
-      subtitle="Gestão de todo o seu fluxo de produção, integrando ingest, distribuição e exibição"
-      description="A solução que entende a nova realidade do mercado e oferece eficiência, integração e agilidade, com ótimo custo-benefício e suporte centralizado."
-      icon={<Tv size={24} />}
+      title="Gendai News"
+      subtitle="Gestão completa do fluxo de produção televisiva e jornalística"
+      description="Integração total entre ingest, redação, distribuição e exibição. A solução definitiva para jornalismo moderno."
+      icon={<Newspaper size={24} />}
       features={[
-        "Ingest e Captação Multicanal",
-        "Storage para Produção",
-        "MAM e Arquivamento Integrados",
-        "Playout Broadcast",
+        "Sistema de Redação (News)",
+        "Ingest e Captação",
+        "MAM e Arquivamento",
+        "Playout Integrado",
         "Closed Caption ao Vivo",
-        "Streaming e OTT/VOD"
+        "Distribuição Multiplataforma"
       ]}
     >
       <div className="space-y-16">
@@ -23,7 +23,7 @@ export default function GendaiTV() {
           <h2 className="text-3xl font-bold text-[#263858] mb-6">Descrição</h2>
           <div className="text-lg text-slate-600 leading-relaxed space-y-6">
             <p>
-              O <strong>Gendai TV</strong> é o sistema que oferece a gestão de todo o seu fluxo de produção, integrando ingest, distribuição (broadband) e exibição (broadcast).
+              O <strong>Gendai News</strong> é o sistema que oferece a gestão de todo o seu fluxo de produção televisiva e jornalística, integrando ingest, redação do jornal, distribuição (broadband) e exibição (broadcast).
             </p>
             <p>
               A solução surge da demanda por uma ferramenta que entenda a nova realidade do mercado e oferece eficiência, integração e agilidade, tudo isso com um ótimo custo benefício e suporte centralizado.
@@ -35,52 +35,52 @@ export default function GendaiTV() {
         <div>
           <h3 className="text-2xl font-bold text-[#263858] mb-8 flex items-center gap-3">
             <Layers className="text-[#EE6025]" />
-            Ecossistema Modular
+            Ecossistema Jornalístico
           </h3>
           <p className="text-slate-600 mb-6 text-lg">
-            Todos os componentes são modulares e permitem integrações com recursos já em uso pela emissora:
+            Todos os componentes são modulares e permitem integrações com recursos já disponíveis em uso pela emissora:
           </p>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             <ComponentCard 
+              icon={<PenTool className="text-[#EE6025]" />}
+              title="NEWS - Redação"
+              description="Sistema completo para redação, roteirização e gestão de pautas jornalísticas."
+            />
+            <ComponentCard 
               icon={<Radio className="text-red-500" />}
               title="Ingest"
-              description="Múltiplas gravações simultâneas com envio automático para playout e compatibilidade com padrões de mercado."
+              description="Captura multicanal com envio automático para redação e playout."
             />
             <ComponentCard 
               icon={<Database className="text-blue-500" />}
               title="Storage"
-              description="Armazenamento de alta performance dedicado para produção e edição de vídeo."
+              description="Armazenamento centralizado de alta performance para produção."
             />
             <ComponentCard 
               icon={<Play className="text-green-500" />}
               title="Playout"
-              description="Exibição broadcast confiável com integração total ao fluxo de produção."
+              description="Exibição confiável integrada ao rundown do jornal."
             />
             <ComponentCard 
               icon={<Captions className="text-purple-500" />}
               title="Closed Caption"
-              description="Geração automática de legendas ocultas ao vivo, atendendo às normas de acessibilidade."
+              description="Legendas automáticas ao vivo para acessibilidade total."
             />
             <ComponentCard 
               icon={<Archive className="text-orange-500" />}
               title="MAM"
-              description="Gestão completa de ativos e arquivamento digital integrado ao fluxo."
+              description="Gestão de ativos e arquivamento histórico do jornalismo."
             />
             <ComponentCard 
               icon={<Globe className="text-cyan-500" />}
               title="Streaming"
-              description="Distribuição de sinal ao vivo pela internet com alta qualidade."
+              description="Transmissão ao vivo simultânea para web e redes sociais."
             />
             <ComponentCard 
               icon={<Cast className="text-pink-500" />}
               title="OTT e VOD"
-              description="Plataforma completa para distribuição de conteúdo on-demand."
-            />
-            <ComponentCard 
-              icon={<Layers className="text-slate-500" />}
-              title="CMS"
-              description="Sistema de gerenciamento de conteúdo para organizar sua grade e publicações."
+              description="Disponibilização on-demand das edições e reportagens."
             />
           </div>
         </div>
@@ -90,11 +90,11 @@ export default function GendaiTV() {
           <div className="bg-slate-50 p-8 rounded-2xl border border-slate-100">
             <h3 className="text-xl font-bold text-[#263858] mb-6">Diferenciais Técnicos</h3>
             <ul className="space-y-4">
-              <ListItem text="Integração nativa com sistema MAM" />
-              <ListItem text="Gravação de vídeos ao vivo (estúdios, auditórios)" />
-              <ListItem text="Presets de gravação definidos pelo usuário" />
-              <ListItem text="Padrão broadcast de qualidade" />
-              <ListItem text="Suporte centralizado em Português" />
+              <ListItem text="Integração total com sistema de MAM" />
+              <ListItem text="Múltiplas gravações simultâneas" />
+              <ListItem text="Envio automático de ingest para playout" />
+              <ListItem text="Compatível com padrões de mercado" />
+              <ListItem text="Gravação de vídeos ao vivo em padrão broadcast" />
             </ul>
           </div>
 
@@ -102,10 +102,10 @@ export default function GendaiTV() {
             <h3 className="text-xl font-bold mb-6">Ganhos Operacionais</h3>
             <ul className="space-y-4">
               <ListItem text="Ambiente de trabalho colaborativo" dark />
-              <ListItem text="Acesso simultâneo para múltiplos usuários" dark />
-              <ListItem text="Integração total dos fluxos de produção" dark />
+              <ListItem text="Acesso simultâneo para redação e edição" dark />
+              <ListItem text="Integração de produção, exibição e arquivamento" dark />
               <ListItem text="Gerenciamento de qualquer formato de arquivo" dark />
-              <ListItem text="Monetização de conteúdo facilitada" dark />
+              <ListItem text="Suporte em Português (Horário Comercial BR)" dark />
             </ul>
           </div>
         </div>

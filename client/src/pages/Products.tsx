@@ -38,7 +38,7 @@ const coreProducts = [
 const detailedProducts = [
   {
     id: "cloudfly",
-    link: "/product/cloudfly",
+    link: "/produtos/cloudfly",
     title: "CloudFly",
     subtitle: "MAM 100% Cloud",
     desc: "O caminho mais rápido para iniciar o uso de um sistema MAM. Totalmente baseado em nuvem, sem infraestrutura local. Ideal para gestão ágil de grandes acervos digitais.",
@@ -47,7 +47,7 @@ const detailedProducts = [
   },
   {
     id: "gems-in-a-box",
-    link: "/product/gems-in-a-box",
+    link: "/produtos/gems-in-a-box",
     title: "Gems in a Box",
     subtitle: "MAM On-Premises",
     desc: "Infraestrutura dimensionada para sua carga de arquivamento (Opala, Agata ou Rubi Box). Evite custos com hardware ocioso ou gargalos operacionais.",
@@ -56,7 +56,7 @@ const detailedProducts = [
   },
   {
     id: "cloudlink",
-    link: "/product/cloudlink",
+    link: "/produtos/cloudlink",
     title: "CloudLink",
     subtitle: "Solução Híbrida",
     desc: "O melhor dos dois mundos: elasticidade da nuvem aliada à performance de um storage local para até 32 ilhas de edição. Integração com NOC 24/7.",
@@ -65,7 +65,7 @@ const detailedProducts = [
   },
   {
     id: "custom-prj",
-    link: "/contact", // Mantido contato pois é customizado
+    link: "/produtos/custom-prj",
     title: "Projetos Customizados",
     subtitle: "Sua Assinatura Operacional",
     desc: "Potencialize sua infraestrutura existente integrando servidores (Grass Valley, Avid), transcodificadores e arquivos (LTO, RDX) em fluxos automatizados.",
@@ -74,7 +74,7 @@ const detailedProducts = [
   },
   {
     id: "gendai-tv",
-    link: "/product/gendai-tv",
+    link: "/produtos/gendai-tv",
     title: "Gendai TV",
     subtitle: "Ecossistema Broadcast",
     desc: "Gestão completa: Ingest, Storage, MAM, Playout, Closed Caption e Streaming. A solução modular que integra broadcast e broadband.",
@@ -83,7 +83,7 @@ const detailedProducts = [
   },
   {
     id: "gendai-news",
-    link: "/contact", // Mantido contato por enquanto
+    link: "/produtos/gendai-news",
     title: "Gendai News",
     subtitle: "Fluxo Jornalístico",
     desc: "Gestão de todo o seu fluxo de produção televisiva e jornalística, integrando ingest, redação, distribuição e exibição com agilidade.",

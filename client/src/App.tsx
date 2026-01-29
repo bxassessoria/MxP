@@ -10,6 +10,8 @@ import CloudFly from "@/pages/products/CloudFly";
 import CloudLink from "@/pages/products/CloudLink";
 import GendaiTV from "@/pages/products/GendaiTV";
 import GemsInABox from "@/pages/products/GemsInABox";
+import GendaiNews from "@/pages/products/GendaiNews";
+import CustomPrj from "@/pages/products/CustomPrj";
 import TvCultura from "@/pages/cases/TvCultura";
 
 function Router() {
@@ -20,7 +22,9 @@ function Router() {
       <Route path="/produtos/cloudfly" component={CloudFly} />
       <Route path="/produtos/cloudlink" component={CloudLink} />
       <Route path="/produtos/gendai-tv" component={GendaiTV} />
+      <Route path="/produtos/gendai-news" component={GendaiNews} />
       <Route path="/produtos/gems-in-a-box" component={GemsInABox} />
+      <Route path="/produtos/custom-prj" component={CustomPrj} />
       <Route path="/cases" component={Cases} />
       <Route path="/cases/tv-cultura" component={TvCultura} />
       <Route path="/cases/:slug" component={CaseDetail} />
