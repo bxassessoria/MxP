@@ -28,67 +28,57 @@ export default function Home() {
 
   return (
     <Layout>
-      {/* 1. HERO SECTION (Texto Esq / Vídeo Dir) */}
-      <section className="relative min-h-[90vh] flex items-center bg-white overflow-hidden">
-        <div className="container relative z-10 py-12 md:py-20">
-            <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-                {/* Coluna Texto */}
-                <div className="space-y-8 max-w-2xl">
-                    <div className="inline-block bg-[#EE6025]/10 text-[#EE6025] px-4 py-2 rounded-full font-bold tracking-wider text-sm uppercase">
-                        Media Asset Management
-                    </div>
-                    <h1 className="text-5xl md:text-7xl font-bold text-[#263858] leading-tight">
-                        Gestão inteligente de <span className="text-[#EE6025]">ativos digitais</span>
-                    </h1>
-                    <p className="text-xl text-gray-600 leading-relaxed">
-                        Transforme a maneira como sua empresa armazena, organiza e distribui conteúdo com a plataforma MAM mais completa do mercado.
-                    </p>
-                    <div className="flex flex-wrap gap-4 pt-4">
-                        <Link href="/products">
-                            <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white h-14 px-8 rounded-lg text-lg font-bold shadow-lg hover:shadow-xl transition-all">
-                                Conhecer Soluções
-                            </Button>
-                        </Link>
-                        <Link href="/contact">
-                            <Button variant="outline" className="border-[#263858] text-[#263858] hover:bg-[#263858] hover:text-white h-14 px-8 rounded-lg text-lg font-bold transition-all">
-                                Falar com Especialista
-                            </Button>
-                        </Link>
-                    </div>
-                </div>
+      {/* 1. HERO SECTION (Split Screen: White Left / Video Right with Fade) */}
+      <section className="relative h-screen min-h-[600px] flex items-center overflow-hidden bg-white">
+        {/* Background Video Positioned to Right */}
+        <div className="absolute top-0 right-0 w-full md:w-[65%] h-full z-0">
+          <video 
+            className="w-full h-full object-cover"
+            autoPlay 
+            muted 
+            loop 
+            playsInline
+            poster="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop"
+          >
+            <source src="/videos/hero-loop.mp4" type="video/mp4" />
+          </video>
+          {/* Gradiente de Fusão (Branco -> Transparente) */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/60 to-transparent"></div>
+        </div>
 
-                {/* Coluna Vídeo Conceitual (Loop) */}
-                <div className="relative h-[500px] w-full rounded-3xl overflow-hidden shadow-2xl border-8 border-white bg-gray-100 group">
-                     <video 
-                        className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700"
-                        autoPlay 
-                        muted 
-                        loop 
-                        playsInline
-                        poster="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop"
-                     >
-                        <source src="https://assets.mixkit.co/videos/preview/mixkit-digital-animation-of-a-network-of-lines-9972-large.mp4" type="video/mp4" />
-                     </video>
-                     <div className="absolute inset-0 bg-gradient-to-t from-[#263858]/80 via-transparent to-transparent"></div>
-                     
-                     {/* Overlay Informativo */}
-                     <div className="absolute bottom-8 left-8 right-8 p-6 bg-white/10 backdrop-blur-md rounded-xl border border-white/20 text-white">
-                        <div className="flex items-center gap-3 mb-2">
-                            <div className="w-2 h-2 rounded-full bg-[#00ff00] animate-pulse"></div>
-                            <span className="text-xs font-mono tracking-widest uppercase">System Online</span>
-                        </div>
-                        <div className="h-2 w-full bg-white/20 rounded-full overflow-hidden">
-                            <div className="h-full w-2/3 bg-[#EE6025] rounded-full"></div>
-                        </div>
-                     </div>
-                </div>
+        {/* Conteúdo Alinhado à Esquerda */}
+        <div className="container relative z-10 px-4">
+          <div className="max-w-2xl mr-auto text-left space-y-8 pt-12 md:pt-0">
+            <div className="inline-block bg-[#EE6025]/10 text-[#EE6025] border border-[#EE6025]/20 px-6 py-2 rounded-full font-bold tracking-wider text-sm uppercase">
+              Media Asset Management
             </div>
+            <h1 className="text-5xl md:text-7xl font-bold text-[#263858] leading-tight">
+              Gestão inteligente de <span className="text-[#EE6025]">ativos digitais</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-xl">
+              Transforme a maneira como sua empresa armazena, organiza e distribui conteúdo com a plataforma MAM mais completa do mercado.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <Link href="/products">
+                <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white h-14 px-8 rounded-lg text-lg font-bold shadow-lg hover:shadow-xl transition-all w-full sm:w-auto">
+                  Conhecer Soluções
+                </Button>
+              </Link>
+              <Link href="/contact">
+                <Button variant="outline" className="border-[#263858]/20 text-[#263858] hover:bg-[#263858] hover:text-white bg-transparent h-14 px-8 rounded-lg text-lg font-bold transition-all w-full sm:w-auto">
+                  Falar com Especialista
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
 
-            {/* QUEM CONFIA NA MEDIA PORTAL (Integrado ao Hero) */}
-            <div className="border-t border-gray-100 pt-10">
-                <p className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-8 text-center">Quem confia na Media Portal</p>
-                <ClientsSection />
-            </div>
+        {/* Faixa de Clientes (Mantida na base, com ajuste de gradiente para legibilidade) */}
+        <div className="absolute bottom-0 left-0 right-0 z-20 bg-gradient-to-t from-white via-white/90 to-transparent pt-16 pb-8">
+          <div className="container">
+            <p className="text-xs font-bold text-[#263858]/60 uppercase tracking-[0.2em] mb-6 text-center md:text-left">Quem confia na Media Portal</p>
+            <ClientsSection />
+          </div>
         </div>
       </section>
 
@@ -212,16 +202,16 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
                 {[1, 2, 3].map((i) => (
                     <div key={i} className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-shadow text-left group">
-                        <div className="h-48 bg-gray-200 overflow-hidden">
+                        <div className="h-32 md:h-48 bg-gray-200 overflow-hidden">
                             <img 
                                 src={i === 1 ? "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop" : i === 2 ? "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=800&auto=format&fit=crop" : "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop"}
                                 alt="Blog Post" 
                                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                             />
                         </div>
-                        <div className="p-8">
+                        <div className="p-4 md:p-8">
                             <span className="text-[#EE6025] text-xs font-bold uppercase tracking-widest mb-2 block">Novidade</span>
-                            <h3 className="text-xl font-bold text-[#263858] mb-4">
+                            <h3 className="text-base md:text-xl font-bold text-[#263858] mb-4 line-clamp-2 md:line-clamp-none">
                                 {i === 1 ? "O futuro do MAM na nuvem híbrida" : i === 2 ? "Como a IA está revolucionando a decupagem" : "Media Portal celebra 16 anos de inovação"}
                             </h3>
                             <Link href="/blog">
