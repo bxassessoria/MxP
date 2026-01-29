@@ -1,54 +1,31 @@
-import { Toaster } from "@/components/ui/sonner";
-import ScrollToTop from "@/components/ScrollToTop";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
-import ErrorBoundary from "./components/ErrorBoundary";
-import { ThemeProvider } from "./contexts/ThemeContext";
-import Home from "./pages/Home";
-import Products from "./pages/Products";
-import ProductDetail from "./pages/ProductDetail";
-import MAMPage from "./pages/seo/MAM";
-import DAMPage from "./pages/seo/DAM";
-import BroadcastPage from "./pages/seo/Broadcast";
-import Blog from "./pages/Blog";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Integrations from "./pages/Integrations";
-import Cases from "./pages/Cases";
-
-function Router() {
-  return (
-    <Switch>
-      <Route path={"/"} component={Home} />
-      <Route path={"/products"} component={Products} />
-      <Route path="/product/:id" component={ProductDetail} />
-      <Route path="/seo/mam" component={MAMPage} />
-      <Route path="/seo/dam" component={DAMPage} />
-      <Route path="/seo/broadcast" component={BroadcastPage} />
-      <Route path={"/blog"} component={Blog} />
-      <Route path={"/about"} component={About} />
-      <Route path={"/contact"} component={Contact} />
-      <Route path={"/integrations"} component={Integrations} />
-      <Route path={"/cases"} component={Cases} />
-      <Route path={"/404"} component={NotFound} />
-      {/* Final fallback route */}
-      <Route component={NotFound} />
-    </Switch>
-  );
-}
+import { Switch, Route } from "wouter";
+import Home from "@/pages/Home";
+import Products from "@/pages/Products";
+import CloudFly from "@/pages/products/CloudFly";
+import CloudLink from "@/pages/products/CloudLink";
+import GendaiTV from "@/pages/products/GendaiTV";
+import GemsInABox from "@/pages/products/GemsInABox";
+import Integrations from "@/pages/Integrations";
+import Cases from "@/pages/Cases";
+import CaseDetail from "@/pages/CaseDetail";
+import Contact from "@/pages/Contact";
+import NotFound from "@/pages/not-found";
 
 function App() {
   return (
-    <ErrorBoundary>
-      <ThemeProvider defaultTheme="light">
-        <TooltipProvider>
-          <ScrollToTop />
-          <Toaster />
-          <Router />
-        </TooltipProvider>
-      </ThemeProvider>
-    </ErrorBoundary>
+    <Switch>
+      <Route path="/" component={Home} />
+      <Route path="/products" component={Products} />
+      <Route path="/product/cloudfly" component={CloudFly} />
+      <Route path="/product/cloudlink" component={CloudLink} />
+      <Route path="/product/gendai-tv" component={GendaiTV} />
+      <Route path="/product/gems-in-a-box" component={GemsInABox} />
+      <Route path="/integrations" component={Integrations} />
+      <Route path="/cases" component={Cases} />
+      <Route path="/cases/:id" component={CaseDetail} />
+      <Route path="/contact" component={Contact} />
+      <Route component={NotFound} />
+    </Switch>
   );
 }
 

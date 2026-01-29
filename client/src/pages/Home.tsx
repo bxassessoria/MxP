@@ -33,6 +33,8 @@ export default function Home() {
       <section className="relative min-h-screen flex items-center overflow-hidden bg-white">
         {/* Background Video Positioned to Right */}
         <div className="absolute top-0 right-0 w-full md:w-[65%] h-full z-0">
+          {/* Degradê suavizado e estendido para eliminar linha divisória */}
+          <div className="absolute inset-y-0 left-0 w-1/2 bg-gradient-to-r from-white via-white/90 to-transparent z-10 pointer-events-none"></div>
           <video 
             className="w-full h-full object-cover"
             autoPlay 
@@ -43,8 +45,6 @@ export default function Home() {
           >
             <source src="/videos/hero-loop.mp4" type="video/mp4" />
           </video>
-          {/* Gradiente de Fusão (Branco -> Transparente) */}
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/60 to-transparent"></div>
         </div>
 
         {/* Conteúdo Alinhado à Esquerda */}
@@ -65,16 +65,19 @@ export default function Home() {
                   Conhecer Soluções
                 </Button>
               </Link>
-              
-              <div className="flex-1 w-full overflow-hidden">
-                <p className="text-xs font-bold text-[#263858]/60 uppercase tracking-[0.2em] mb-3 text-left">Quem confia</p>
-                <ClientsSection />
-              </div>
             </div>
           </div>
         </div>
 
-
+        {/* Logo Carousel - Bottom - Full Width */}
+        <div className="absolute bottom-0 w-full z-20 bg-gradient-to-t from-white via-white/80 to-transparent py-8">
+          <div className="w-full overflow-hidden">
+            <div className="container mb-6">
+               <p className="text-[#263858]/60 text-xs font-bold uppercase tracking-widest">Quem confia na Media Portal</p>
+            </div>
+            <ClientsSection />
+          </div>
+        </div>
       </section>
 
       {/* 3. VANTAGENS (Textos preenchidos e em branco) */}

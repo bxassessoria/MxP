@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, Cloud, Server, RefreshCw, Settings, Tv, Globe, FileText, Mic, Scissors, Search, Database, BarChart, Layers, FolderArchive, Link as LinkIcon, Newspaper, ArrowRight, Box } from "lucide-react";
+import { Cloud, Server, Tv, Box, Check, ArrowRight, Link as LinkIcon, Settings, Newspaper, Database, Layers, FolderArchive, Search, FileText, Scissors, BarChart, Mic } from "lucide-react";
 import { Link } from "wouter";
 
 // Produtos principais (MAM, PAM, DAM) - Exibição horizontal
@@ -38,6 +38,7 @@ const coreProducts = [
 const detailedProducts = [
   {
     id: "cloudfly",
+    link: "/product/cloudfly",
     title: "CloudFly",
     subtitle: "MAM 100% Cloud",
     desc: "O caminho mais rápido para iniciar o uso de um sistema MAM. Totalmente baseado em nuvem, sem infraestrutura local. Ideal para gestão ágil de grandes acervos digitais.",
@@ -46,6 +47,7 @@ const detailedProducts = [
   },
   {
     id: "gems-in-a-box",
+    link: "/product/gems-in-a-box",
     title: "Gems in a Box",
     subtitle: "MAM On-Premises",
     desc: "Infraestrutura dimensionada para sua carga de arquivamento (Opala, Agata ou Rubi Box). Evite custos com hardware ocioso ou gargalos operacionais.",
@@ -54,6 +56,7 @@ const detailedProducts = [
   },
   {
     id: "cloudlink",
+    link: "/product/cloudlink",
     title: "CloudLink",
     subtitle: "Solução Híbrida",
     desc: "O melhor dos dois mundos: elasticidade da nuvem aliada à performance de um storage local para até 32 ilhas de edição. Integração com NOC 24/7.",
@@ -62,6 +65,7 @@ const detailedProducts = [
   },
   {
     id: "custom-prj",
+    link: "/contact", // Mantido contato pois é customizado
     title: "Projetos Customizados",
     subtitle: "Sua Assinatura Operacional",
     desc: "Potencialize sua infraestrutura existente integrando servidores (Grass Valley, Avid), transcodificadores e arquivos (LTO, RDX) em fluxos automatizados.",
@@ -70,6 +74,7 @@ const detailedProducts = [
   },
   {
     id: "gendai-tv",
+    link: "/product/gendai-tv",
     title: "Gendai TV",
     subtitle: "Ecossistema Broadcast",
     desc: "Gestão completa: Ingest, Storage, MAM, Playout, Closed Caption e Streaming. A solução modular que integra broadcast e broadband.",
@@ -78,6 +83,7 @@ const detailedProducts = [
   },
   {
     id: "gendai-news",
+    link: "/contact", // Mantido contato por enquanto
     title: "Gendai News",
     subtitle: "Fluxo Jornalístico",
     desc: "Gestão de todo o seu fluxo de produção televisiva e jornalística, integrando ingest, redação, distribuição e exibição com agilidade.",
@@ -183,9 +189,9 @@ export default function Products() {
                     {prod.desc}
                   </p>
                   
-                  <Link href="/contact">
+                  <Link href={prod.link}>
                     <Button variant="outline" className="w-full border-[#EE6025] text-[#EE6025] hover:bg-[#EE6025] hover:text-white font-bold group-hover:bg-[#EE6025] group-hover:text-white transition-all mt-auto">
-                      Saiba Mais <ArrowRight size={16} className="ml-2" />
+                      Ver Detalhes <ArrowRight size={16} className="ml-2" />
                     </Button>
                   </Link>
                 </div>
