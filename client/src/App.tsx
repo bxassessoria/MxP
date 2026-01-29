@@ -13,6 +13,8 @@ import GemsInABox from "@/pages/products/GemsInABox";
 import GendaiNews from "@/pages/products/GendaiNews";
 import CustomPrj from "@/pages/products/CustomPrj";
 import TvCultura from "@/pages/cases/TvCultura";
+import About from "@/pages/About";
+import Blog from "@/pages/Blog";
 
 function Router() {
   return (
@@ -29,6 +31,8 @@ function Router() {
       <Route path="/cases/tv-cultura" component={TvCultura} />
       <Route path="/cases/:slug" component={CaseDetail} />
       <Route path="/integracoes" component={Integrations} />
+      <Route path="/sobre" component={About} />
+      <Route path="/blog" component={Blog} />
       <Route component={NotFound} />
     </Switch>
   );

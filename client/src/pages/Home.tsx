@@ -49,33 +49,37 @@ export default function Home() {
 
         {/* Conteúdo Alinhado à Esquerda */}
         <div className="container relative z-10 px-4 pt-40 pb-20 md:py-0 flex-grow flex flex-col justify-center">
-          <div className="max-w-4xl mr-auto text-left space-y-8">
-            <div className="inline-block bg-[#EE6025]/10 text-[#EE6025] border border-[#EE6025]/20 px-6 py-2 rounded-full font-bold tracking-wider text-sm uppercase">
-              Media Asset Management
+          <div className="w-full mr-auto text-left space-y-8">
+            <div className="max-w-2xl">
+              <div className="inline-block bg-[#EE6025]/10 text-[#EE6025] border border-[#EE6025]/20 px-6 py-2 rounded-full font-bold tracking-wider text-sm uppercase">
+                Media Asset Management
+              </div>
+              <h1 className="text-5xl md:text-7xl font-bold text-[#263858] leading-[1.1] mt-8">
+                Gestão inteligente de <span className="text-[#EE6025]">ativos digitais</span>
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-xl mt-8">
+                Transforme a maneira como sua empresa armazena, organiza e distribui conteúdo com a plataforma MAM mais completa do mercado.
+              </p>
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-[#263858] leading-[1.1] max-w-2xl">
-              Gestão inteligente de <span className="text-[#EE6025]">ativos digitais</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-xl">
-              Transforme a maneira como sua empresa armazena, organiza e distribui conteúdo com a plataforma MAM mais completa do mercado.
-            </p>
             
-            {/* CTA + Carrossel na mesma linha */}
-            <div className="flex flex-col lg:flex-row items-center gap-8 pt-8">
+            {/* CTA + Carrossel Estendido */}
+            <div className="flex flex-col lg:flex-row items-center gap-8 pt-8 w-full">
               <Link href="/produtos">
-                <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white h-14 px-8 rounded-lg text-lg font-bold shadow-lg hover:shadow-xl transition-all w-full sm:w-auto shrink-0 whitespace-nowrap">
+                <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white h-14 px-8 rounded-lg text-lg font-bold shadow-lg hover:shadow-xl transition-all w-full sm:w-auto shrink-0 whitespace-nowrap z-20 relative">
                   Conhecer Soluções
                 </Button>
               </Link>
 
               {/* Divisor Vertical (Visível apenas em Desktop) */}
-              <div className="hidden lg:block h-12 w-px bg-gray-200"></div>
+              <div className="hidden lg:block h-12 w-px bg-gray-200 shrink-0 z-20 relative"></div>
 
-              {/* Logo Carousel - À direita do botão e estendendo até o final */}
-              <div className="w-full lg:w-auto flex-grow overflow-hidden">
+              {/* Logo Carousel - Estendendo até o final da direita (Full Width Extension) */}
+              <div className="w-full flex-grow overflow-hidden relative z-10">
                 <div className="flex flex-col justify-center h-full">
-                  <p className="text-[#263858]/60 text-[10px] font-bold uppercase tracking-widest mb-2 lg:mb-1">Quem confia na Media Portal</p>
-                  <div className="w-full relative mask-linear-fade">
+                  <p className="text-[#263858]/60 text-[10px] font-bold uppercase tracking-widest mb-2 lg:mb-1 pl-1">Quem confia na Media Portal</p>
+                  
+                  {/* Container estendido para a direita usando margem negativa massiva e padding compensatório */}
+                  <div className="w-[200%] -mr-[100%] relative mask-linear-fade-right">
                     <ClientsSection />
                   </div>
                 </div>

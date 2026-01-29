@@ -7,7 +7,7 @@ const posts = [
   {
     id: 1,
     title: "A evolução do MAM na era Cloud Computing",
-    excerpt: "Como a migração para a nuvem está transformando a gestão de ativos digitais em grandes emissoras.",
+    excerpt: "Como a migração para a nuvem está transformando a gestão de ativos digitais em grandes emissoras, permitindo maior flexibilidade e redução de custos operacionais.",
     date: "24 Jan, 2026",
     author: "Equipe Media Portal",
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop",
@@ -16,7 +16,7 @@ const posts = [
   {
     id: 2,
     title: "Segurança de dados em acervos históricos",
-    excerpt: "Práticas essenciais para garantir a integridade e a perenidade de conteúdos audiovisuais digitalizados.",
+    excerpt: "Práticas essenciais para garantir a integridade e a perenidade de conteúdos audiovisuais digitalizados, protegendo a memória cultural e institucional.",
     date: "15 Jan, 2026",
     author: "Equipe Media Portal",
     image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1470&auto=format&fit=crop",
@@ -25,7 +25,7 @@ const posts = [
   {
     id: 3,
     title: "Media Portal marca presença na NAB Show 2026",
-    excerpt: "Confira as novidades que apresentamos no maior evento de broadcast do mundo em Las Vegas.",
+    excerpt: "Confira as novidades que apresentamos no maior evento de broadcast do mundo em Las Vegas, incluindo novas integrações com IA e workflows híbridos.",
     date: "10 Jan, 2026",
     author: "Marketing",
     image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=1470&auto=format&fit=crop",
@@ -34,11 +34,29 @@ const posts = [
   {
     id: 4,
     title: "Inteligência Artificial na indexação de vídeos",
-    excerpt: "O impacto do reconhecimento facial e de voz na velocidade de busca de arquivos de mídia.",
+    excerpt: "O impacto do reconhecimento facial e de voz na velocidade de busca de arquivos de mídia, reduzindo o tempo de decupagem em até 70%.",
     date: "05 Jan, 2026",
     author: "Tech Team",
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1530&auto=format&fit=crop",
     category: "Inovação"
+  },
+  {
+    id: 5,
+    title: "Cases de Sucesso: TV Cultura",
+    excerpt: "Como a TV Cultura modernizou seu acervo histórico utilizando a tecnologia Media Portal para digitalização e gestão de metadados.",
+    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=800&auto=format&fit=crop",
+    date: "20 Nov 2025",
+    author: "Equipe Media Portal",
+    category: "Cases"
+  },
+  {
+    id: 6,
+    title: "Tendências para o Broadcast em 2026",
+    excerpt: "O que esperar do mercado de mídia para este ano? Analisamos as principais tendências tecnológicas que vão pautar o setor.",
+    image: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=800&auto=format&fit=crop",
+    date: "15 Dez 2025",
+    author: "Equipe Media Portal",
+    category: "Tendências"
   }
 ];
 
@@ -92,24 +110,24 @@ export default function Blog() {
 
       {/* Posts Grid */}
       <div className="container pb-24">
-        <div className="grid grid-cols-2 gap-4 md:gap-10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {posts.map((post) => (
                 <div key={post.id} className="group cursor-pointer flex flex-col h-full bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-[#EE6025]/30">
-                    <div className="h-40 md:h-64 overflow-hidden relative">
+                    <div className="h-48 overflow-hidden relative">
                         <img src={post.image} alt={post.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                         <div className="absolute top-4 left-4 bg-[#EE6025] text-white text-xs font-bold px-3 py-1 rounded shadow-md">
                             {post.category}
                         </div>
                     </div>
-                    <div className="p-4 md:p-8 flex-1 flex flex-col">
+                    <div className="p-6 flex-1 flex flex-col">
                         <div className="flex items-center gap-4 text-xs text-gray-400 mb-4 font-medium uppercase tracking-wide">
                             <span className="flex items-center gap-1"><Calendar size={12} /> {post.date}</span>
                             <span className="flex items-center gap-1"><User size={12} /> {post.author}</span>
                         </div>
-                        <h2 className="text-2xl font-bold text-[#263858] mb-4 group-hover:text-[#EE6025] transition-colors leading-tight">
+                        <h2 className="text-xl font-bold text-[#263858] mb-3 group-hover:text-[#EE6025] transition-colors leading-tight line-clamp-2">
                             {post.title}
                         </h2>
-                        <p className="text-gray-600 mb-4 md:mb-6 flex-1 leading-relaxed text-sm md:text-base hidden sm:block">
+                        <p className="text-gray-600 mb-6 flex-1 leading-relaxed text-sm line-clamp-3">
                             {post.excerpt}
                         </p>
                         <span className="text-[#EE6025] font-bold text-sm uppercase flex items-center gap-2 mt-auto group-hover:translate-x-1 transition-transform">

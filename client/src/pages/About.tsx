@@ -1,5 +1,7 @@
 import Layout from "@/components/Layout";
-import { CheckCircle2, MapPin, Phone, Mail } from "lucide-react";
+import { CheckCircle2, MapPin, Phone, Mail, ArrowLeft } from "lucide-react";
+import { Link } from "wouter";
+import { Button } from "@/components/ui/button";
 
 export default function About() {
   return (
@@ -31,12 +33,21 @@ export default function About() {
         </div>
       </section>
 
+      {/* Breadcrumb / Back Button */}
+      <div className="container py-8">
+        <Link href="/">
+            <Button variant="ghost" className="text-gray-500 hover:text-[#EE6025] pl-0">
+                <ArrowLeft size={16} className="mr-2" /> Voltar para Home
+            </Button>
+        </Link>
+      </div>
+
       {/* A Empresa */}
-      <div className="container py-20">
+      <div className="container pb-20">
         <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
             <div>
                 <h2 className="text-3xl font-bold text-[#263858] mb-6 border-l-4 border-[#EE6025] pl-4">A Empresa</h2>
-                <div className="space-y-4 text-gray-600 leading-relaxed">
+                <div className="space-y-4 text-gray-600 leading-relaxed text-lg">
                     <p>
                         A Media Portal é uma <strong>empresa brasileira</strong> que atua no desenvolvimento de soluções para <strong>arquivamento e gestão de grandes acervos digitais</strong>.
                     </p>
@@ -51,32 +62,40 @@ export default function About() {
                     </p>
                 </div>
             </div>
-            <div className="h-full min-h-[400px] bg-gray-100 rounded-lg overflow-hidden relative shadow-lg">
-                 {/* Placeholder for Office Image */}
-                 <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" alt="Office" className="absolute inset-0 w-full h-full object-cover" />
+            <div className="h-full min-h-[400px] bg-gray-100 rounded-2xl overflow-hidden relative shadow-2xl transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                 <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop" alt="Office" className="absolute inset-0 w-full h-full object-cover" />
             </div>
         </div>
 
         {/* Missão, Visão, Valores */}
         <div className="grid md:grid-cols-3 gap-8 mb-20">
-            <div className="bg-gray-50 p-8 rounded-lg border-t-4 border-[#EE6025] shadow-sm hover:shadow-md transition-shadow">
-                <h3 className="text-xl font-bold text-[#263858] mb-4">Missão</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
+            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl transition-shadow group">
+                <div className="w-12 h-12 bg-[#EE6025]/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-[#EE6025] transition-colors">
+                    <CheckCircle2 className="text-[#EE6025] group-hover:text-white" size={24} />
+                </div>
+                <h3 className="text-2xl font-bold text-[#263858] mb-4">Missão</h3>
+                <p className="text-gray-600 leading-relaxed">
                     A Media Portal atua no mercado com foco em estruturar, facilitar e otimizar a gestão de conteúdo digital e monetização de acervos.
                 </p>
             </div>
-            <div className="bg-gray-50 p-8 rounded-lg border-t-4 border-[#263858] shadow-sm hover:shadow-md transition-shadow">
-                <h3 className="text-xl font-bold text-[#263858] mb-4">Visão</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
+            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl transition-shadow group">
+                <div className="w-12 h-12 bg-[#263858]/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-[#263858] transition-colors">
+                    <CheckCircle2 className="text-[#263858] group-hover:text-white" size={24} />
+                </div>
+                <h3 className="text-2xl font-bold text-[#263858] mb-4">Visão</h3>
+                <p className="text-gray-600 leading-relaxed">
                     Ser a empresa referência em transformação digital de fluxos de trabalho e acervos, que liberta nossos clientes para a exploração do seu máximo potencial.
                 </p>
             </div>
-            <div className="bg-gray-50 p-8 rounded-lg border-t-4 border-[#EE6025] shadow-sm hover:shadow-md transition-shadow">
-                <h3 className="text-xl font-bold text-[#263858] mb-4">Valores</h3>
-                <ul className="space-y-2">
+            <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl transition-shadow group">
+                <div className="w-12 h-12 bg-[#EE6025]/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-[#EE6025] transition-colors">
+                    <CheckCircle2 className="text-[#EE6025] group-hover:text-white" size={24} />
+                </div>
+                <h3 className="text-2xl font-bold text-[#263858] mb-4">Valores</h3>
+                <ul className="space-y-3">
                     {["Espírito de Equipe", "Comprometimento", "Respeito", "Inovação", "Flexibilidade"].map((val, idx) => (
-                        <li key={idx} className="flex items-center text-gray-600 text-sm">
-                            <CheckCircle2 size={16} className="text-[#EE6025] mr-2" /> {val}
+                        <li key={idx} className="flex items-center text-gray-600">
+                            <span className="w-2 h-2 bg-[#EE6025] rounded-full mr-3"></span> {val}
                         </li>
                     ))}
                 </ul>
@@ -84,35 +103,40 @@ export default function About() {
         </div>
 
         {/* Onde Estamos & Contato */}
-        <div className="bg-[#263858] text-white rounded-xl overflow-hidden shadow-2xl">
+        <div className="bg-[#263858] text-white rounded-3xl overflow-hidden shadow-2xl">
             <div className="grid md:grid-cols-2">
-                <div className="p-12">
-                    <h2 className="text-3xl font-bold mb-8">Onde Estamos</h2>
-                    <div className="space-y-6">
-                        <div className="flex items-start gap-4">
-                            <MapPin className="text-[#EE6025] mt-1 shrink-0" />
+                <div className="p-12 md:p-16 flex flex-col justify-center">
+                    <h2 className="text-3xl font-bold mb-10 border-b border-white/10 pb-6">Onde Estamos</h2>
+                    <div className="space-y-8">
+                        <div className="flex items-start gap-6 group">
+                            <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center shrink-0 group-hover:bg-[#EE6025] transition-colors">
+                                <MapPin className="text-white" size={24} />
+                            </div>
                             <div>
-                                <p className="font-bold text-lg">Sede São Paulo</p>
-                                <p className="text-gray-100">Praça Dom José Gaspar nº 30 – 20º andar</p>
-                                <p className="text-gray-100">República – São Paulo/SP</p>
-                                <p className="text-gray-100">CEP 01047-010 – Brasil</p>
+                                <p className="font-bold text-xl mb-2">Sede São Paulo</p>
+                                <p className="text-gray-300 text-lg">Praça Dom José Gaspar nº 30 – 20º andar</p>
+                                <p className="text-gray-300 text-lg">República – São Paulo/SP</p>
+                                <p className="text-gray-300 text-lg">CEP 01047-010 – Brasil</p>
                             </div>
                         </div>
                         
-                        <div className="border-t border-white/10 my-6"></div>
+                        <div className="border-t border-white/10 my-2"></div>
 
-                        <h3 className="text-xl font-bold mb-4">Contato</h3>
-                        <div className="space-y-3">
-                            <div className="flex items-center gap-4">
-                                <Mail className="text-[#EE6025]" />
-                                <div className="text-gray-100">
+                        <div className="space-y-6">
+                            <div className="flex items-center gap-6 group">
+                                <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center shrink-0 group-hover:bg-[#EE6025] transition-colors">
+                                    <Mail className="text-white" size={24} />
+                                </div>
+                                <div className="text-gray-300 text-lg">
                                     <p>comercial@mediaportal.com.br</p>
                                     <p>contato@mediaportal.com.br</p>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-4">
-                                <Phone className="text-[#EE6025]" />
-                                <div className="text-gray-100">
+                            <div className="flex items-center gap-6 group">
+                                <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center shrink-0 group-hover:bg-[#EE6025] transition-colors">
+                                    <Phone className="text-white" size={24} />
+                                </div>
+                                <div className="text-gray-300 text-lg">
                                     <p>+55 (11) 9 4389 6879</p>
                                     <p>+55 (11) 3063 4411</p>
                                 </div>
@@ -122,7 +146,7 @@ export default function About() {
                 </div>
                 
                 {/* Mapa Estático (Placeholder) */}
-                <div className="bg-gray-200 relative min-h-[300px]">
+                <div className="bg-gray-200 relative min-h-[400px] md:min-h-full">
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.357283577544!2d-46.64245648447596!3d-23.54562236708369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce58510705b767%3A0x6080351025550269!2sPra%C3%A7a%20Dom%20Jos%C3%A9%20Gaspar%2C%2030%20-%20Rep%C3%BAblica%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001047-010!5e0!3m2!1sen!2sbr!4v1642186543210!5m2!1sen!2sbr" 
                         width="100%" 
