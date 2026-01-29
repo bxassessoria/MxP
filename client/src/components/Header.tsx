@@ -16,13 +16,14 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Links atualizados para corresponder às rotas do App.tsx
   const navLinks = [
     { name: "HOME", path: "/" },
     { name: "BLOG", path: "/blog" },
-    { name: "PRODUTO", path: "/products" },
-    { name: "INTEGRAÇÕES", path: "/integrations" },
+    { name: "PRODUTO", path: "/produtos" }, // Corrigido de /products para /produtos
+    { name: "INTEGRAÇÕES", path: "/integracoes" }, // Corrigido de /integrations para /integracoes
     { name: "CASES", path: "/cases" },
-    { name: "SOBRE", path: "/about" },
+    { name: "SOBRE", path: "/sobre" }, // Corrigido de /about para /sobre
   ];
 
   return (

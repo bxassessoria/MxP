@@ -49,29 +49,36 @@ export default function Home() {
 
         {/* Conteúdo Alinhado à Esquerda */}
         <div className="container relative z-10 px-4 pt-40 pb-20 md:py-0 flex-grow flex flex-col justify-center">
-          <div className="max-w-2xl mr-auto text-left space-y-8">
+          <div className="max-w-4xl mr-auto text-left space-y-8">
             <div className="inline-block bg-[#EE6025]/10 text-[#EE6025] border border-[#EE6025]/20 px-6 py-2 rounded-full font-bold tracking-wider text-sm uppercase">
               Media Asset Management
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-[#263858] leading-[1.1]">
+            <h1 className="text-5xl md:text-7xl font-bold text-[#263858] leading-[1.1] max-w-2xl">
               Gestão inteligente de <span className="text-[#EE6025]">ativos digitais</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-xl">
               Transforme a maneira como sua empresa armazena, organiza e distribui conteúdo com a plataforma MAM mais completa do mercado.
             </p>
-            <div className="flex flex-col sm:flex-row items-center gap-8 pt-8">
+            
+            {/* CTA + Carrossel na mesma linha */}
+            <div className="flex flex-col lg:flex-row items-center gap-8 pt-8">
               <Link href="/produtos">
-                <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white h-14 px-8 rounded-lg text-lg font-bold shadow-lg hover:shadow-xl transition-all w-full sm:w-auto shrink-0">
+                <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white h-14 px-8 rounded-lg text-lg font-bold shadow-lg hover:shadow-xl transition-all w-full sm:w-auto shrink-0 whitespace-nowrap">
                   Conhecer Soluções
                 </Button>
               </Link>
-            </div>
-            
-            {/* Logo Carousel - Inline with Content */}
-            <div className="pt-12 border-t border-gray-100 mt-8">
-              <p className="text-[#263858]/60 text-xs font-bold uppercase tracking-widest mb-6">Quem confia na Media Portal</p>
-              <div className="w-full max-w-xl">
-                <ClientsSection />
+
+              {/* Divisor Vertical (Visível apenas em Desktop) */}
+              <div className="hidden lg:block h-12 w-px bg-gray-200"></div>
+
+              {/* Logo Carousel - À direita do botão e estendendo até o final */}
+              <div className="w-full lg:w-auto flex-grow overflow-hidden">
+                <div className="flex flex-col justify-center h-full">
+                  <p className="text-[#263858]/60 text-[10px] font-bold uppercase tracking-widest mb-2 lg:mb-1">Quem confia na Media Portal</p>
+                  <div className="w-full relative mask-linear-fade">
+                    <ClientsSection />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
