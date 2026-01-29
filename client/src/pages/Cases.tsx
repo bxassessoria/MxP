@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout";
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { Link } from "wouter";
 
 // Definição das categorias e dados dos clientes
 const categories = [
@@ -15,7 +16,7 @@ const categories = [
 ];
 
 const casesData = [
-  { name: "TV Cultura", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-01.jpg", category: "TV Pública", hasCase: true },
+  { name: "TV Cultura", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-01.jpg", category: "TV Pública", hasCase: true, slug: "tv-cultura" },
   { name: "Rádio Cultura Brasil", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-18.jpg", category: "Rádio", hasCase: false },
   { name: "EPTV", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/EPTV_ok.jpg", category: "TV", hasCase: true },
   { name: "TV Centro América", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/centro-pb.jpg", category: "TV", hasCase: false },
@@ -119,9 +120,17 @@ export default function Cases() {
                   <div className="absolute inset-0 bg-[#263858]/90 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-6 text-center">
                     <h3 className="text-white font-bold text-lg mb-2">{client.name}</h3>
                     <span className="text-[#EE6025] text-sm font-bold uppercase tracking-wider mb-4">{client.category}</span>
-                    <button className="inline-flex items-center gap-2 text-white text-sm font-bold border-b border-[#EE6025] pb-1 hover:text-[#EE6025] transition-colors">
-                      Ler Case Completo <ArrowRight size={14} />
-                    </button>
+                    {client.slug ? (
+                      <Link href={`/cases/${client.slug}`}>
+                        <button className="inline-flex items-center gap-2 text-white text-sm font-bold border-b border-[#EE6025] pb-1 hover:text-[#EE6025] transition-colors cursor-pointer">
+                          Ler Case Completo <ArrowRight size={14} />
+                        </button>
+                      </Link>
+                    ) : (
+                      <button className="inline-flex items-center gap-2 text-white text-sm font-bold border-b border-[#EE6025] pb-1 hover:text-[#EE6025] transition-colors cursor-pointer">
+                        Em Breve <ArrowRight size={14} />
+                      </button>
+                    )}
                   </div>
                 )}
               </div>
