@@ -29,7 +29,7 @@ export default function Home() {
   return (
     <Layout>
       {/* 1. HERO SECTION (Split Screen: White Left / Video Right with Fade) */}
-      <section className="relative h-screen min-h-[600px] flex items-center overflow-hidden bg-white">
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-white">
         {/* Background Video Positioned to Right */}
         <div className="absolute top-0 right-0 w-full md:w-[65%] h-full z-0">
           <video 
@@ -47,12 +47,12 @@ export default function Home() {
         </div>
 
         {/* Conteúdo Alinhado à Esquerda */}
-        <div className="container relative z-10 px-4">
-          <div className="max-w-2xl mr-auto text-left space-y-8 pt-12 md:pt-0">
+        <div className="container relative z-10 px-4 pt-32 pb-40 md:py-0">
+          <div className="max-w-2xl mr-auto text-left space-y-8">
             <div className="inline-block bg-[#EE6025]/10 text-[#EE6025] border border-[#EE6025]/20 px-6 py-2 rounded-full font-bold tracking-wider text-sm uppercase">
               Media Asset Management
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-[#263858] leading-tight">
+            <h1 className="text-5xl md:text-7xl font-bold text-[#263858] leading-[1.1]">
               Gestão inteligente de <span className="text-[#EE6025]">ativos digitais</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-xl">
@@ -74,7 +74,7 @@ export default function Home() {
         </div>
 
         {/* Faixa de Clientes (Mantida na base, com ajuste de gradiente para legibilidade) */}
-        <div className="absolute bottom-0 left-0 right-0 z-20 bg-gradient-to-t from-white via-white/90 to-transparent pt-16 pb-8">
+        <div className="absolute bottom-0 left-0 right-0 z-20 bg-gradient-to-t from-white via-white/95 to-transparent pt-16 pb-8">
           <div className="container">
             <p className="text-xs font-bold text-[#263858]/60 uppercase tracking-[0.2em] mb-6 text-center md:text-left">Quem confia na Media Portal</p>
             <ClientsSection />
