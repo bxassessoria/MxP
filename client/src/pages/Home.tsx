@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Cloud, Server, Settings, Brain, Archive, LayoutTemplate } from "lucide-react";
 import { Link } from "wouter";
 import SegmentsSection from "@/components/SegmentsSection";
+import CustomProjectsSection from "@/components/CustomProjectsSection";
 import ClientsSection from "@/components/ClientsSection";
 import FAQSection from "@/components/FAQSection";
 
@@ -58,28 +59,22 @@ export default function Home() {
             <p className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-xl">
               Transforme a maneira como sua empresa armazena, organiza e distribui conteúdo com a plataforma MAM mais completa do mercado.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row items-center gap-8 pt-8">
               <Link href="/products">
-                <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white h-14 px-8 rounded-lg text-lg font-bold shadow-lg hover:shadow-xl transition-all w-full sm:w-auto">
+                <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white h-14 px-8 rounded-lg text-lg font-bold shadow-lg hover:shadow-xl transition-all w-full sm:w-auto shrink-0">
                   Conhecer Soluções
                 </Button>
               </Link>
-              <Link href="/contact">
-                <Button variant="outline" className="border-[#263858]/20 text-[#263858] hover:bg-[#263858] hover:text-white bg-transparent h-14 px-8 rounded-lg text-lg font-bold transition-all w-full sm:w-auto">
-                  Falar com Especialista
-                </Button>
-              </Link>
+              
+              <div className="flex-1 w-full overflow-hidden">
+                <p className="text-xs font-bold text-[#263858]/60 uppercase tracking-[0.2em] mb-3 text-left">Quem confia</p>
+                <ClientsSection />
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Faixa de Clientes (Mantida na base, com ajuste de gradiente para legibilidade) */}
-        <div className="absolute bottom-0 left-0 right-0 z-20 bg-gradient-to-t from-white via-white/95 to-transparent pt-16 pb-8">
-          <div className="container">
-            <p className="text-xs font-bold text-[#263858]/60 uppercase tracking-[0.2em] mb-6 text-center md:text-left">Quem confia na Media Portal</p>
-            <ClientsSection />
-          </div>
-        </div>
+
       </section>
 
       {/* 3. VANTAGENS (Textos preenchidos e em branco) */}
@@ -117,10 +112,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. SEGMENTOS DE NEGÓCIOS (Invertido: agora é a 4ª seção) */}
+      {/* 4. PROJETOS CUSTOMIZADOS */}
+      <CustomProjectsSection />
+
+      {/* 5. SEGMENTOS DE NEGÓCIOS */}
       <SegmentsSection />
 
-      {/* 5. FLUXO DE MÍDIA */}
+      {/* 6. FLUXO DE MÍDIA */}
       <section className="py-24 bg-white">
         <div className="container">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -176,7 +174,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. VÍDEO INSTITUCIONAL (Reposicionado) */}
+      {/* 7. VÍDEO INSTITUCIONAL (Reposicionado) */}
       <section className="py-24 bg-[#263858]">
         <div className="container text-center max-w-5xl">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-12">Conheça mais em 1 minuto</h2>
@@ -195,7 +193,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 7. NOSSO CONTEÚDO (Blog Posts) */}
+      {/* 8. NOSSO CONTEÚDO (Blog Posts) */}
       <section className="py-24 bg-white">
         <div className="container text-center">
             <h2 className="text-3xl font-bold text-[#263858] mb-12">Nosso Conteúdo</h2>
@@ -226,7 +224,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 8. FAQ SECTION (SEO) */}
+      {/* 9. FAQ SECTION (SEO) */}
       <FAQSection items={homeFAQs} />
     </Layout>
   );

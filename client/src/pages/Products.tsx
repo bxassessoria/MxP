@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
-import { CheckCircle2, Cloud, Server, RefreshCw, Settings, Tv, Globe, FileText, Mic, Scissors, Search, Database, BarChart, Layers, FolderArchive, Link as LinkIcon, Newspaper, ArrowRight } from "lucide-react";
+import { CheckCircle2, Cloud, Server, RefreshCw, Settings, Tv, Globe, FileText, Mic, Scissors, Search, Database, BarChart, Layers, FolderArchive, Link as LinkIcon, Newspaper, ArrowRight, Box } from "lucide-react";
 import { Link } from "wouter";
 
 // Produtos principais (MAM, PAM, DAM) - Exibição horizontal
@@ -40,7 +40,7 @@ const detailedProducts = [
     id: "cloudfly",
     title: "CloudFly",
     subtitle: "MAM 100% Cloud",
-    desc: "Gestão e processamento de acervo digital 100% em nuvem permitindo a visualização em baixa resolução e download da mídia mezanino.",
+    desc: "O caminho mais rápido para iniciar o uso de um sistema MAM. Totalmente baseado em nuvem, sem infraestrutura local. Ideal para gestão ágil de grandes acervos digitais.",
     icon: <Cloud size={32} />,
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"
   },
@@ -48,31 +48,31 @@ const detailedProducts = [
     id: "gems-in-a-box",
     title: "Gems in a Box",
     subtitle: "MAM On-Premises",
-    desc: "Projetos com infraestrutura on premises dimensionados de acordo com a carga de conteúdo arquivado, do pequeno ao grande volume.",
-    icon: <Server size={32} />,
+    desc: "Infraestrutura dimensionada para sua carga de arquivamento (Opala, Agata ou Rubi Box). Evite custos com hardware ocioso ou gargalos operacionais.",
+    icon: <Box size={32} />,
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop"
   },
   {
     id: "cloudlink",
     title: "CloudLink",
-    subtitle: "MAM Híbrido",
-    desc: "Solução híbrida para gestão de conteúdo digital mesclando vantagens do cloud computing aliado a infraestrutura on premises.",
+    subtitle: "Solução Híbrida",
+    desc: "O melhor dos dois mundos: elasticidade da nuvem aliada à performance de um storage local para até 32 ilhas de edição. Integração com NOC 24/7.",
     icon: <LinkIcon size={32} />,
     image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?q=80&w=2070&auto=format&fit=crop"
   },
   {
     id: "custom-prj",
-    title: "Custom PRJ",
-    subtitle: "Projetos Sob Medida",
-    desc: "Projetos customizados com aproveitamento da infraestrutura existente para potencializar o poder do seu conteúdo e maximizar ROI.",
+    title: "Projetos Customizados",
+    subtitle: "Sua Assinatura Operacional",
+    desc: "Potencialize sua infraestrutura existente integrando servidores (Grass Valley, Avid), transcodificadores e arquivos (LTO, RDX) em fluxos automatizados.",
     icon: <Settings size={32} />,
     image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop"
   },
   {
     id: "gendai-tv",
     title: "Gendai TV",
-    subtitle: "Fluxo Broadcast Completo",
-    desc: "Gestão de todo o seu fluxo de produção, integrando ingest, distribuição (broadband) e exibição (broadcast) em uma plataforma unificada.",
+    subtitle: "Ecossistema Broadcast",
+    desc: "Gestão completa: Ingest, Storage, MAM, Playout, Closed Caption e Streaming. A solução modular que integra broadcast e broadband.",
     icon: <Tv size={32} />,
     image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop"
   },
@@ -87,7 +87,7 @@ const detailedProducts = [
 ];
 
 const featuresList = [
-  { icon: <BarChart size={24} />, title: "Ganhos operacionais", desc: "Otimize tempo e recursos com fluxos automatizados." },
+  { icon: <BarChart size={24} />, title: "Ganhos operacionais", desc: "Otimize tempo e recursos com fluxos automatizados e colaborativos." },
   { icon: <Search size={24} />, title: "Navegação no acervo", desc: "Busca intuitiva e filtros avançados para encontrar qualquer asset." },
   { icon: <FileText size={24} />, title: "Pesquisas avançadas", desc: "Formulários customizáveis para metadados específicos." },
   { icon: <Database size={24} />, title: "Clipboard", desc: "Elaboração de itens favoritos e coleções pessoais." },
@@ -120,7 +120,7 @@ export default function Products() {
               Soluções para cada <span className="text-[#EE6025]">desafio</span>
             </h1>
             <p className="text-xl text-gray-200 leading-relaxed mb-8">
-              Conheça nossa linha completa de produtos para gestão, processamento e distribuição de mídia. Modelos flexíveis para sua necessidade.
+              Conheça nossa linha completa de produtos para gestão, processamento e distribuição de mídia. Do CloudFly ao Gendai TV, temos o modelo ideal para sua operação.
             </p>
             <div className="h-1 w-20 bg-[#EE6025] rounded-full"></div>
           </div>
@@ -157,10 +157,10 @@ export default function Products() {
             </p>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {detailedProducts.map((prod) => (
-              <div key={prod.id} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-gray-100 flex flex-col group">
-                <div className="h-48 overflow-hidden relative">
+              <div key={prod.id} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all border border-gray-100 flex flex-col group h-full">
+                <div className="h-48 overflow-hidden relative shrink-0">
                   <img 
                     src={prod.image} 
                     alt={prod.title} 
@@ -183,9 +183,9 @@ export default function Products() {
                     {prod.desc}
                   </p>
                   
-                  <Link href={`/product/${prod.id}`}>
-                    <Button variant="outline" className="w-full border-[#EE6025] text-[#EE6025] hover:bg-[#EE6025] hover:text-white font-bold group-hover:bg-[#EE6025] group-hover:text-white transition-all">
-                      Ver Detalhes <ArrowRight size={16} className="ml-2" />
+                  <Link href="/contact">
+                    <Button variant="outline" className="w-full border-[#EE6025] text-[#EE6025] hover:bg-[#EE6025] hover:text-white font-bold group-hover:bg-[#EE6025] group-hover:text-white transition-all mt-auto">
+                      Saiba Mais <ArrowRight size={16} className="ml-2" />
                     </Button>
                   </Link>
                 </div>
@@ -226,11 +226,11 @@ export default function Products() {
         <div className="container max-w-4xl">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">Precificação Flexível</h2>
           <p className="text-lg text-gray-300 mb-8">
-            Nossos modelos comerciais se adaptam ao tamanho da sua operação (CAPEX ou OPEX).
+            Entre em contato com nosso time de vendas para realizarmos uma precificação adequada ao seu fluxo de trabalho.
           </p>
           <Link href="/contact">
             <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white font-bold text-lg px-8 py-6 h-auto rounded shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all">
-              Solicitar Orçamento
+              Falar com Vendas
             </Button>
           </Link>
         </div>
