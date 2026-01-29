@@ -99,7 +99,7 @@ export default function MAMPage() {
                 <li className="flex items-center text-sm"><CheckCircle2 size={16} className="text-[#EE6025] mr-2" /> Integração com Adobe Premiere</li>
                 <li className="flex items-center text-sm"><CheckCircle2 size={16} className="text-[#EE6025] mr-2" /> Suporte Local 24/7</li>
               </ul>
-              <Link href="/products/cloudfly">
+              <Link href="/produtos/cloudfly">
                 <Button className="w-full bg-[#EE6025] hover:bg-[#d55015] text-white font-bold py-6 rounded shadow-lg">
                     Conhecer Soluções
                 </Button>

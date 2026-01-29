@@ -276,7 +276,7 @@ export default function ProductDetail() {
       <Layout>
         <div className="container py-24 text-center">
           <h1 className="text-3xl font-bold mb-4">Produto não encontrado</h1>
-          <Button onClick={() => setLocation("/products")}>
+          <Button onClick={() => setLocation("/produtos")}>
             Voltar para Produtos
           </Button>
         </div>
@@ -287,7 +287,7 @@ export default function ProductDetail() {
   return (
     <Layout>
       {/* Hero Section do Produto */}
-      <section className="relative h-screen flex items-center bg-[#263858] text-white overflow-hidden">
+      <section className="relative h-[80vh] min-h-[500px] flex items-center bg-[#263858] text-white overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
             src={product.image} 
@@ -295,30 +295,30 @@ export default function ProductDetail() {
             className="w-full h-full object-cover"
           />
           {/* Overlay gradiente mais suave */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#263858]/90 via-[#263858]/70 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#263858]/95 via-[#263858]/80 to-transparent"></div>
         </div>
         
         <div className="container relative z-10 pt-20">
-          <Link href="/products">
+          <Link href="/produtos">
             <Button variant="ghost" className="text-white/80 hover:text-white hover:bg-white/10 mb-8 pl-0">
               <ArrowLeft className="mr-2 h-4 w-4" /> Voltar para Produtos
             </Button>
           </Link>
           
           <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white drop-shadow-lg">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight text-white drop-shadow-lg">
               {product.title}
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed font-light drop-shadow-md">
+            <p className="text-lg md:text-2xl text-white/90 mb-8 leading-relaxed font-light drop-shadow-md">
               {product.subtitle}
             </p>
             
-            <div className="flex flex-wrap gap-4">
-              <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white h-14 px-8 rounded-lg text-lg font-bold shadow-lg hover:shadow-xl transition-all border-none">
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white h-12 md:h-14 px-8 rounded-lg text-base md:text-lg font-bold shadow-lg hover:shadow-xl transition-all border-none w-full sm:w-auto">
                 Solicitar Demonstração
               </Button>
-              <Button variant="outline" className="border-white/50 text-white hover:bg-white hover:text-[#263858] h-14 px-8 rounded-lg text-lg font-bold transition-all bg-transparent backdrop-blur-sm">
-                <Download className="mr-2 h-5 w-5" /> Datasheet
+              <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 h-12 md:h-14 px-8 rounded-lg text-base md:text-lg w-full sm:w-auto">
+                Falar com Especialista
               </Button>
             </div>
           </div>
@@ -326,92 +326,87 @@ export default function ProductDetail() {
       </section>
 
       {/* Descrição Detalhada */}
-      <section className="py-24 bg-white">
+      <section className="py-16 md:py-24 bg-white">
         <div className="container">
-          <div className="grid lg:grid-cols-2 gap-16">
-            <div className="space-y-6">
-              <h2 className="text-3xl font-bold text-[#263858]">Sobre a Solução</h2>
-              <div className="space-y-4 text-lg text-gray-600 leading-relaxed">
-                {product.fullDescription.map((paragraph: string, index: number) => (
-                  <p key={index}>{paragraph}</p>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl font-bold text-[#263858] mb-6">Sobre a Solução</h2>
+              <div className="space-y-4 text-gray-600 leading-relaxed text-lg">
+                {product.fullDescription.map((paragraph: string, idx: number) => (
+                  <p key={idx}>{paragraph}</p>
                 ))}
               </div>
             </div>
-            
-            <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100 shadow-sm">
-              <h3 className="text-2xl font-bold text-[#263858] mb-6">Principais Recursos</h3>
-              <ul className="space-y-4">
-                {product.features.map((feature: string, index: number) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <div className="mt-1 bg-[#EE6025]/10 p-1 rounded-full">
-                      <Check className="h-4 w-4 text-[#EE6025]" />
-                    </div>
-                    <span className="text-gray-700 font-medium">{feature}</span>
-                  </li>
-                ))}
-              </ul>
+            <div className="relative h-[300px] md:h-[400px] rounded-2xl overflow-hidden shadow-2xl">
+              <img 
+                src={product.image} 
+                alt="Detalhe do produto" 
+                className="absolute inset-0 w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Benefícios */}
-      <section className="py-24 bg-gray-50 border-t border-gray-200">
+      {/* MOBILE OPTIMIZED: Features (Carrossel no Mobile, Grid no Desktop) */}
+      <section className="py-16 md:py-24 bg-gray-50 overflow-hidden">
         <div className="container">
-          <h2 className="text-3xl font-bold text-[#263858] mb-12 text-center">Por que escolher o {product.title}?</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {product.benefits.map((benefit: string, index: number) => (
-              <div key={index} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                <div className="w-12 h-12 bg-[#263858]/5 rounded-lg flex items-center justify-center mb-4 text-[#263858]">
-                  <Check className="h-6 w-6" />
+          <h2 className="text-3xl font-bold text-[#263858] mb-12 text-center">Principais Recursos</h2>
+          
+          {/* Mobile: Horizontal Scroll Snap */}
+          <div className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-x-auto snap-x snap-mandatory pb-8 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide">
+            {product.features.map((feature: string, idx: number) => (
+              <div key={idx} className="min-w-[85vw] md:min-w-0 snap-center bg-white p-6 md:p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow h-full">
+                <div className="w-12 h-12 bg-[#EE6025]/10 rounded-full flex items-center justify-center mb-4">
+                  <Check className="text-[#EE6025]" size={24} />
                 </div>
-                <p className="text-lg font-medium text-gray-800">{benefit}</p>
+                <h3 className="text-lg font-bold text-[#263858] mb-2">Recurso {idx + 1}</h3>
+                <p className="text-gray-600">{feature}</p>
               </div>
             ))}
           </div>
+          <p className="text-center text-gray-400 text-sm mt-4 md:hidden">Deslize para ver mais</p>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      {product.faq && (
-        <FAQSection 
-          items={product.faq} 
-          title={`Perguntas Frequentes sobre ${product.title}`}
-          subtitle="Esclareça suas dúvidas técnicas e operacionais"
-        />
-      )}
+      {/* MOBILE OPTIMIZED: Benefícios (Carrossel no Mobile, Grid no Desktop) */}
+      <section className="py-16 md:py-24 bg-[#263858] text-white overflow-hidden">
+        <div className="container">
+          <h2 className="text-3xl font-bold mb-12 text-center">Por que escolher o {product.title}?</h2>
+          
+          {/* Mobile: Horizontal Scroll Snap */}
+          <div className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 overflow-x-auto snap-x snap-mandatory pb-8 md:pb-0 -mx-4 px-4 md:mx-0 md:px-0 scrollbar-hide">
+            {product.benefits.map((benefit: string, idx: number) => (
+              <div key={idx} className="min-w-[70vw] md:min-w-0 snap-center bg-white/5 backdrop-blur-sm p-6 rounded-xl border border-white/10 hover:bg-white/10 transition-colors h-full">
+                <div className="text-[#EE6025] font-bold text-xl mb-3">0{idx + 1}</div>
+                <p className="text-white/90 font-medium leading-relaxed">
+                  {benefit}
+                </p>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-white/40 text-sm mt-4 md:hidden">Deslize para ver mais</p>
+        </div>
+      </section>
+
+      {/* FAQ Específico do Produto */}
+      <FAQSection items={product.faq} />
 
       {/* CTA Final */}
-      <section className="py-24 bg-[#263858] text-white">
-        <div className="container text-center max-w-4xl">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Vamos conversar sobre o seu projeto?</h2>
-          <p className="text-xl text-gray-200 mb-12">
-            Nossa equipe de especialistas está pronta para desenhar a solução ideal para o seu fluxo de trabalho.
+      <section className="py-24 bg-white text-center">
+        <div className="container max-w-3xl">
+          <h2 className="text-3xl font-bold text-[#263858] mb-6">Pronto para transformar sua operação?</h2>
+          <p className="text-xl text-gray-600 mb-8">
+            Entre em contato com nossos especialistas e descubra como o {product.title} pode impulsionar seus resultados.
           </p>
-          
-          <div className="grid md:grid-cols-3 gap-8 text-left mb-12">
-            <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/5 hover:bg-white/20 transition-colors">
-              <Phone className="h-8 w-8 text-[#EE6025] mb-4" />
-              <h3 className="font-bold text-lg mb-2 text-white">Ligue para nós</h3>
-              <p className="text-gray-300">+55 (11) 1234-5678</p>
-            </div>
-            <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/5 hover:bg-white/20 transition-colors">
-              <Mail className="h-8 w-8 text-[#EE6025] mb-4" />
-              <h3 className="font-bold text-lg mb-2 text-white">Mande um e-mail</h3>
-              <p className="text-gray-300">contato@mediaportal.com.br</p>
-            </div>
-            <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/5 hover:bg-white/20 transition-colors">
-              <Building2 className="h-8 w-8 text-[#EE6025] mb-4" />
-              <h3 className="font-bold text-lg mb-2 text-white">Visite-nos</h3>
-              <p className="text-gray-300">São Paulo, SP</p>
-            </div>
-          </div>
-
-          <Link href="/contact">
-            <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white h-16 px-12 rounded-lg text-xl font-bold shadow-lg hover:shadow-xl transition-all w-full md:w-auto border-none">
-              Falar com Consultor
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white h-14 px-8 rounded-lg text-lg font-bold shadow-lg w-full sm:w-auto">
+              <Mail className="mr-2 h-5 w-5" /> Solicitar Orçamento
             </Button>
-          </Link>
+            <Button variant="outline" className="border-gray-300 text-gray-700 hover:bg-gray-50 h-14 px-8 rounded-lg text-lg font-bold w-full sm:w-auto">
+              <Phone className="mr-2 h-5 w-5" /> Agendar Reunião
+            </Button>
+          </div>
         </div>
       </section>
     </Layout>

@@ -99,7 +99,7 @@ export default function BroadcastPage() {
                 <li className="flex items-center text-sm"><CheckCircle2 size={16} className="text-[#EE6025] mr-2" /> Grafismo Integrado</li>
                 <li className="flex items-center text-sm"><CheckCircle2 size={16} className="text-[#EE6025] mr-2" /> Streaming Nativo</li>
               </ul>
-              <Link href="/products/gendai-tv">
+              <Link href="/produtos/gendai-tv">
                 <Button className="w-full bg-[#EE6025] hover:bg-[#d55015] text-white font-bold py-6 rounded shadow-lg">
                     Conhecer Gendai TV
                 </Button>
