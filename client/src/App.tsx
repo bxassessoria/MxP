@@ -7,6 +7,7 @@ import About from "@/pages/About";
 import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
 import NotFound from "@/pages/not-found";
+import ScrollToTop from "@/components/ScrollToTop";
 
 // Importar páginas de produtos individuais
 import CloudFly from "@/pages/products/CloudFly";
@@ -45,6 +46,7 @@ function Router() {
 function App() {
   return (
     <>
+      <ScrollToTop />
       <Router />
     </>
   );
