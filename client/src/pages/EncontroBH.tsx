@@ -89,7 +89,7 @@ export default function EncontroBH() {
             <div className="inline-block bg-white/10 border border-white/20 px-4 py-1 rounded-full text-white text-sm font-bold tracking-wider uppercase mb-2">
               Belo Horizonte - MG
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+            <h1 className="text-4xl md:text-6xl font-bold leading-tight text-white drop-shadow-md">
               Encontro Mídia Portal & Parceiros
             </h1>
             <p className="text-xl md:text-2xl text-gray-200 font-light leading-relaxed">
@@ -213,23 +213,23 @@ export default function EncontroBH() {
       {/* FORMATO DO ENCONTRO */}
       <section className="py-20 bg-[#263858] text-white text-center">
         <div className="container max-w-4xl">
-          <h2 className="text-3xl font-bold mb-8">Um formato pensado para conversas reais</h2>
-          <p className="text-xl text-gray-300 mb-12">
+          <h2 className="text-3xl font-bold mb-8 text-white">Um formato pensado para conversas reais</h2>
+          <p className="text-xl text-white/90 mb-12">
             O evento acontece em um café exclusivo, das 14h às 18h, em um ambiente cuidadosamente selecionado para estimular a troca de experiências.
           </p>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/5">
+            <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/20 shadow-lg">
               <span className="block text-4xl mb-4">🚫</span>
-              <h3 className="font-bold text-lg">Sem palestras engessadas</h3>
+              <h3 className="font-bold text-lg text-white">Sem palestras engessadas</h3>
             </div>
-            <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/5">
+            <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/20 shadow-lg">
               <span className="block text-4xl mb-4">🤝</span>
-              <h3 className="font-bold text-lg">Sem abordagens invasivas</h3>
+              <h3 className="font-bold text-lg text-white">Sem abordagens invasivas</h3>
             </div>
-            <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/5">
+            <div className="bg-white/10 p-6 rounded-xl backdrop-blur-sm border border-white/20 shadow-lg">
               <span className="block text-4xl mb-4">🚀</span>
-              <h3 className="font-bold text-lg">Apenas oportunidades reais</h3>
+              <h3 className="font-bold text-lg text-white">Apenas oportunidades reais</h3>
             </div>
           </div>
         </div>

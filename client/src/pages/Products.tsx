@@ -230,8 +230,8 @@ export default function Products() {
       {/* CTA */}
       <section className="py-20 bg-[#263858] text-white text-center">
         <div className="container max-w-4xl">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Precificação Flexível</h2>
-          <p className="text-lg text-gray-300 mb-8">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">Precificação Flexível</h2>
+          <p className="text-lg text-white/90 mb-8">
             Entre em contato com nosso time de vendas para realizarmos uma precificação adequada ao seu fluxo de trabalho.
           </p>
           <Link href="/contact">

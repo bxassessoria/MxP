@@ -106,7 +106,7 @@ export default function About() {
         <div className="bg-[#263858] text-white rounded-3xl overflow-hidden shadow-2xl">
             <div className="grid md:grid-cols-2">
                 <div className="p-12 md:p-16 flex flex-col justify-center">
-                    <h2 className="text-3xl font-bold mb-10 border-b border-white/10 pb-6">Onde Estamos</h2>
+                    <h2 className="text-3xl font-bold mb-10 border-b border-white/10 pb-6 text-white">Onde Estamos</h2>
                     <div className="space-y-8">
                         <div className="flex items-start gap-6 group">
                             <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center shrink-0 group-hover:bg-[#EE6025] transition-colors">

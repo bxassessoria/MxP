@@ -101,8 +101,8 @@ export default function CloudFly() {
               <Cloud size={120} />
             </div>
             <div className="relative z-10">
-              <h3 className="text-xl font-bold mb-4 text-white">Precificação Flexível</h3>
-              <p className="text-blue-100 mb-6 leading-relaxed">
+              <h3 className="text-xl font-bold mb-4 text-white drop-shadow-sm">Precificação Flexível</h3>
+              <p className="text-white/90 mb-6 leading-relaxed">
                 O modelo de negócios do CloudFly é adaptável ao tamanho da sua operação. Entre em contato para uma análise personalizada.
               </p>
               <button className="bg-[#EE6025] hover:bg-[#d5501b] text-white font-bold py-3 px-6 rounded-lg transition-colors w-full md:w-auto">
