@@ -2,18 +2,59 @@ import { useRoute, Link } from "wouter";
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, User, Tag, Share2, Facebook, Twitter, Linkedin } from "lucide-react";
-import { blogPosts } from "@/data/blog-posts";
-import { useEffect } from "react";
+import { blogPosts as staticPosts } from "@/data/blog-posts";
+import { useEffect, useState } from "react";
 
 export default function BlogPost() {
   const [match, params] = useRoute("/blog/:slug");
   const slug = params?.slug;
-  const post = blogPosts.find((p) => p.slug === slug);
+  
+  const [post, setPost] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
   // Scroll to top when post loads
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [slug]);
+
+  useEffect(() => {
+    const fetchPost = async () => {
+      try {
+        const res = await fetch("/api/posts.php");
+        if (res.ok) {
+          const data = await res.json();
+          const found = data.find((p: any) => p.slug === slug);
+          if (found) {
+             setPost({
+                ...found,
+                image: found.coverImage || found.image || "/images/blog-default.jpg",
+                tags: found.tags || ["Tecnologia", "Broadcast"] // Fallback tags
+             });
+          } else {
+             const staticFound = staticPosts.find(p => p.slug === slug);
+             setPost(staticFound);
+          }
+        } else {
+           throw new Error("API error");
+        }
+      } catch (err) {
+         const staticFound = staticPosts.find(p => p.slug === slug);
+         setPost(staticFound);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (slug) fetchPost();
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <Layout>
+        <div className="container py-32 text-center">Carregando...</div>
+      </Layout>
+    );
+  }
 
   if (!post) {
     return (
@@ -33,8 +74,6 @@ export default function BlogPost() {
 
   return (
     <Layout>
-      {/* Progress Bar Indicator (Optional future enhancement) */}
-      
       <article className="bg-white">
         {/* Header do Post */}
         <div className="bg-[#263858] text-white py-16 md:py-24 relative overflow-hidden">
@@ -100,13 +139,13 @@ export default function BlogPost() {
               {/* Corpo do Texto */}
               <div 
                 className="prose prose-lg max-w-none text-gray-700 prose-headings:text-[#263858] prose-a:text-[#EE6025] prose-img:rounded-xl"
-                dangerouslySetInnerHTML={{ __html: post.content }}
+                dangerouslySetInnerHTML={{ __html: post.content.replace(/\n/g, '<br/>') }}
               />
 
               {/* Tags */}
               <div className="mt-12 pt-8 border-t border-gray-100">
                 <div className="flex flex-wrap gap-2">
-                  {post.tags.map((tag, index) => (
+                  {post.tags?.map((tag: string, index: number) => (
                     <span key={index} className="bg-gray-100 text-gray-600 px-3 py-1 rounded-md text-sm font-medium flex items-center">
                       <Tag className="mr-1 h-3 w-3" /> {tag}
                     </span>
@@ -131,7 +170,7 @@ export default function BlogPost() {
               </div>
             </div>
 
-            {/* Sidebar (Opcional - pode ser removida se quiser layout full-width) */}
+            {/* Sidebar */}
             <div className="hidden lg:block lg:col-span-3 space-y-8">
               {/* Card Newsletter */}
               <div className="bg-gray-50 p-6 rounded-xl border border-gray-100 sticky top-24">
@@ -157,7 +196,7 @@ export default function BlogPost() {
         <div className="container max-w-6xl">
           <h2 className="text-2xl font-bold text-[#263858] mb-8">Você também pode gostar</h2>
           <div className="grid md:grid-cols-3 gap-6">
-            {blogPosts
+            {staticPosts
               .filter(p => p.id !== post.id)
               .slice(0, 3)
               .map(relatedPost => (

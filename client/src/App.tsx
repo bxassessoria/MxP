@@ -6,6 +6,9 @@ import Integrations from "@/pages/Integrations";
 import About from "@/pages/About";
 import Blog from "@/pages/Blog";
 import BlogPost from "@/pages/BlogPost";
+import AdminLogin from "@/pages/admin/Login";
+import AdminDashboard from "@/pages/admin/Dashboard";
+import AdminEditor from "@/pages/admin/Editor";
 import NotFound from "@/pages/not-found";
 import ScrollToTop from "@/components/ScrollToTop";
 
@@ -36,6 +39,12 @@ function Router() {
       <Route path="/sobre" component={About} />
       <Route path="/blog" component={Blog} />
       <Route path="/blog/:slug" component={BlogPost} />
+
+      {/* Rotas do Admin */}
+      <Route path="/admin" component={AdminLogin} />
+      <Route path="/admin/dashboard" component={AdminDashboard} />
+      <Route path="/admin/new" component={AdminEditor} />
+      <Route path="/admin/edit/:id" component={AdminEditor} />
       
       {/* Fallback 404 */}
       <Route component={NotFound} />

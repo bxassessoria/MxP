@@ -3,13 +3,59 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search, Calendar, User, ArrowRight, ArrowLeft } from "lucide-react";
 import { Link } from "wouter";
-import { blogPosts } from "@/data/blog-posts";
-import { useState } from "react";
+import { blogPosts as staticPosts } from "@/data/blog-posts";
+import { useState, useEffect } from "react";
+
+interface BlogPost {
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  image: string;
+  date: string;
+  author: string;
+  category: string;
+}
 
 export default function Blog() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [posts, setPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const filteredPosts = blogPosts.filter(post => 
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const res = await fetch("/api/posts.php");
+        if (res.ok) {
+          const data = await res.json();
+          // Mescla posts da API com posts estáticos (opcional, ou substitui)
+          // Aqui vamos dar preferência para API, se vazia usa estáticos
+          if (Array.isArray(data) && data.length > 0) {
+            // Mapear campos da API para o formato da interface se necessário
+            const apiPosts = data.map((p: any) => ({
+              ...p,
+              image: p.coverImage || p.image || "/images/blog-default.jpg"
+            }));
+            setPosts(apiPosts);
+          } else {
+            setPosts(staticPosts);
+          }
+        } else {
+          throw new Error("API error");
+        }
+      } catch (err) {
+        console.log("Usando posts estáticos (fallback)");
+        setPosts(staticPosts);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
+  const filteredPosts = posts.filter(post => 
     post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     post.excerpt.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -53,7 +99,11 @@ export default function Blog() {
       {/* Blog Posts Grid */}
       <section className="py-16 md:py-24 bg-gray-50">
         <div className="container">
-          {filteredPosts.length > 0 ? (
+          {loading ? (
+             <div className="text-center py-20">
+                <p className="text-gray-500">Carregando artigos...</p>
+             </div>
+          ) : filteredPosts.length > 0 ? (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredPosts.map((post) => (
                 <article key={post.id} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full border border-gray-100 group">
