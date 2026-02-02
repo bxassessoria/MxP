@@ -65,6 +65,11 @@ export default function AdminDashboard() {
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold">Gerenciar Blog</h1>
           <div className="flex gap-4">
+            <Link href="/admin/cases">
+              <Button variant="outline" className="flex items-center gap-2 mr-2">
+                 Gerenciar Cases
+              </Button>
+            </Link>
             <Link href="/admin/new">
               <Button className="flex items-center gap-2">
                 <Plus size={16} /> Novo Post

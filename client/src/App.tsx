@@ -9,6 +9,9 @@ import BlogPost from "@/pages/BlogPost";
 import AdminLogin from "@/pages/admin/Login";
 import AdminDashboard from "@/pages/admin/Dashboard";
 import AdminEditor from "@/pages/admin/Editor";
+import CasesList from "@/pages/admin/CasesList";
+import CaseEditor from "@/pages/admin/CaseEditor";
+import CaseDetail from "@/pages/CaseDetail";
 import NotFound from "@/pages/not-found";
 import ScrollToTop from "@/components/ScrollToTop";
 
@@ -35,6 +38,7 @@ function Router() {
       <Route path="/produtos/gendai-tv" component={GendaiTV} />
       
       <Route path="/cases" component={Cases} />
+      <Route path="/cases/:slug" component={CaseDetail} />
       <Route path="/integracoes" component={Integrations} />
       <Route path="/sobre" component={About} />
       <Route path="/blog" component={Blog} />
@@ -45,6 +49,9 @@ function Router() {
       <Route path="/admin/dashboard" component={AdminDashboard} />
       <Route path="/admin/new" component={AdminEditor} />
       <Route path="/admin/edit/:id" component={AdminEditor} />
+      <Route path="/admin/cases" component={CasesList} />
+      <Route path="/admin/cases/new" component={CaseEditor} />
+      <Route path="/admin/cases/edit/:id" component={CaseEditor} />
       
       {/* Fallback 404 */}
       <Route component={NotFound} />

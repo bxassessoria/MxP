@@ -6,6 +6,7 @@ import SegmentsSection from "@/components/SegmentsSection";
 import CustomProjectsSection from "@/components/CustomProjectsSection";
 import ClientsSection from "@/components/ClientsSection";
 import FAQSection from "@/components/FAQSection";
+import HomeBlogSection from "@/components/HomeBlogSection";
 
 export default function Home() {
   const homeFAQs = [
@@ -206,35 +207,7 @@ export default function Home() {
       </section>
 
       {/* 8. NOSSO CONTEÚDO (Blog Posts) */}
-      <section className="py-24 bg-white">
-        <div className="container text-center">
-            <h2 className="text-3xl font-bold text-[#263858] mb-12">Nosso Conteúdo</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8">
-                {[1, 2, 3].map((i) => (
-                    <div key={i} className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-shadow text-left group">
-                        <div className="h-32 md:h-48 bg-gray-200 overflow-hidden">
-                            <img 
-                                src={i === 1 ? "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=800&auto=format&fit=crop" : i === 2 ? "https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=800&auto=format&fit=crop" : "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop"}
-                                alt="Blog Post" 
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                            />
-                        </div>
-                        <div className="p-4 md:p-8">
-                            <span className="text-[#EE6025] text-xs font-bold uppercase tracking-widest mb-2 block">Novidade</span>
-                            <h3 className="text-base md:text-xl font-bold text-[#263858] mb-4 line-clamp-2 md:line-clamp-none">
-                                {i === 1 ? "O futuro do MAM na nuvem híbrida" : i === 2 ? "Como a IA está revolucionando a decupagem" : "Media Portal celebra 16 anos de inovação"}
-                            </h3>
-                            <Link href="/blog">
-                                <span className="text-gray-500 hover:text-[#EE6025] font-medium text-sm flex items-center gap-1 cursor-pointer transition-colors">
-                                    Ler artigo <ArrowRight size={14} />
-                                </span>
-                            </Link>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </div>
-      </section>
+      <HomeBlogSection />
 
       {/* 9. FAQ SECTION (SEO) */}
       <FAQSection items={homeFAQs} />
