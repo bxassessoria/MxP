@@ -12,7 +12,7 @@ export default function HomeEventSection() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           
           <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 bg-[#EE6025]/20 border border-[#EE6025]/30 rounded-full px-4 py-1 text-[#EE6025] text-sm font-bold uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-4 py-1 text-white text-sm font-bold uppercase tracking-wider">
               <span className="w-2 h-2 bg-[#EE6025] rounded-full animate-pulse"></span>
               Próximo Evento
             </div>

@@ -86,7 +86,7 @@ export default function EncontroBH() {
         
         <div className="container relative z-10 grid lg:grid-cols-2 gap-12 items-center">
           <div className="text-white space-y-6">
-            <div className="inline-block bg-[#EE6025] px-4 py-1 rounded-full text-sm font-bold tracking-wider uppercase mb-2">
+            <div className="inline-block bg-white/10 border border-white/20 px-4 py-1 rounded-full text-white text-sm font-bold tracking-wider uppercase mb-2">
               Belo Horizonte - MG
             </div>
             <h1 className="text-4xl md:text-6xl font-bold leading-tight">
