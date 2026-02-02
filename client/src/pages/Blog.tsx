@@ -62,36 +62,40 @@ export default function Blog() {
 
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="bg-[#263858] text-white py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/images/blog-bg.jpg')] bg-cover bg-center opacity-20"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-[#263858]/80 to-[#263858]/95"></div>
+      {/* HERO SECTION - PADRÃO HOME/CASES */}
+      <section className="relative min-h-[60vh] flex items-center bg-[#263858] overflow-hidden">
+        <div className="absolute inset-0 z-0">
+             <img 
+               src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=2074&auto=format&fit=crop" 
+               alt="Background Blog" 
+               className="w-full h-full object-cover opacity-30"
+             />
+             <div className="absolute inset-0 bg-gradient-to-r from-[#263858] to-transparent"></div>
+        </div>
         
-        <div className="container relative z-10 text-center">
-          <div className="mb-8">
-             <Link href="/">
-                <Button variant="ghost" className="text-white/70 hover:text-white hover:bg-white/10 pl-0">
-                    <ArrowLeft size={16} className="mr-2" /> Voltar para Home
-                </Button>
-            </Link>
-          </div>
-          
-          <span className="text-[#EE6025] font-bold tracking-widest uppercase text-sm mb-4 block">Blog Media Portal</span>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Insights para gestão inteligente de acervos</h1>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-10">
-            Fique por dentro das novidades, tendências e informações do universo Broadcast.
-          </p>
-          
-          {/* Search Bar */}
-          <div className="max-w-xl mx-auto relative">
-            <Input 
-              type="text" 
-              placeholder="Pesquisar artigos..." 
-              className="h-14 pl-12 pr-4 rounded-full bg-white text-gray-900 border-none shadow-lg focus:ring-2 focus:ring-[#EE6025] text-lg"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+        <div className="container relative z-10 flex flex-col items-center justify-center text-center">
+          <div className="max-w-3xl bg-white/5 backdrop-blur-md border border-white/10 p-10 md:p-14 rounded-3xl shadow-2xl">
+            <div className="inline-block bg-[#EE6025] px-4 py-1 rounded-full text-sm font-bold tracking-wider uppercase mb-6 text-white">
+              Blog Media Portal
+            </div>
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-8 leading-tight">
+              Insights e <span className="text-[#EE6025]">Novidades</span>
+            </h1>
+            <p className="text-xl text-gray-200 leading-relaxed mb-10">
+              Fique por dentro das tendências e informações do universo Broadcast.
+            </p>
+
+            {/* Search Bar dentro do Card */}
+            <div className="max-w-lg mx-auto relative">
+                <Input 
+                type="text" 
+                placeholder="Pesquisar artigos..." 
+                className="h-14 pl-12 pr-4 rounded-full bg-white text-gray-900 border-none shadow-lg focus:ring-2 focus:ring-[#EE6025] text-lg"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                />
+                <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+            </div>
           </div>
         </div>
       </section>

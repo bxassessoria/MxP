@@ -2,6 +2,7 @@ import Layout from "@/components/Layout";
 import { useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
+import { clientsData as staticClients } from "@/data/clients";
 
 interface Client {
   name: string;
@@ -22,30 +23,6 @@ const categories = [
   "Rádio",
   "Órgão Público",
   "Educação"
-];
-
-// Dados estáticos de clientes (apenas logos)
-const staticClients: Client[] = [
-  { name: "TV Cultura", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-01.jpg", category: "TV Pública" },
-  { name: "Rádio Cultura Brasil", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-18.jpg", category: "Rádio" },
-  { name: "EPTV", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/EPTV_ok.jpg", category: "TV" },
-  { name: "TV Centro América", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/centro-pb.jpg", category: "TV" },
-  { name: "TV Tem", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-06.jpg", category: "TV" },
-  { name: "TV Novo Tempo", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-03_c.jpg", category: "TV Igreja" },
-  { name: "TV Morena", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/morena-pb.jpg", category: "TV" },
-  { name: "TV Câmara São Paulo", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/saopaulo_case.jpg", category: "Órgão Público" },
-  { name: "TV Assembleia CE", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/TVALCEBW.png", category: "Órgão Público" },
-  { name: "TV Serra Dourada", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-04.jpg", category: "TV" },
-  { name: "Traffic Sports", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/traffic-sports.jpg", category: "Esportes" },
-  { name: "TV Costa Norte", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/costa-norte2.png", category: "TV" },
-  { name: "TV Câmara SJC", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/saojose.jpg", category: "Órgão Público" },
-  { name: "Instituto Embratel", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/instituto-embratel.jpg", category: "Educação" },
-  { name: "Sports+", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-24.jpg", category: "Esportes" },
-  { name: "Arca Media", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logo-arca-media.jpg", category: "TV Igreja" },
-  { name: "Igreja Adventista", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-21.jpg", category: "TV Igreja" },
-  { name: "MTV", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-27.jpg", category: "TV" },
-  { name: "TV Rá Tim Bum", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-22.jpg", category: "TV" },
-  { name: "Embrapa", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-19.jpg", category: "Órgão Público" },
 ];
 
 export default function Cases() {
@@ -73,17 +50,21 @@ export default function Cases() {
     const caseObj = {
       name: dCase.client,
       logo: dCase.logo || "/images/default-logo.png", // Fallback logo
-      category: "TV", // Categoria padrão se não tiver
+      category: dCase.category || "TV", // Categoria padrão se não tiver
       hasCase: true,
       slug: dCase.slug,
       title: dCase.title
     };
 
     if (existingIndex >= 0) {
-      // Atualiza existente para ter o link do case
-      mergedList[existingIndex] = { ...mergedList[existingIndex], ...caseObj, category: mergedList[existingIndex].category };
+      // Atualiza existente para ter o link do case, mantendo a categoria original se preferir, ou sobrescrevendo
+      mergedList[existingIndex] = { 
+          ...mergedList[existingIndex], 
+          ...caseObj,
+          category: mergedList[existingIndex].category // Mantém categoria original do static se existir
+      };
     } else {
-      // Adiciona novo cliente com case
+      // Adiciona novo cliente com case no início da lista
       mergedList.unshift(caseObj);
     }
   });
@@ -95,7 +76,7 @@ export default function Cases() {
   return (
     <Layout>
       {/* HERO SECTION - PADRÃO HOME */}
-      <section className="relative min-h-screen flex items-center bg-[#263858] overflow-hidden">
+      <section className="relative min-h-[60vh] flex items-center bg-[#263858] overflow-hidden">
         <div className="absolute inset-0 z-0">
              <img 
                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" 
@@ -105,8 +86,8 @@ export default function Cases() {
              <div className="absolute inset-0 bg-gradient-to-r from-[#263858] to-transparent"></div>
         </div>
         
-        <div className="container relative z-10">
-          <div className="max-w-2xl bg-white/5 backdrop-blur-md border border-white/10 p-10 md:p-14 rounded-3xl shadow-2xl">
+        <div className="container relative z-10 flex flex-col items-center justify-center text-center">
+          <div className="max-w-3xl bg-white/5 backdrop-blur-md border border-white/10 p-10 md:p-14 rounded-3xl shadow-2xl">
             <div className="inline-block bg-[#EE6025] px-4 py-1 rounded-full text-sm font-bold tracking-wider uppercase mb-6 text-white">
               Histórias de Sucesso
             </div>

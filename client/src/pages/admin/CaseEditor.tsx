@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { clientsData } from "@/data/clients";
 
 export default function CaseEditor() {
   const [, params] = useRoute("/admin/cases/edit/:id");
@@ -104,11 +106,41 @@ export default function CaseEditor() {
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label>Nome do Cliente</Label>
+                  <Label>Selecionar Cliente Existente</Label>
+                  <Select 
+                    onValueChange={(value) => {
+                      const client = clientsData.find(c => c.name === value);
+                      if (client) {
+                        setFormData(prev => ({ 
+                          ...prev, 
+                          client: client.name, 
+                          logo: client.logo 
+                        }));
+                      } else if (value === "new") {
+                         setFormData(prev => ({ ...prev, client: "", logo: "" }));
+                      }
+                    }}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Escolha um cliente..." />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="new">+ Novo Cliente (Digitar Manualmente)</SelectItem>
+                      {clientsData.map(c => (
+                        <SelectItem key={c.name} value={c.name}>{c.name}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label>Nome do Cliente (Manual)</Label>
                   <Input name="client" value={formData.client} onChange={handleChange} required />
                 </div>
                 <div className="space-y-2">
-                  <Label>Logo do Cliente</Label>
+                  <Label>Logo do Cliente (Manual)</Label>
                   <Input type="file" onChange={(e) => handleUpload(e, "logo")} />
                   {formData.logo && <img src={formData.logo} alt="Logo" className="h-10 mt-2 object-contain bg-gray-100 p-1 rounded" />}
                 </div>
