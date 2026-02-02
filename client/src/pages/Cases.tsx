@@ -1,9 +1,18 @@
 import Layout from "@/components/Layout";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 
-// Definição das categorias e dados dos clientes
+interface Client {
+  name: string;
+  logo: string;
+  category: string;
+  hasCase?: boolean;
+  slug?: string;
+  title?: string;
+}
+
+// Definição das categorias
 const categories = [
   "Todos",
   "TV",
@@ -15,35 +24,73 @@ const categories = [
   "Educação"
 ];
 
-const casesData = [
-  { name: "TV Cultura", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-01.jpg", category: "TV Pública", hasCase: true, slug: "tv-cultura" },
-  { name: "Rádio Cultura Brasil", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-18.jpg", category: "Rádio", hasCase: false },
-  { name: "EPTV", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/EPTV_ok.jpg", category: "TV", hasCase: true },
-  { name: "TV Centro América", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/centro-pb.jpg", category: "TV", hasCase: false },
-  { name: "TV Tem", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-06.jpg", category: "TV", hasCase: false },
-  { name: "TV Novo Tempo", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-03_c.jpg", category: "TV Igreja", hasCase: true },
-  { name: "TV Morena", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/morena-pb.jpg", category: "TV", hasCase: false },
-  { name: "TV Câmara São Paulo", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/saopaulo_case.jpg", category: "Órgão Público", hasCase: true },
-  { name: "TV Assembleia CE", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/TVALCEBW.png", category: "Órgão Público", hasCase: false },
-  { name: "TV Serra Dourada", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-04.jpg", category: "TV", hasCase: false },
-  { name: "Traffic Sports", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/traffic-sports.jpg", category: "Esportes", hasCase: false },
-  { name: "TV Costa Norte", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/costa-norte2.png", category: "TV", hasCase: false },
-  { name: "TV Câmara SJC", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/saojose.jpg", category: "Órgão Público", hasCase: false },
-  { name: "Instituto Embratel", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/instituto-embratel.jpg", category: "Educação", hasCase: false },
-  { name: "Sports+", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-24.jpg", category: "Esportes", hasCase: false },
-  { name: "Arca Media", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logo-arca-media.jpg", category: "TV Igreja", hasCase: false },
-  { name: "Igreja Adventista", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-21.jpg", category: "TV Igreja", hasCase: false },
-  { name: "MTV", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-27.jpg", category: "TV", hasCase: false },
-  { name: "TV Rá Tim Bum", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-22.jpg", category: "TV", hasCase: false },
-  { name: "Embrapa", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-19.jpg", category: "Órgão Público", hasCase: false },
+// Dados estáticos de clientes (apenas logos)
+const staticClients: Client[] = [
+  { name: "TV Cultura", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-01.jpg", category: "TV Pública" },
+  { name: "Rádio Cultura Brasil", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-18.jpg", category: "Rádio" },
+  { name: "EPTV", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/EPTV_ok.jpg", category: "TV" },
+  { name: "TV Centro América", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/centro-pb.jpg", category: "TV" },
+  { name: "TV Tem", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-06.jpg", category: "TV" },
+  { name: "TV Novo Tempo", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-03_c.jpg", category: "TV Igreja" },
+  { name: "TV Morena", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/morena-pb.jpg", category: "TV" },
+  { name: "TV Câmara São Paulo", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/saopaulo_case.jpg", category: "Órgão Público" },
+  { name: "TV Assembleia CE", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/TVALCEBW.png", category: "Órgão Público" },
+  { name: "TV Serra Dourada", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-04.jpg", category: "TV" },
+  { name: "Traffic Sports", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/traffic-sports.jpg", category: "Esportes" },
+  { name: "TV Costa Norte", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/costa-norte2.png", category: "TV" },
+  { name: "TV Câmara SJC", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/saojose.jpg", category: "Órgão Público" },
+  { name: "Instituto Embratel", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/instituto-embratel.jpg", category: "Educação" },
+  { name: "Sports+", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-24.jpg", category: "Esportes" },
+  { name: "Arca Media", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logo-arca-media.jpg", category: "TV Igreja" },
+  { name: "Igreja Adventista", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-21.jpg", category: "TV Igreja" },
+  { name: "MTV", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-27.jpg", category: "TV" },
+  { name: "TV Rá Tim Bum", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-22.jpg", category: "TV" },
+  { name: "Embrapa", logo: "https://mediaportal.com.br/novo/wp-content/uploads/2023/01/logos-clientes-19.jpg", category: "Órgão Público" },
 ];
 
 export default function Cases() {
   const [activeCategory, setActiveCategory] = useState("Todos");
+  const [dynamicCases, setDynamicCases] = useState<any[]>([]);
+
+  useEffect(() => {
+    // Busca cases criados no admin
+    fetch("/api/cases.php")
+      .then(res => res.json())
+      .then(data => {
+        if (Array.isArray(data)) setDynamicCases(data);
+      })
+      .catch(() => console.log("Erro ao carregar cases dinâmicos (esperado localmente)"));
+  }, []);
+
+  // Mescla clientes estáticos com cases dinâmicos
+  // Se houver um case dinâmico com mesmo nome de cliente estático, o dinâmico prevalece (pois tem link)
+  const mergedList: Client[] = [...staticClients];
+
+  // Adiciona ou atualiza com cases dinâmicos
+  dynamicCases.forEach(dCase => {
+    const existingIndex = mergedList.findIndex(c => c.name.toLowerCase() === dCase.client.toLowerCase());
+    
+    const caseObj = {
+      name: dCase.client,
+      logo: dCase.logo || "/images/default-logo.png", // Fallback logo
+      category: "TV", // Categoria padrão se não tiver
+      hasCase: true,
+      slug: dCase.slug,
+      title: dCase.title
+    };
+
+    if (existingIndex >= 0) {
+      // Atualiza existente para ter o link do case
+      mergedList[existingIndex] = { ...mergedList[existingIndex], ...caseObj, category: mergedList[existingIndex].category };
+    } else {
+      // Adiciona novo cliente com case
+      mergedList.unshift(caseObj);
+    }
+  });
 
   const filteredCases = activeCategory === "Todos" 
-    ? casesData 
-    : casesData.filter(c => c.category === activeCategory);
+    ? mergedList 
+    : mergedList.filter(c => c.category === activeCategory);
 
   return (
     <Layout>
@@ -120,16 +167,12 @@ export default function Cases() {
                   <div className="absolute inset-0 bg-[#263858]/90 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-6 text-center">
                     <h3 className="text-white font-bold text-lg mb-2">{client.name}</h3>
                     <span className="text-[#EE6025] text-sm font-bold uppercase tracking-wider mb-4">{client.category}</span>
-                    {client.slug ? (
+                    {client.slug && (
                       <Link href={`/cases/${client.slug}`}>
                         <button className="inline-flex items-center gap-2 text-white text-sm font-bold border-b border-[#EE6025] pb-1 hover:text-[#EE6025] transition-colors cursor-pointer">
                           Ler Case Completo <ArrowRight size={14} />
                         </button>
                       </Link>
-                    ) : (
-                      <button className="inline-flex items-center gap-2 text-white text-sm font-bold border-b border-[#EE6025] pb-1 hover:text-[#EE6025] transition-colors cursor-pointer">
-                        Em Breve <ArrowRight size={14} />
-                      </button>
                     )}
                   </div>
                 )}
