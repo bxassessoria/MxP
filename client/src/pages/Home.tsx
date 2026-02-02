@@ -7,6 +7,7 @@ import CustomProjectsSection from "@/components/CustomProjectsSection";
 import ClientsSection from "@/components/ClientsSection";
 import FAQSection from "@/components/FAQSection";
 import HomeBlogSection from "@/components/HomeBlogSection";
+import HomeEventSection from "@/components/HomeEventSection";
 
 export default function Home() {
   const homeFAQs = [
@@ -89,6 +90,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* 2. EVENTO DESTAQUE */}
+      <HomeEventSection />
 
       {/* 3. VANTAGENS (Textos preenchidos e em branco) */}
       <section className="py-24 bg-[#263858] text-white">

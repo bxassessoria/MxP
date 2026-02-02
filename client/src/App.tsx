@@ -12,6 +12,7 @@ import AdminEditor from "@/pages/admin/Editor";
 import CasesList from "@/pages/admin/CasesList";
 import CaseEditor from "@/pages/admin/CaseEditor";
 import CaseDetail from "@/pages/CaseDetail";
+import EncontroBH from "@/pages/EncontroBH";
 import NotFound from "@/pages/not-found";
 import ScrollToTop from "@/components/ScrollToTop";
 
@@ -43,6 +44,7 @@ function Router() {
       <Route path="/sobre" component={About} />
       <Route path="/blog" component={Blog} />
       <Route path="/blog/:slug" component={BlogPost} />
+      <Route path="/encontro-bh" component={EncontroBH} />
 
       {/* Rotas do Admin */}
       <Route path="/admin" component={AdminLogin} />
