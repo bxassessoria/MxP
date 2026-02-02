@@ -34,7 +34,8 @@ export default function AdminDashboard() {
       } else {
         // Mock data para desenvolvimento local
         setPosts([
-          { id: "1", title: "Post Exemplo (Local)", date: "2024-02-02", category: "Teste" }
+          { id: "1", title: "Post Exemplo (Ambiente Local)", date: "2024-02-02", category: "Tecnologia" },
+          { id: "2", title: "Bem-vindo ao Painel Admin", date: "2024-02-03", category: "Tutorial" }
         ]);
       }
     } catch (err) {
