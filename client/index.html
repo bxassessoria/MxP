@@ -10,6 +10,32 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    
+    <!-- GLOBAL ERROR HANDLER - DIAGNOSTIC -->
+    <script>
+      window.onerror = function(message, source, lineno, colno, error) {
+        document.body.innerHTML = `
+          <div style="font-family: monospace; padding: 20px; background: #fff; color: #000; border: 5px solid red; margin: 20px;">
+            <h1 style="color: red;">CRITICAL ERROR (Window)</h1>
+            <p><strong>Message:</strong> ${message}</p>
+            <p><strong>Source:</strong> ${source}:${lineno}:${colno}</p>
+            <p><strong>Stack:</strong> ${error ? error.stack : 'No stack trace'}</p>
+            <p>Please take a screenshot of this screen and send it to support.</p>
+          </div>
+        `;
+        return false;
+      };
+
+      window.onunhandledrejection = function(event) {
+        document.body.innerHTML = `
+          <div style="font-family: monospace; padding: 20px; background: #fff; color: #000; border: 5px solid orange; margin: 20px;">
+            <h1 style="color: orange;">CRITICAL ERROR (Promise)</h1>
+            <p><strong>Reason:</strong> ${event.reason}</p>
+            <p>Please take a screenshot of this screen and send it to support.</p>
+          </div>
+        `;
+      };
+    </script>
   </head>
 
   <body>
