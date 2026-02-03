@@ -1,0 +1,25 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  
+  # Não redirecionar chamadas para a API
+  RewriteRule ^api/ - [L]
+
+  # Redirecionar todas as outras requisições para index.html (React Router)
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
+
+# Permitir acesso a json e php
+<FilesMatch "\.(json|php)$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+# Proteger arquivos sensíveis se houver (opcional, mas boa prática)
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
