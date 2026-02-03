@@ -1,4 +1,5 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, Router as WouterRouter } from "wouter";
+import { useHashLocation } from "wouter/use-hash-location";
 import Home from "@/pages/Home";
 import Products from "@/pages/Products";
 import Cases from "@/pages/Cases";
@@ -26,8 +27,10 @@ import GendaiNews from "@/pages/products/GendaiNews";
 import GendaiTV from "@/pages/products/GendaiTV";
 
 function Router() {
+  const [location] = useHashLocation();
   return (
-    <Switch>
+    <WouterRouter hook={useHashLocation}>
+      <Switch>
       <Route path="/" component={Home} />
       <Route path="/produtos" component={Products} />
       
@@ -59,7 +62,8 @@ function Router() {
       
       {/* Fallback 404 */}
       <Route component={NotFound} />
-    </Switch>
+      </Switch>
+    </WouterRouter>
   );
 }
 
