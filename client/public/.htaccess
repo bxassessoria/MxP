@@ -12,14 +12,23 @@
   RewriteRule . /index.html [L]
 </IfModule>
 
+# Forçar MIME Types corretos para evitar bloqueio do navegador
+<IfModule mod_mime.c>
+  AddType application/javascript .js
+  AddType text/css .css
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.js$">
+    Header set Content-Type "application/javascript"
+  </FilesMatch>
+  <FilesMatch "\.css$">
+    Header set Content-Type "text/css"
+  </FilesMatch>
+</IfModule>
+
 # Permitir acesso a json e php
 <FilesMatch "\.(json|php)$">
     Order Allow,Deny
     Allow from all
-</FilesMatch>
-
-# Proteger arquivos sensíveis se houver (opcional, mas boa prática)
-<FilesMatch "^\.">
-    Order allow,deny
-    Deny from all
 </FilesMatch>
