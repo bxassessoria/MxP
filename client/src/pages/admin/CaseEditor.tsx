@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { clientsData } from "@/data/clients";
 
 export default function CaseEditor() {
-  const [, params] = useRoute("/admin/cases/edit/:id");
+  const [, params] = useRoute("/painel/cases/edit/:id");
   const [, setLocation] = useLocation();
   const isEditing = !!params?.id;
 
@@ -75,7 +75,7 @@ export default function CaseEditor() {
       
       if (res.ok) {
         alert("Case salvo com sucesso!");
-        setLocation("/admin/cases");
+        setLocation("/painel/cases");
       } else {
         throw new Error("Erro ao salvar");
       }
@@ -163,7 +163,7 @@ export default function CaseEditor() {
               </div>
 
               <div className="flex justify-end gap-4 pt-4">
-                <Button type="button" variant="outline" onClick={() => setLocation("/admin/cases")}>Cancelar</Button>
+                <Button type="button" variant="outline" onClick={() => setLocation("/painel/cases")}>Cancelar</Button>
                 <Button type="submit">Salvar Case</Button>
               </div>
             </form>

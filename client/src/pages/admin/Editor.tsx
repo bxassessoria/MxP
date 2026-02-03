@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 
 export default function AdminEditor() {
-  const [, params] = useRoute("/admin/edit/:id");
+  const [, params] = useRoute("/painel/edit/:id");
   const [, setLocation] = useLocation();
   const isEditing = !!params?.id;
 
@@ -74,7 +74,7 @@ export default function AdminEditor() {
       
       if (res.ok) {
         alert("Post salvo com sucesso!");
-        setLocation("/admin/dashboard");
+        setLocation("/painel/dashboard");
       } else {
         throw new Error("Erro ao salvar");
       }
@@ -126,7 +126,7 @@ export default function AdminEditor() {
               </div>
 
               <div className="flex justify-end gap-4 pt-4">
-                <Button type="button" variant="outline" onClick={() => setLocation("/admin/dashboard")}>Cancelar</Button>
+                <Button type="button" variant="outline" onClick={() => setLocation("/painel/dashboard")}>Cancelar</Button>
                 <Button type="submit">Salvar Post</Button>
               </div>
             </form>

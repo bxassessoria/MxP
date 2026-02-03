@@ -23,7 +23,7 @@ export default function AdminLogin() {
       if (res.status === 404) {
          if (password === "admin") {
             localStorage.setItem("adminToken", "mock_token");
-            setLocation("/admin/dashboard");
+            setLocation("/painel/dashboard");
             return;
          }
       }
@@ -31,7 +31,7 @@ export default function AdminLogin() {
       const data = await res.json();
       if (data.success) {
         localStorage.setItem("adminToken", data.token);
-        setLocation("/admin/dashboard");
+        setLocation("/painel/dashboard");
       } else {
         setError("Senha incorreta");
       }
@@ -39,7 +39,7 @@ export default function AdminLogin() {
       // Em ambiente local sem PHP, permite login mockado
       if (password === "admin") {
         localStorage.setItem("adminToken", "mock_token");
-        setLocation("/admin/dashboard");
+        setLocation("/painel/dashboard");
       } else {
         setError("Erro de conexão ou senha incorreta");
       }

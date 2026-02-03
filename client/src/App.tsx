@@ -49,13 +49,13 @@ function Router() {
       <Route path="/contato" component={Contact} />
 
       {/* Rotas do Admin */}
-      <Route path="/admin" component={AdminLogin} />
-      <Route path="/admin/dashboard" component={AdminDashboard} />
-      <Route path="/admin/new" component={AdminEditor} />
-      <Route path="/admin/edit/:id" component={AdminEditor} />
-      <Route path="/admin/cases" component={CasesList} />
-      <Route path="/admin/cases/new" component={CaseEditor} />
-      <Route path="/admin/cases/edit/:id" component={CaseEditor} />
+      <Route path="/painel" component={AdminLogin} />
+      <Route path="/painel/dashboard" component={AdminDashboard} />
+      <Route path="/painel/new" component={AdminEditor} />
+      <Route path="/painel/edit/:id" component={AdminEditor} />
+      <Route path="/painel/cases" component={CasesList} />
+      <Route path="/painel/cases/new" component={CaseEditor} />
+      <Route path="/painel/cases/edit/:id" component={CaseEditor} />
       
       {/* Fallback 404 */}
       <Route component={NotFound} />

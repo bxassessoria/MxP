@@ -43,14 +43,14 @@ export default function CasesList() {
       <div className="max-w-4xl mx-auto">
         <div className="flex justify-between items-center mb-8">
           <div className="flex items-center gap-4">
-            <Link href="/admin/dashboard">
+            <Link href="/painel/dashboard">
                 <Button variant="ghost" size="icon">
                     <ArrowLeft size={20} />
                 </Button>
             </Link>
             <h1 className="text-3xl font-bold">Gerenciar Cases</h1>
           </div>
-          <Link href="/admin/cases/new">
+          <Link href="/painel/cases/new">
             <Button className="flex items-center gap-2">
               <Plus size={16} /> Novo Case
             </Button>
@@ -69,7 +69,7 @@ export default function CasesList() {
                   </div>
                 </div>
                 <div className="flex gap-2">
-                  <Link href={`/admin/cases/edit/${item.id}`}>
+                  <Link href={`/painel/cases/edit/${item.id}`}>
                     <Button variant="ghost" size="icon">
                       <Edit size={18} />
                     </Button>
@@ -85,7 +85,7 @@ export default function CasesList() {
           {cases.length === 0 && (
             <div className="text-center py-12 bg-white rounded-lg border border-dashed border-gray-300">
                 <p className="text-gray-500 mb-4">Nenhum case cadastrado ainda.</p>
-                <Link href="/admin/cases/new">
+                <Link href="/painel/cases/new">
                     <Button variant="outline">Cadastrar primeiro case</Button>
                 </Link>
             </div>

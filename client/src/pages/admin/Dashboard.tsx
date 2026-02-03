@@ -18,7 +18,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     const token = localStorage.getItem("adminToken");
     if (!token) {
-      setLocation("/admin");
+      setLocation("/painel");
       return;
     }
 
@@ -56,7 +56,7 @@ export default function AdminDashboard() {
 
   const handleLogout = () => {
     localStorage.removeItem("adminToken");
-    setLocation("/admin");
+    setLocation("/painel");
   };
 
   return (
@@ -65,12 +65,12 @@ export default function AdminDashboard() {
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold">Gerenciar Blog</h1>
           <div className="flex gap-4">
-            <Link href="/admin/cases">
+            <Link href="/painel/cases">
               <Button variant="outline" className="flex items-center gap-2 mr-2">
                  Gerenciar Cases
               </Button>
             </Link>
-            <Link href="/admin/new">
+            <Link href="/painel/new">
               <Button className="flex items-center gap-2">
                 <Plus size={16} /> Novo Post
               </Button>
@@ -90,7 +90,7 @@ export default function AdminDashboard() {
                   <p className="text-sm text-gray-500">{post.date} • {post.category}</p>
                 </div>
                 <div className="flex gap-2">
-                  <Link href={`/admin/edit/${post.id}`}>
+                  <Link href={`/painel/edit/${post.id}`}>
                     <Button variant="ghost" size="icon">
                       <Edit size={18} />
                     </Button>
