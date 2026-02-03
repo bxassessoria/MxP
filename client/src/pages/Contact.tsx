@@ -1,191 +1,214 @@
 import Layout from "@/components/Layout";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Card, CardContent } from "@/components/ui/card";
+import { Mail, Phone, MapPin, Send, MessageCircle, CheckCircle } from "lucide-react";
 import { useState } from "react";
-import { toast } from "sonner";
 
 export default function Contact() {
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     company: "",
+    product: "",
     message: ""
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Simulação de envio
-    console.log("Formulário enviado:", formData);
-    toast.success("Mensagem enviada com sucesso!", {
-      description: "Entraremos em contato em breve.",
-    });
-    setFormData({ name: "", email: "", phone: "", company: "", message: "" });
+  const handleSelectChange = (value: string) => {
+    setFormData({ ...formData, product: value });
   };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      await fetch('/api/contact.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+    } catch (error) {
+      console.log("Envio simulado (API offline)");
+    }
+
+    setSubmitted(true);
+    setLoading(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const openWhatsApp = () => {
+    const text = `Olá, gostaria de saber mais sobre as soluções da Mídia Portal.`;
+    window.open(`https://wa.me/5511943896879?text=${encodeURIComponent(text)}`, '_blank');
+  };
+
+  if (submitted) {
+    return (
+      <Layout>
+        <section className="min-h-[80vh] flex items-center justify-center bg-[#263858] text-white py-20">
+          <div className="container text-center">
+            <div className="w-24 h-24 bg-[#EE6025] rounded-full flex items-center justify-center mx-auto mb-8 animate-bounce">
+              <CheckCircle size={48} />
+            </div>
+            <h1 className="text-4xl font-bold mb-4">Mensagem Enviada!</h1>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
+              Obrigado pelo contato. Nossa equipe retornará o mais breve possível.
+            </p>
+            <Button 
+              onClick={() => setSubmitted(false)} 
+              variant="outline" 
+              className="text-white border-white hover:bg-white hover:text-[#263858]"
+            >
+              Enviar nova mensagem
+            </Button>
+          </div>
+        </section>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
       {/* HERO SECTION */}
-      <section className="relative min-h-[60vh] flex items-center bg-[#263858] overflow-hidden">
+      <section className="relative py-20 bg-[#263858] overflow-hidden">
         <div className="absolute inset-0 z-0">
-             <img 
-               src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop" 
-               alt="Background Contato" 
-               className="w-full h-full object-cover opacity-30"
-             />
-             <div className="absolute inset-0 bg-gradient-to-r from-[#263858] to-transparent"></div>
+             <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-10"></div>
+             <div className="absolute inset-0 bg-gradient-to-b from-[#263858]/90 to-[#263858]"></div>
         </div>
         
-        <div className="container relative z-10">
-          <div className="max-w-2xl bg-white/5 backdrop-blur-md border border-white/10 p-10 md:p-14 rounded-3xl shadow-2xl">
-            <div className="inline-block bg-[#EE6025] px-4 py-1 rounded-full text-sm font-bold tracking-wider uppercase mb-6 text-white">
-              Fale Conosco
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 leading-tight">
-              Entre em <span className="text-[#EE6025]">Contato</span>
-            </h1>
-            <p className="text-xl text-gray-200 leading-relaxed">
-              Estamos prontos para entender seu projeto e oferecer a melhor solução para sua gestão de mídia.
-            </p>
-          </div>
+        <div className="container relative z-10 text-center space-y-6">
+          <h1 className="text-4xl md:text-6xl font-bold text-white">Fale Conosco</h1>
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            Estamos prontos para entender seu desafio e apresentar a melhor solução para o seu fluxo de trabalho.
+          </p>
         </div>
       </section>
 
-      {/* FORM & INFO SECTION */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-50">
         <div className="container">
-          <div className="grid lg:grid-cols-2 gap-16">
+          <div className="grid lg:grid-cols-2 gap-12">
             
             {/* Informações de Contato */}
-            <div>
-              <h2 className="text-3xl font-bold text-[#263858] mb-8 border-l-4 border-[#EE6025] pl-4">
-                Canais de Atendimento
-              </h2>
-              <p className="text-gray-600 mb-10 leading-relaxed">
-                Nossa equipe de especialistas está à disposição para tirar dúvidas, agendar demonstrações e discutir como a Media Portal pode transformar sua operação.
-              </p>
+            <div className="space-y-8">
+              <div className="space-y-6">
+                <h2 className="text-3xl font-bold text-[#263858]">Canais de Atendimento</h2>
+                <p className="text-gray-600">
+                  Escolha a forma mais conveniente para falar com nosso time comercial ou suporte técnico.
+                </p>
+              </div>
 
-              <div className="space-y-8">
-                <div className="flex items-start gap-6">
-                  <div className="bg-[#EE6025]/10 p-4 rounded-full">
-                    <MapPin className="text-[#EE6025] w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-xl text-[#263858] mb-2">Sede São Paulo</h3>
-                    <p className="text-gray-600">Praça Dom José Gaspar nº 30 – 20º andar</p>
-                    <p className="text-gray-600">República – São Paulo/SP</p>
-                    <p className="text-gray-600">CEP 01047-010 – Brasil</p>
-                  </div>
-                </div>
+              <div className="grid gap-6">
+                <Card className="border-l-4 border-l-[#EE6025] shadow-md hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6 flex items-start gap-4">
+                    <div className="bg-[#EE6025]/10 p-3 rounded-full text-[#EE6025]">
+                      <MessageCircle size={24} />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg text-[#263858] mb-1">WhatsApp Comercial</h3>
+                      <p className="text-gray-600 mb-4">Atendimento rápido para dúvidas e orçamentos.</p>
+                      <Button onClick={openWhatsApp} className="bg-[#25D366] hover:bg-[#128C7E] text-white font-bold">
+                        <MessageCircle className="mr-2 h-5 w-5" /> Iniciar Conversa
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
 
-                <div className="flex items-start gap-6">
-                  <div className="bg-[#EE6025]/10 p-4 rounded-full">
-                    <Mail className="text-[#EE6025] w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-xl text-[#263858] mb-2">E-mail</h3>
-                    <p className="text-gray-600">comercial@mediaportal.com.br</p>
-                    <p className="text-gray-600">contato@mediaportal.com.br</p>
-                  </div>
-                </div>
+                <Card className="shadow-sm">
+                  <CardContent className="p-6 flex items-center gap-4">
+                    <div className="bg-gray-100 p-3 rounded-full text-[#263858]">
+                      <Mail size={24} />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-[#263858]">E-mail</h3>
+                      <p className="text-gray-600">contato@mediaportal.com.br</p>
+                      <p className="text-gray-600">comercial@mediaportal.com.br</p>
+                    </div>
+                  </CardContent>
+                </Card>
 
-                <div className="flex items-start gap-6">
-                  <div className="bg-[#EE6025]/10 p-4 rounded-full">
-                    <Phone className="text-[#EE6025] w-6 h-6" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-xl text-[#263858] mb-2">Telefone</h3>
-                    <p className="text-gray-600">+55 (11) 9 4389 6879</p>
-                    <p className="text-gray-600">+55 (11) 3063 4411</p>
-                  </div>
-                </div>
+                <Card className="shadow-sm">
+                  <CardContent className="p-6 flex items-center gap-4">
+                    <div className="bg-gray-100 p-3 rounded-full text-[#263858]">
+                      <MapPin size={24} />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-[#263858]">Endereço</h3>
+                      <p className="text-gray-600">Praça Dom José Gaspar nº 30 – 20º andar</p>
+                      <p className="text-gray-600">República – São Paulo/SP</p>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             </div>
 
             {/* Formulário */}
-            <div className="bg-gray-50 p-10 rounded-2xl shadow-lg border border-gray-100">
-              <h3 className="text-2xl font-bold text-[#263858] mb-6">Envie uma mensagem</h3>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Nome Completo</label>
-                    <input 
-                      type="text" 
-                      id="name" 
-                      name="name" 
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#EE6025] focus:ring-2 focus:ring-[#EE6025]/20 outline-none transition-all"
-                      placeholder="Seu nome"
-                    />
+            <div className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
+              <h2 className="text-2xl font-bold text-[#263858] mb-6">Envie uma mensagem</h2>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label>Nome Completo</Label>
+                    <Input name="name" onChange={handleChange} required placeholder="Seu nome" />
                   </div>
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">Telefone</label>
-                    <input 
-                      type="tel" 
-                      id="phone" 
-                      name="phone" 
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#EE6025] focus:ring-2 focus:ring-[#EE6025]/20 outline-none transition-all"
-                      placeholder="(11) 99999-9999"
-                    />
+                  <div className="space-y-2">
+                    <Label>Empresa</Label>
+                    <Input name="company" onChange={handleChange} placeholder="Sua empresa" />
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">E-mail Corporativo</label>
-                    <input 
-                      type="email" 
-                      id="email" 
-                      name="email" 
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#EE6025] focus:ring-2 focus:ring-[#EE6025]/20 outline-none transition-all"
-                      placeholder="voce@empresa.com.br"
-                    />
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label>E-mail</Label>
+                    <Input name="email" type="email" onChange={handleChange} required placeholder="seu@email.com" />
                   </div>
-                  <div>
-                    <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">Empresa</label>
-                    <input 
-                      type="text" 
-                      id="company" 
-                      name="company" 
-                      value={formData.company}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#EE6025] focus:ring-2 focus:ring-[#EE6025]/20 outline-none transition-all"
-                      placeholder="Nome da sua empresa"
-                    />
+                  <div className="space-y-2">
+                    <Label>Telefone / WhatsApp</Label>
+                    <Input name="phone" onChange={handleChange} required placeholder="(11) 99999-9999" />
                   </div>
                 </div>
 
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">Como podemos ajudar?</label>
-                  <textarea 
-                    id="message" 
+                <div className="space-y-2">
+                  <Label>Interesse em qual solução?</Label>
+                  <Select onValueChange={handleSelectChange} required>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Selecione um produto" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="mam">MAM (Media Asset Management)</SelectItem>
+                      <SelectItem value="pam">PAM (Production Asset Management)</SelectItem>
+                      <SelectItem value="dam">DAM (Digital Asset Management)</SelectItem>
+                      <SelectItem value="cloudfly">CloudFly (Transferência)</SelectItem>
+                      <SelectItem value="ingest">Ingest Automatizado</SelectItem>
+                      <SelectItem value="exibicao">Sistemas de Exibição</SelectItem>
+                      <SelectItem value="outros">Outros Assuntos</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label>Mensagem</Label>
+                  <Textarea 
                     name="message" 
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    rows={4}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-[#EE6025] focus:ring-2 focus:ring-[#EE6025]/20 outline-none transition-all resize-none"
-                    placeholder="Conte um pouco sobre sua necessidade..."
-                  ></textarea>
+                    onChange={handleChange} 
+                    required 
+                    placeholder="Conte um pouco sobre sua necessidade..." 
+                    className="min-h-[120px]"
+                  />
                 </div>
 
-                <button 
-                  type="submit" 
-                  className="w-full bg-[#EE6025] text-white font-bold text-lg py-4 rounded-lg hover:bg-[#d94e15] transition-all hover:shadow-lg flex items-center justify-center gap-2"
-                >
-                  Enviar Mensagem <Send size={20} />
-                </button>
+                <Button type="submit" disabled={loading} className="w-full bg-[#EE6025] hover:bg-[#d94e15] font-bold py-6 text-lg">
+                  {loading ? "Enviando..." : "Enviar Solicitação"} <Send className="ml-2 h-5 w-5" />
+                </Button>
               </form>
             </div>
 

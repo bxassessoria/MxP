@@ -13,6 +13,7 @@ import CasesList from "@/pages/admin/CasesList";
 import CaseEditor from "@/pages/admin/CaseEditor";
 import CaseDetail from "@/pages/CaseDetail";
 import EncontroBH from "@/pages/EncontroBH";
+import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
 import ScrollToTop from "@/components/ScrollToTop";
 
@@ -45,6 +46,7 @@ function Router() {
       <Route path="/blog" component={Blog} />
       <Route path="/blog/:slug" component={BlogPost} />
       <Route path="/encontro-bh" component={EncontroBH} />
+      <Route path="/contato" component={Contact} />
 
       {/* Rotas do Admin */}
       <Route path="/admin" component={AdminLogin} />

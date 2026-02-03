@@ -89,7 +89,7 @@ export default function EncontroBH() {
             <div className="inline-block bg-white/10 border border-white/20 px-4 py-1 rounded-full text-white text-sm font-bold tracking-wider uppercase mb-2">
               Belo Horizonte - MG
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight text-white drop-shadow-md">
+            <h1 className="text-4xl md:text-6xl font-bold leading-tight text-white drop-shadow-md !text-white">
               Encontro Mídia Portal & Parceiros
             </h1>
             <p className="text-xl md:text-2xl text-gray-200 font-light leading-relaxed">

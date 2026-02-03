@@ -23,7 +23,8 @@ export default function Header() {
     { name: "PRODUTO", path: "/produtos" }, // Corrigido de /products para /produtos
     { name: "INTEGRAÇÕES", path: "/integracoes" }, // Corrigido de /integrations para /integracoes
     { name: "CASES", path: "/cases" },
-    { name: "SOBRE", path: "/sobre" }, // Corrigido de /about para /sobre
+    { name: "SOBRE", path: "/sobre" },
+    { name: "CONTATO", path: "/contato" }, // Corrigido de /about para /sobre
   ];
 
   return (
@@ -59,11 +60,13 @@ export default function Header() {
               </span>
             </Link>
           ))}
-          <Button 
-            className="bg-[#EE6025] hover:bg-[#d55015] text-white font-bold px-6 rounded shadow-lg shadow-[#EE6025]/20 transition-all hover:scale-105"
-          >
-            Entrar em contato
-          </Button>
+          <Link href="/contato">
+            <Button 
+              className="bg-[#EE6025] hover:bg-[#d55015] text-white font-bold px-6 rounded shadow-lg shadow-[#EE6025]/20 transition-all hover:scale-105"
+            >
+              Entrar em contato
+            </Button>
+          </Link>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -88,9 +91,14 @@ export default function Header() {
               </span>
             </Link>
           ))}
-          <Button className="w-full bg-[#EE6025] hover:bg-[#d55015] text-white font-bold">
-            Entrar em contato
-          </Button>
+          <Link href="/contato">
+            <Button 
+              className="w-full bg-[#EE6025] hover:bg-[#d55015] text-white font-bold"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Entrar em contato
+            </Button>
+          </Link>
         </div>
       )}
     </header>
