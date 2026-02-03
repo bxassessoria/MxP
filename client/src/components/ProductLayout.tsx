@@ -38,7 +38,7 @@ export default function ProductLayout({
         
         <div className="container relative z-10 pt-24 pb-12">
           {/* Botão de Voltar */}
-          <Link href="/products">
+          <Link href="/produtos">
             <Button variant="ghost" className="text-white/60 hover:text-white hover:bg-white/10 mb-8 pl-0 transition-colors">
               <ArrowLeft className="mr-2 h-4 w-4" /> Voltar para Produtos
             </Button>
