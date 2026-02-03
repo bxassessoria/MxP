@@ -393,10 +393,10 @@ export default function ProductDetail() {
       <FAQSection items={product.faq} />
 
       {/* CTA Final */}
-      <section className="py-24 bg-white text-center">
+      <section className="py-24 bg-[#263858] text-center">
         <div className="container max-w-3xl">
-          <h2 className="text-3xl font-bold text-[#263858] mb-6">Pronto para transformar sua operação?</h2>
-          <p className="text-xl text-gray-600 mb-8">
+          <h2 className="text-3xl font-bold text-white mb-6">Pronto para transformar sua operação?</h2>
+          <p className="text-xl text-gray-300 mb-8">
             Entre em contato com nossos especialistas e descubra como o {product.title} pode impulsionar seus resultados.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">

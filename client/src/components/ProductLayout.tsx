@@ -106,7 +106,7 @@ export default function ProductLayout({
       {/* CTA Footer */}
       <section className="py-20 bg-[#263858] text-white text-center">
         <div className="container max-w-4xl">
-          <h2 className="text-3xl font-bold mb-6">Pronto para transformar sua operação?</h2>
+          <h2 className="text-3xl font-bold mb-6 text-white">Pronto para transformar sua operação?</h2>
           <p className="text-lg text-gray-300 mb-8">
             Nossa equipe de especialistas está pronta para desenhar a solução ideal para o seu fluxo de trabalho.
           </p>
