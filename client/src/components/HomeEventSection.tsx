@@ -17,7 +17,7 @@ export default function HomeEventSection() {
               Próximo Evento
             </div>
             
-            <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+            <h2 className="text-3xl md:text-5xl font-bold leading-tight text-white">
               Encontro Mídia Portal & Parceiros <br/>
               <span className="text-[#EE6025]">Belo Horizonte</span>
             </h2>
