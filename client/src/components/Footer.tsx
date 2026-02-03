@@ -75,7 +75,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/10 pt-8 text-center text-gray-400 text-xs">
-          <p>&copy; {new Date().getFullYear()} Media Portal. Todos os direitos reservados.</p>
+          <p>&copy; {new Date().getFullYear()} Media Portal. Todos os direitos reservados. | <Link href="/painel" className="hover:text-gray-200 transition-colors">Acesso Restrito</Link></p>
         </div>
       </div>
     </footer>
