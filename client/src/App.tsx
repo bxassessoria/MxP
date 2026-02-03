@@ -26,10 +26,10 @@ import GemsInABox from "@/pages/products/GemsInABox";
 import GendaiNews from "@/pages/products/GendaiNews";
 import GendaiTV from "@/pages/products/GendaiTV";
 
-function Router() {
-  const [location] = useHashLocation();
+function App() {
   return (
     <WouterRouter hook={useHashLocation}>
+      <ScrollToTop />
       <Switch>
       <Route path="/" component={Home} />
       <Route path="/produtos" component={Products} />
@@ -64,15 +64,6 @@ function Router() {
       <Route component={NotFound} />
       </Switch>
     </WouterRouter>
-  );
-}
-
-function App() {
-  return (
-    <>
-      <ScrollToTop />
-      <Router />
-    </>
   );
 }
 
