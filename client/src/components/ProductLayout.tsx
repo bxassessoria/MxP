@@ -59,7 +59,7 @@ export default function ProductLayout({
             </p>
             
             <div className="flex flex-wrap gap-4">
-              <Link href="/contact">
+              <Link href="/contato">
                 <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white h-14 px-8 rounded-lg text-lg font-bold shadow-lg hover:shadow-xl transition-all">
                   Solicitar Demo
                 </Button>
@@ -86,7 +86,7 @@ export default function ProductLayout({
                   ))}
                 </ul>
                 <div className="mt-8 pt-8 border-t border-gray-200">
-                  <Link href="/contact">
+                  <Link href="/contato">
                     <Button variant="outline" className="w-full border-[#263858] text-[#263858] hover:bg-[#263858] hover:text-white font-bold">
                       Falar com Consultor
                     </Button>
@@ -110,7 +110,7 @@ export default function ProductLayout({
           <p className="text-lg text-gray-300 mb-8">
             Nossa equipe de especialistas está pronta para desenhar a solução ideal para o seu fluxo de trabalho.
           </p>
-          <Link href="/contact">
+          <Link href="/contato">
             <Button className="bg-[#EE6025] hover:bg-[#d55015] text-white font-bold text-lg px-8 py-6 h-auto rounded shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all">
               Agendar Reunião
             </Button>
