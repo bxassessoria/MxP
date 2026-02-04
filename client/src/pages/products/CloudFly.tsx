@@ -47,8 +47,8 @@ export default function CloudFly() {
             />
             <FeatureCard 
               icon={<Layout className="text-purple-500" />}
-              title="Clipboard"
-              description="Elaboração de itens favoritos e organização personalizada através do Clipboard."
+              title="Favoritos"
+              description="Elaboração de itens favoritos e organização personalizada."
             />
             <FeatureCard 
               icon={<Scissors className="text-orange-500" />}

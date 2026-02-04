@@ -5,7 +5,7 @@ import { Link } from "wouter";
 import SegmentsSection from "@/components/SegmentsSection";
 import CustomProjectsSection from "@/components/CustomProjectsSection";
 import ClientsSection from "@/components/ClientsSection";
-import FAQSection from "@/components/FAQSection";
+
 import HomeBlogSection from "@/components/HomeBlogSection";
 import HomeEventSection from "@/components/HomeEventSection";
 
@@ -214,7 +214,7 @@ export default function Home() {
       <HomeBlogSection />
 
       {/* 9. FAQ SECTION (SEO) */}
-      <FAQSection items={homeFAQs} />
+      
     </Layout>
   );
 }

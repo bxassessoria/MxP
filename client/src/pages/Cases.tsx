@@ -18,7 +18,7 @@ const categories = [
   "Todos",
   "TV",
   "TV Pública",
-  "TV Igreja",
+  "Igreja",
   "Esportes",
   "Rádio",
   "Órgão Público",

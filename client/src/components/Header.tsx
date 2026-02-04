@@ -21,7 +21,7 @@ export default function Header() {
     { name: "HOME", path: "/" },
     { name: "BLOG", path: "/blog" },
     { name: "PRODUTO", path: "/produtos" }, // Corrigido de /products para /produtos
-    { name: "INTEGRAÇÕES", path: "/integracoes" }, // Corrigido de /integrations para /integracoes
+    { name: "INTEGRAÇÕES", path: "/integracoes" },
     { name: "CASES", path: "/cases" },
     { name: "SOBRE", path: "/sobre" },
     { name: "CONTATO", path: "/contato" }, // Corrigido de /about para /sobre

@@ -28,7 +28,7 @@ export default function Footer() {
             <ul className="space-y-3 text-gray-200 text-sm">
               <li><Link href="/" className="hover:text-[#EE6025] transition-colors">Home</Link></li>
               <li><Link href="/produtos" className="hover:text-[#EE6025] transition-colors">Produtos</Link></li>
-              <li><Link href="/integrations" className="hover:text-[#EE6025] transition-colors">Integrações</Link></li>
+              <li><Link href="/integracoes" className="hover:text-[#EE6025] transition-colors">Integrações</Link></li>
               <li><Link href="/cases" className="hover:text-[#EE6025] transition-colors">Cases</Link></li>
               <li><Link href="/blog" className="hover:text-[#EE6025] transition-colors">Blog</Link></li>
               <li><Link href="/about" className="hover:text-[#EE6025] transition-colors">Sobre Nós</Link></li>
@@ -39,9 +39,9 @@ export default function Footer() {
           <div>
             <h3 className="font-bold text-white text-lg mb-6 border-l-4 border-[#EE6025] pl-3">Soluções</h3>
             <ul className="space-y-3 text-gray-200 text-sm">
-              <li><Link href="/produtos/cloudfly" className="hover:text-[#EE6025] transition-colors">CloudFly</Link></li>
-              <li><Link href="/produtos/gems-in-a-box" className="hover:text-[#EE6025] transition-colors">Gems in a Box</Link></li>
-              <li><Link href="/produtos/cloudlink" className="hover:text-[#EE6025] transition-colors">CloudLink</Link></li>
+              <li><Link href="/produtos/gems-in-a-box" className="hover:text-[#EE6025] transition-colors">On Premises</Link></li>
+              <li><Link href="/produtos/cloudfly" className="hover:text-[#EE6025] transition-colors">Cloud</Link></li>
+              <li><Link href="/produtos/cloudlink" className="hover:text-[#EE6025] transition-colors">Híbridas</Link></li>
               <li><Link href="/produtos/gendai-tv" className="hover:text-[#EE6025] transition-colors">Gendai TV</Link></li>
               <li><Link href="/produtos/gendai-news" className="hover:text-[#EE6025] transition-colors">Gendai News</Link></li>
             </ul>

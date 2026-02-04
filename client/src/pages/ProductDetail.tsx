@@ -3,7 +3,7 @@ import { useRoute, useLocation, Link } from "wouter";
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Check, Download, Mail, Phone, Building2, User } from "lucide-react";
-import FAQSection from "@/components/FAQSection";
+
 
 // Definição dos dados dos produtos
 const productsData: Record<string, any> = {
@@ -19,7 +19,7 @@ const productsData: Record<string, any> = {
     features: [
       "Recursos para navegação no acervo",
       "Formulários para pesquisas simples e avançadas",
-      "Elaboração de itens favoritos (Clipboard)",
+      "Elaboração de itens favoritos",
       "Decupagem de trechos de vídeos e elaboração de clipes",
       "Integração com Dicionário Controlado",
       "Integração com mecanismos de análise inteligente",
@@ -390,7 +390,7 @@ export default function ProductDetail() {
       </section>
 
       {/* FAQ Específico do Produto */}
-      <FAQSection items={product.faq} />
+      
 
       {/* CTA Final */}
       <section className="py-24 bg-[#263858] text-center">

@@ -45,6 +45,12 @@ function App() {
       <Route path="/cases" component={Cases} />
       <Route path="/cases/:slug" component={CaseDetail} />
       <Route path="/integracoes" component={Integrations} />
+      <Route path="/integrations">
+        {() => {
+          window.location.hash = "#/integracoes";
+          return null;
+        }}
+      </Route>
       <Route path="/sobre" component={About} />
       <Route path="/blog" component={Blog} />
       <Route path="/blog/:slug" component={BlogPost} />
