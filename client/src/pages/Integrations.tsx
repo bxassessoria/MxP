@@ -19,23 +19,68 @@ const getPartnerInfo = (name: string) => {
   const n = name.toLowerCase();
   let logoUrl = "";
   
-  // Logos locais prioritários
-  if (n.includes("aws")) logoUrl = "/images/logos/aws.png";
-  else if (n.includes("google")) logoUrl = "/images/logos/google-cloud.png";
-  else if (n.includes("adobe")) logoUrl = "/images/logos/adobe-premiere.png";
-  else if (n.includes("avid")) logoUrl = "/images/logos/avid.png";
-  else if (n.includes("sony")) logoUrl = "/images/logos/sony.png";
-  else if (n.includes("grass")) logoUrl = "/images/logos/grass-valley.png";
-  else {
-      // Fallback para Clearbit
-      let logoDomain = `${n.replace(/\s/g, '')}.com`;
-      if (n.includes("azure")) logoDomain = "azure.microsoft.com";
-      if (n.includes("canon")) logoDomain = "canon.com";
-      if (n.includes("dell")) logoDomain = "dell.com";
-      if (n.includes("hp")) logoDomain = "hp.com";
-      if (n.includes("ibm")) logoDomain = "ibm.com";
-      if (n.includes("mdotti")) logoDomain = "mdotti.com"; // Ajuste manual se necessário
-      logoUrl = `https://logo.clearbit.com/${logoDomain}`;
+  // Mapeamento direto de logos locais
+  const logoMap: {[key: string]: string} = {
+    "pebble beach": "/images/logos/pebble-beach.png",
+    "telestream": "/images/logos/telestream.png",
+    "sony": "/images/logos/sony.png",
+    "tektronix": "/images/logos/tektronix.png",
+    "ipv": "/images/logos/ipv.png",
+    "harris": "/images/logos/harris.png",
+    "harmonic": "/images/logos/harmonic.png",
+    "edit share": "/images/logos/edit-share.png",
+    "seachange": "/images/logos/seachange.png",
+    "ap news": "/images/logos/ap-news.png",
+    "snews": "/images/logos/snews.png",
+    "quantum": "/images/logos/quantum.png",
+    "orad": "/images/logos/orad.png",
+    "qualstar": "/images/logos/qualstar.png",
+    "aws": "/images/logos/aws.png",
+    "google cloud": "/images/logos/google-cloud.png",
+    "fujitsu": "/images/logos/fujitsu.png",
+    "mdotti": "/images/logos/mdotti.png",
+    "embratel": "/images/logos/embratel.png",
+    "grass valley": "/images/logos/grass-valley.png",
+    "apptek": "/images/logos/apptek.png",
+    "mog": "/images/logos/mog.png",
+    "4s media solutions": "/images/logos/4s-media.png",
+    "cinegy": "/images/logos/cinegy.png",
+    "dell": "/images/logos/dell.png",
+    "ibm": "/images/logos/ibm.png",
+    "hitachi": "/images/logos/hitachi.png",
+    "hp": "/images/logos/hp.png",
+    "apple": "/images/logos/apple.png",
+    "supermicro": "/images/logos/supermicro.png",
+    "vmware": "/images/logos/vmware.png",
+    "citrix": "/images/logos/citrix.png",
+    "hyper-v": "/images/logos/hyper-v.png",
+    "vimeo": "/images/logos/vimeo.png",
+    "youtube": "/images/logos/youtube.png",
+    "blackbaze": "/images/logos/blackbaze.png",
+    "owncloud": "/images/logos/owncloud.png",
+    "dropbox": "/images/logos/dropbox.png",
+    "front porch": "/images/logos/front-porch.png",
+    "floripa tecnologia": "/images/logos/floripa.png",
+    "voice interaction": "/images/logos/voice-interaction.png",
+    "rohde & schwarz": "/images/logos/rohde-schwarz.png",
+    "overland tandberg": "/images/logos/overland.png",
+    "main concept": "/images/logos/main-concept.png",
+    "omneon": "/images/logos/omneon.png",
+    "xendata": "/images/logos/xendata.png",
+    "masstech": "/images/logos/masstech.png",
+    "nexsan": "/images/logos/nexsan.png",
+    "autocliper": "/images/logos/autocliper.png",
+    "signiant": "/images/logos/signiant.png",
+    "npaw": "/images/logos/npaw.png",
+    "digilab": "/images/logos/digilab.png"
+  };
+
+  if (logoMap[n]) {
+    logoUrl = logoMap[n];
+  } else {
+    // Fallback para Clearbit apenas se não tiver logo local
+    let logoDomain = `${n.replace(/\s/g, '')}.com`;
+    logoUrl = `https://logo.clearbit.com/${logoDomain}`;
   }
 
   if (n.includes("aws") || n.includes("google") || n.includes("azure") || n.includes("cloud") || n.includes("dropbox") || n.includes("blackbaze") || n.includes("owncloud") || n.includes("signiant")) {
@@ -75,8 +120,8 @@ const partners = partnerNames.map(name => {
 
 // Destaques para o Carrossel
 const featuredPartners = [
-  "SNews", "mDotti", "Voice Interaction", "Qualstar", "Tandberg", "Quantum"
-].map(name => partners.find(p => p.name.includes(name)) || { name, category: "Destaque", logo: "" });
+  "SNews", "mDotti", "Voice Interaction", "Qualstar", "Overland Tandberg", "Quantum"
+].map(name => partners.find(p => p.name === name) || { name, category: "Destaque", logo: "" });
 
 
 export default function Integrations() {
