@@ -1,28 +1,25 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
+import path from "path";
 
 export default defineConfig({
   base: "./",
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
-      "@": "/src",
-      "@shared": "/../shared",
+      "@": path.resolve(__dirname, "client/src"),
+      "@shared": path.resolve(__dirname, "shared"),
     },
   },
   root: "client",
   build: {
     outDir: "../dist",
     emptyOutDir: true,
-    target: "es2015", // Compatibilidade com navegadores mais antigos
-    minify: false,    // Desativar minificação para facilitar leitura do código no browser
-    sourcemap: true,  // Gerar mapas de fonte para debug preciso
+    target: "es2015",
     rollupOptions: {
       output: {
-        entryFileNames: `assets/[name].js`,
-        chunkFileNames: `assets/[name].js`,
-        assetFileNames: `assets/[name].[ext]`
+        manualChunks: undefined,
       }
     }
   },
