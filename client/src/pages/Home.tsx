@@ -45,7 +45,7 @@ export default function Home() {
             playsInline
             poster="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop"
           >
-            <source src="/videos/hero-loop.mp4" type="video/mp4" />
+            <source src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663310649313/KqHkXNcEEwTELwze.mp4" type="video/mp4" />
           </video>
         </div>
 
