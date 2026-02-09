@@ -18,7 +18,7 @@ export default function HomeEventSection() {
             </div>
             
             <h2 className="text-3xl md:text-5xl font-bold leading-tight text-white">
-              Encontro Mídia Portal & Parceiros <br/>
+              Encontro Media Portal <br/>
               <span className="text-[#EE6025]">Belo Horizonte</span>
             </h2>
             
@@ -39,7 +39,7 @@ export default function HomeEventSection() {
                 <MapPin className="text-[#EE6025]" size={24} />
                 <div>
                   <span className="block text-xs text-gray-400 uppercase font-bold">Local</span>
-                  <span className="font-bold">Hotel Royal Golden Savassi</span>
+                  <span className="font-bold">R. Antônio de Albuquerque, 335 – Savassi, Belo Horizonte – MG, 30112-010</span>
                 </div>
               </div>
             </div>

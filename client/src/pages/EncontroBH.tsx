@@ -54,7 +54,7 @@ export default function EncontroBH() {
             </div>
             <h1 className="text-4xl font-bold mb-4">Inscrição Recebida!</h1>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
-              Obrigado pelo seu interesse no Encontro Mídia Portal & Parceiros – Belo Horizonte.
+              Obrigado pelo seu interesse no Encontro Media Portal – Belo Horizonte.
               <br />
               Entraremos em contato em breve para confirmar sua participação.
             </p>
@@ -90,7 +90,7 @@ export default function EncontroBH() {
               Belo Horizonte - MG
             </div>
             <h1 className="text-4xl md:text-6xl font-bold leading-tight text-white drop-shadow-md !text-white">
-              Encontro Mídia Portal & Parceiros
+              Encontro Media Portal
             </h1>
             <p className="text-xl md:text-2xl text-gray-200 font-light leading-relaxed">
               Conexões estratégicas que transformam relacionamento em negócios no mercado de Broadcast.
@@ -104,7 +104,7 @@ export default function EncontroBH() {
                 <Clock className="text-[#EE6025]" /> 14h às 18h
               </div>
               <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-lg backdrop-blur-sm">
-                <MapPin className="text-[#EE6025]" /> Hotel Royal Golden Savassi
+                <MapPin className="text-[#EE6025]" /> R. Antônio de Albuquerque, 335 – Savassi, Belo Horizonte – MG, 30112-010
               </div>
             </div>
 
@@ -157,7 +157,7 @@ export default function EncontroBH() {
             Um encontro feito para quem decide e influencia o mercado
           </h2>
           <p className="text-lg text-gray-600 leading-relaxed">
-            O <strong>Encontro Mídia Portal & Parceiros – Belo Horizonte</strong> acontece em torno da SET Regional e foi criado para ir além do networking tradicional.
+            O <strong>Encontro Media Portal – Belo Horizonte</strong> acontece em torno da SET Regional e foi criado para ir além do networking tradicional.
             <br/><br/>
             É um espaço onde conexões se transformam em relacionamentos estratégicos, ideias ganham profundidade e negócios começam a ser construídos de forma natural, em um ambiente consultivo e exclusivo.
           </p>
@@ -270,8 +270,8 @@ export default function EncontroBH() {
                 </div>
                 <div>
                   <h4 className="font-bold text-gray-900">Local</h4>
-                  <p className="text-gray-600">Hotel Royal Golden Savassi</p>
-                  <p className="text-sm text-gray-500">Rua Garret do Norte, 1015 – Belo Horizonte – MG</p>
+                  <p className="text-gray-600">R. Antônio de Albuquerque, 335 – Savassi, Belo Horizonte – MG, 30112-010</p>
+                  
                 </div>
               </div>
             </div>

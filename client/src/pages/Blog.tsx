@@ -1,7 +1,7 @@
 import Layout from "@/components/Layout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, Calendar, User, ArrowRight, ArrowLeft } from "lucide-react";
+import { Search, Calendar, User, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 import { blogPosts as staticPosts } from "@/data/blog-posts";
 import { useState, useEffect } from "react";
@@ -24,35 +24,34 @@ export default function Blog() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    // Carregar posts locais e mesclar com estáticos
+    const loadPosts = () => {
       try {
-        const res = await fetch("/api/posts.php");
-        if (res.ok) {
-          const data = await res.json();
-          // Mescla posts da API com posts estáticos (opcional, ou substitui)
-          // Aqui vamos dar preferência para API, se vazia usa estáticos
-          if (Array.isArray(data) && data.length > 0) {
-            // Mapear campos da API para o formato da interface se necessário
-            const apiPosts = data.map((p: any) => ({
-              ...p,
-              image: p.coverImage || p.image || "/images/blog-default.jpg"
-            }));
-            setPosts(apiPosts);
-          } else {
-            setPosts(staticPosts);
-          }
-        } else {
-          throw new Error("API error");
-        }
+        const savedPosts = JSON.parse(localStorage.getItem("blog_posts") || "[]");
+        
+        // Formatar posts locais para o mesmo formato (se necessário)
+        const formattedLocalPosts = savedPosts.map((p: any) => ({
+          ...p,
+          image: p.coverImage || p.image || "/images/blog-default.jpg"
+        }));
+
+        // Combinar: Locais primeiro (mais recentes), depois estáticos
+        // Remover duplicatas por ID se houver conflito
+        const allPosts = [...formattedLocalPosts, ...staticPosts];
+        
+        // Ordenar por data (decrescente)
+        allPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+
+        setPosts(allPosts);
       } catch (err) {
-        console.log("Usando posts estáticos (fallback)");
+        console.error("Erro ao carregar posts", err);
         setPosts(staticPosts);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchPosts();
+    loadPosts();
   }, []);
 
   const filteredPosts = posts.filter(post => 
@@ -117,6 +116,7 @@ export default function Blog() {
                         src={post.image} 
                         alt={post.title} 
                         className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                        onError={(e) => { e.currentTarget.src = "/images/blog-default.jpg" }} 
                       />
                       <div className="absolute top-4 left-4 bg-[#EE6025] text-white text-xs font-bold px-3 py-1 rounded-full shadow-md z-10">
                         {post.category}

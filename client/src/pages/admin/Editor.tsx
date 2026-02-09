@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import { blogPosts as initialPosts } from "@/data/blog-posts"; // Importar dados iniciais se existirem
 
 export default function AdminEditor() {
   const [, params] = useRoute("/painel/edit/:id");
@@ -24,15 +25,18 @@ export default function AdminEditor() {
   });
 
   useEffect(() => {
-    if (isEditing) {
-      // Fetch post data if editing
-      fetch("/api/posts.php")
-        .then(res => res.json())
-        .then(posts => {
-           const post = posts.find((p: any) => p.id === params.id);
-           if (post) setFormData(post);
-        })
-        .catch(() => console.log("Modo local: não foi possível carregar post"));
+    if (isEditing && params?.id) {
+      // Carregar posts do localStorage ou usar inicial
+      const savedPosts = JSON.parse(localStorage.getItem("blog_posts") || "[]");
+      const allPosts = [...savedPosts]; // Poderia mesclar com initialPosts se quisesse editar os estáticos, mas geralmente editamos apenas os novos ou copiados.
+      
+      const post = allPosts.find((p: any) => p.id === params.id);
+      if (post) {
+        setFormData(post);
+      } else {
+        // Tentar achar nos estáticos para carregar no form (read-only id)
+        // Se não tiver initialPosts importado, ignorar.
+      }
     }
   }, [isEditing, params?.id]);
 
@@ -41,46 +45,33 @@ export default function AdminEditor() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files?.[0]) return;
-    
-    const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append("image", file);
-
-    try {
-      const res = await fetch("/api/upload.php", {
-        method: "POST",
-        body: formData
-      });
-      const data = await res.json();
-      if (data.url) {
-        setFormData(prev => ({ ...prev, coverImage: data.url }));
-      }
-    } catch (err) {
-      alert("Erro no upload (requer PHP rodando)");
-    }
+  // Upload simulado (apenas pega URL ou converte base64 se fosse pequeno, aqui vamos pedir URL)
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value; // Aqui seria URL direta
+    setFormData(prev => ({ ...prev, coverImage: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    try {
-      const res = await fetch("/api/posts.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
-      });
-      
-      if (res.ok) {
-        alert("Post salvo com sucesso!");
-        setLocation("/painel/dashboard");
-      } else {
-        throw new Error("Erro ao salvar");
-      }
-    } catch (err) {
-      alert("Erro ao salvar (verifique se o backend PHP está rodando). Em produção funcionará.");
+    // Validação
+    if (!formData.title || !formData.slug || !formData.content) {
+      alert("Preencha os campos obrigatórios: Título, Slug e Conteúdo.");
+      return;
     }
+
+    const savedPosts = JSON.parse(localStorage.getItem("blog_posts") || "[]");
+    
+    if (isEditing) {
+      const updatedPosts = savedPosts.map((p: any) => p.id === formData.id ? formData : p);
+      localStorage.setItem("blog_posts", JSON.stringify(updatedPosts));
+    } else {
+      const newPost = { ...formData, id: Date.now().toString() };
+      localStorage.setItem("blog_posts", JSON.stringify([...savedPosts, newPost]));
+    }
+    
+    alert("Post salvo com sucesso! (Armazenamento Local)");
+    setLocation("/painel/dashboard");
   };
 
   return (
@@ -94,12 +85,12 @@ export default function AdminEditor() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <Label>Título</Label>
+                  <Label>Título *</Label>
                   <Input name="title" value={formData.title} onChange={handleChange} required />
                 </div>
                 <div className="space-y-2">
-                  <Label>Slug (URL)</Label>
-                  <Input name="slug" value={formData.slug} onChange={handleChange} placeholder="ex: meu-primeiro-post" required />
+                  <Label>Slug (URL) *</Label>
+                  <Input name="slug" value={formData.slug} onChange={handleChange} placeholder="ex: novidades-2026" required />
                 </div>
               </div>
 
@@ -109,7 +100,7 @@ export default function AdminEditor() {
               </div>
 
               <div className="space-y-2">
-                <Label>Conteúdo (Markdown ou HTML)</Label>
+                <Label>Conteúdo (Markdown ou HTML) *</Label>
                 <Textarea name="content" value={formData.content} onChange={handleChange} className="min-h-[300px] font-mono" required />
               </div>
 
@@ -119,15 +110,14 @@ export default function AdminEditor() {
                   <Input name="category" value={formData.category} onChange={handleChange} />
                 </div>
                 <div className="space-y-2">
-                  <Label>Imagem de Capa</Label>
-                  <Input type="file" onChange={handleImageUpload} />
-                  {formData.coverImage && <p className="text-xs text-gray-500 mt-1">Imagem atual: {formData.coverImage}</p>}
+                  <Label>URL da Imagem de Capa</Label>
+                  <Input name="coverImage" value={formData.coverImage} onChange={handleChange} placeholder="https://..." />
                 </div>
               </div>
 
               <div className="flex justify-end gap-4 pt-4">
                 <Button type="button" variant="outline" onClick={() => setLocation("/painel/dashboard")}>Cancelar</Button>
-                <Button type="submit">Salvar Post</Button>
+                <Button type="submit" className="bg-[#EE6025] hover:bg-[#d94e15]">Salvar Post</Button>
               </div>
             </form>
           </CardContent>

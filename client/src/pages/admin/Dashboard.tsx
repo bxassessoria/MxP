@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Plus, Edit, Trash, LogOut } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Plus, Edit, Trash, LogOut, LayoutGrid } from "lucide-react";
 
 interface Post {
   id: string;
@@ -25,33 +25,20 @@ export default function AdminDashboard() {
     fetchPosts();
   }, []);
 
-  const fetchPosts = async () => {
-    try {
-      const res = await fetch("/api/posts.php");
-      if (res.ok) {
-        const data = await res.json();
-        setPosts(data);
-      } else {
-        // Mock data para desenvolvimento local
-        setPosts([
-          { id: "1", title: "Post Exemplo (Ambiente Local)", date: "2024-02-02", category: "Tecnologia" },
-          { id: "2", title: "Bem-vindo ao Painel Admin", date: "2024-02-03", category: "Tutorial" }
-        ]);
-      }
-    } catch (err) {
-      console.error("Erro ao buscar posts", err);
-    }
+  const fetchPosts = () => {
+    // Carregar do localStorage
+    const savedPosts = JSON.parse(localStorage.getItem("blog_posts") || "[]");
+    setPosts(savedPosts);
   };
 
-  const handleDelete = async (id: string) => {
-    if (!confirm("Tem certeza que deseja excluir?")) return;
+  const handleDelete = (id: string) => {
+    if (!confirm("Tem certeza que deseja excluir este post?")) return;
     
-    try {
-      await fetch(`/api/posts.php?id=${id}`, { method: "DELETE" });
-      fetchPosts();
-    } catch (err) {
-      alert("Erro ao excluir (pode ser ambiente local)");
-    }
+    const savedPosts = JSON.parse(localStorage.getItem("blog_posts") || "[]");
+    const filteredPosts = savedPosts.filter((p: any) => p.id !== id);
+    localStorage.setItem("blog_posts", JSON.stringify(filteredPosts));
+    
+    fetchPosts(); // Recarregar lista
   };
 
   const handleLogout = () => {
@@ -63,49 +50,61 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-gray-50 p-8">
       <div className="max-w-4xl mx-auto">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">Gerenciar Blog</h1>
+          <h1 className="text-3xl font-bold text-[#263858]">Painel Administrativo</h1>
           <div className="flex gap-4">
             <Link href="/painel/cases">
-              <Button variant="outline" className="flex items-center gap-2 mr-2">
-                 Gerenciar Cases
+              <Button variant="outline" className="flex items-center gap-2">
+                 <LayoutGrid size={16} /> Gerenciar Cases
               </Button>
             </Link>
-            <Link href="/painel/new">
-              <Button className="flex items-center gap-2">
-                <Plus size={16} /> Novo Post
-              </Button>
-            </Link>
-            <Button variant="outline" onClick={handleLogout}>
+            <Button variant="outline" onClick={handleLogout} className="text-red-600 hover:text-red-700 hover:bg-red-50">
               <LogOut size={16} /> Sair
             </Button>
           </div>
         </div>
 
-        <div className="grid gap-4">
-          {posts.map((post) => (
-            <Card key={post.id}>
-              <CardContent className="flex justify-between items-center p-6">
-                <div>
-                  <h3 className="font-semibold text-lg">{post.title}</h3>
-                  <p className="text-sm text-gray-500">{post.date} • {post.category}</p>
-                </div>
-                <div className="flex gap-2">
-                  <Link href={`/painel/edit/${post.id}`}>
-                    <Button variant="ghost" size="icon">
-                      <Edit size={18} />
+        {/* Seção Blog */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-8">
+            <div className="flex justify-between items-center mb-6">
+                <h2 className="text-xl font-bold text-[#263858]">Posts do Blog</h2>
+                <Link href="/painel/new">
+                    <Button className="flex items-center gap-2 bg-[#EE6025] hover:bg-[#d94e15]">
+                        <Plus size={16} /> Novo Post
                     </Button>
-                  </Link>
-                  <Button variant="ghost" size="icon" className="text-red-500" onClick={() => handleDelete(post.id)}>
-                    <Trash size={18} />
-                  </Button>
+                </Link>
+            </div>
+
+            <div className="grid gap-4">
+            {posts.map((post) => (
+                <Card key={post.id} className="hover:shadow-md transition-shadow">
+                <CardContent className="flex justify-between items-center p-4">
+                    <div>
+                    <h3 className="font-semibold text-lg text-[#263858]">{post.title}</h3>
+                    <p className="text-sm text-gray-500">{post.date} • {post.category}</p>
+                    </div>
+                    <div className="flex gap-2">
+                    <Link href={`/painel/edit/${post.id}`}>
+                        <Button variant="ghost" size="icon" className="text-blue-600 hover:text-blue-800 hover:bg-blue-50">
+                        <Edit size={18} />
+                        </Button>
+                    </Link>
+                    <Button variant="ghost" size="icon" className="text-red-500 hover:text-red-700 hover:bg-red-50" onClick={() => handleDelete(post.id)}>
+                        <Trash size={18} />
+                    </Button>
+                    </div>
+                </CardContent>
+                </Card>
+            ))}
+            
+            {posts.length === 0 && (
+                <div className="text-center py-12 bg-gray-50 rounded-lg border border-dashed border-gray-300">
+                    <p className="text-gray-500 mb-4">Nenhum post criado ainda.</p>
+                    <Link href="/painel/new">
+                        <Button variant="outline">Criar meu primeiro post</Button>
+                    </Link>
                 </div>
-              </CardContent>
-            </Card>
-          ))}
-          
-          {posts.length === 0 && (
-            <p className="text-center text-gray-500 mt-8">Nenhum post encontrado.</p>
-          )}
+            )}
+            </div>
         </div>
       </div>
     </div>

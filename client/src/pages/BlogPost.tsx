@@ -18,24 +18,22 @@ export default function BlogPost() {
   }, [slug]);
 
   useEffect(() => {
-    const fetchPost = async () => {
+    const fetchPost = () => {
       try {
-        const res = await fetch("/api/posts.php");
-        if (res.ok) {
-          const data = await res.json();
-          const found = data.find((p: any) => p.slug === slug);
-          if (found) {
-             setPost({
-                ...found,
-                image: found.coverImage || found.image || "/images/blog-default.jpg",
-                tags: found.tags || ["Tecnologia", "Broadcast"] // Fallback tags
-             });
-          } else {
-             const staticFound = staticPosts.find(p => p.slug === slug);
-             setPost(staticFound);
-          }
+        // Tentar achar nos locais
+        const savedPosts = JSON.parse(localStorage.getItem("blog_posts") || "[]");
+        let found = savedPosts.find((p: any) => p.slug === slug);
+        
+        if (found) {
+           setPost({
+              ...found,
+              image: found.coverImage || found.image || "/images/blog-default.jpg",
+              tags: found.tags || ["Tecnologia", "Broadcast"] // Fallback tags
+           });
         } else {
-           throw new Error("API error");
+           // Tentar achar nos estáticos
+           const staticFound = staticPosts.find(p => p.slug === slug);
+           setPost(staticFound);
         }
       } catch (err) {
          const staticFound = staticPosts.find(p => p.slug === slug);

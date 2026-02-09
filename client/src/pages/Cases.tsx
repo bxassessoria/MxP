@@ -8,6 +8,7 @@ interface Client {
   name: string;
   logo: string;
   category: string;
+  bgImage?: string;
   hasCase?: boolean;
   slug?: string;
   title?: string;
@@ -122,30 +123,52 @@ export default function Cases() {
             ))}
           </div>
 
-          {/* LOGOS GRID */}
+          {/* LOGOS & IMAGES GRID */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
             {filteredCases.map((client, idx) => (
               <div 
                 key={idx}
-                className="group relative bg-white border border-gray-100 rounded-xl p-8 flex items-center justify-center aspect-[4/3] shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 overflow-hidden"
+                className="group relative bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all hover:-translate-y-1 aspect-[4/3]"
               >
-                {/* CASE FLAG */}
-                {client.hasCase && (
-                  <div className="absolute top-0 right-0 bg-[#EE6025] text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg z-10 shadow-md">
-                    CASE
+                {/* BACKGROUND IMAGE (Se existir) */}
+                {client.bgImage ? (
+                  <div className="absolute inset-0 z-0">
+                    <img 
+                      src={client.bgImage} 
+                      alt={`${client.name} background`} 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0 opacity-20 group-hover:opacity-40"
+                    />
                   </div>
+                ) : (
+                  <div className="absolute inset-0 bg-gray-50 z-0"></div>
                 )}
 
-                {/* LOGO */}
-                <img 
-                  src={client.logo} 
-                  alt={client.name}
-                  className="max-w-[80%] max-h-[80%] object-contain grayscale group-hover:grayscale-0 transition-all duration-300 opacity-80 group-hover:opacity-100"
-                />
+                {/* CONTENT CONTAINER */}
+                <div className="relative z-10 w-full h-full flex flex-col items-center justify-center p-6">
+                    
+                    {/* CASE FLAG */}
+                    {client.hasCase && (
+                      <div className="absolute top-0 right-0 bg-[#EE6025] text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg shadow-md">
+                        CASE
+                      </div>
+                    )}
+
+                    {/* LOGO */}
+                    <img 
+                      src={client.logo} 
+                      alt={client.name}
+                      className="max-w-[80%] max-h-[60%] object-contain transition-all duration-300 drop-shadow-sm group-hover:drop-shadow-md"
+                    />
+
+                    {/* NAME (Apenas se não tiver logo ou se for hover) */}
+                    <span className="mt-4 text-sm font-bold text-[#263858] opacity-0 group-hover:opacity-100 transition-opacity text-center">
+                        {client.name}
+                    </span>
+                </div>
 
                 {/* HOVER OVERLAY FOR "CASE" ITEMS */}
                 {client.hasCase && (
-                  <div className="absolute inset-0 bg-[#263858]/90 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-6 text-center">
+                  <div className="absolute inset-0 bg-[#263858]/95 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center p-6 text-center z-20">
                     <h3 className="text-white font-bold text-lg mb-2">{client.name}</h3>
                     <span className="text-[#EE6025] text-sm font-bold uppercase tracking-wider mb-4">{client.category}</span>
                     {client.slug && (

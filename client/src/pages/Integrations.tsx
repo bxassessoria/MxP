@@ -78,7 +78,7 @@ const getPartnerInfo = (name: string) => {
   if (logoMap[n]) {
     logoUrl = logoMap[n];
   } else {
-    // Fallback para Clearbit apenas se não tiver logo local
+    // Fallback apenas se não tiver logo local
     let logoDomain = `${n.replace(/\s/g, '')}.com`;
     logoUrl = `https://logo.clearbit.com/${logoDomain}`;
   }
@@ -253,58 +253,49 @@ export default function Integrations() {
             {filteredPartners.map((partner, idx) => (
               <div 
                 key={idx}
-                className="group relative bg-white border border-gray-100 rounded-lg p-4 flex items-center justify-center aspect-square shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 overflow-hidden"
+                className="group relative bg-white border border-gray-100 rounded-xl p-4 flex items-center justify-center h-28 transition-all hover:shadow-xl hover:border-[#EE6025]/20 hover:-translate-y-1"
+                title={partner.name}
               >
-                {/* LOGO */}
                 {partner.logo ? (
                   <img 
                     src={partner.logo} 
-                    alt={partner.name}
+                    alt={partner.name} 
+                    className="max-w-[80%] max-h-[70%] object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300"
                     onError={(e) => {
-                        e.currentTarget.style.display = 'none';
-                        e.currentTarget.parentElement?.querySelector('.fallback-text')?.classList.remove('hidden');
+                      e.currentTarget.style.display = 'none';
+                      e.currentTarget.parentElement!.querySelector('span')!.style.display = 'block';
                     }}
-                    className="max-w-[80%] max-h-[80%] object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
                   />
                 ) : null}
-                
-                {/* Fallback text if no logo */}
-                <span className={`fallback-text text-xs font-bold text-center text-gray-400 group-hover:text-[#263858] ${partner.logo ? 'hidden' : ''}`}>
-                    {partner.name}
+                <span 
+                  className="text-xs font-bold text-gray-400 text-center hidden group-hover:text-[#EE6025]"
+                  style={{ display: partner.logo ? 'none' : 'block' }}
+                >
+                  {partner.name}
                 </span>
-
-                {/* Tooltip simples no hover */}
-                <div className="absolute inset-0 bg-white/95 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center p-2 text-center pointer-events-none border border-[#EE6025]">
-                  <span className="text-[#263858] text-[10px] font-bold uppercase tracking-wider leading-tight">{partner.name}</span>
+                
+                {/* Tooltip on Hover */}
+                <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-[#263858] text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-20">
+                  {partner.name}
                 </div>
               </div>
             ))}
           </div>
-          
+
+          {/* Empty State */}
           {filteredPartners.length === 0 && (
             <div className="text-center py-20">
-               <p className="text-gray-400 text-lg">Nenhum parceiro encontrado nesta categoria.</p>
+              <p className="text-xl text-gray-400">Nenhum parceiro encontrado para esta busca.</p>
+              <Button 
+                variant="outline" 
+                className="mt-4"
+                onClick={() => {setSearchTerm(""); setActiveCategory("Todos")}}
+              >
+                Limpar filtros
+              </Button>
             </div>
           )}
 
-        </div>
-      </section>
-
-      {/* CTA SECTION */}
-      <section className="py-24 bg-[#F8F9FA] border-t border-gray-200">
-        <div className="container text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#263858] mb-6">
-            Não encontrou sua ferramenta?
-          </h2>
-          <p className="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
-            Nossa arquitetura aberta permite o desenvolvimento rápido de novos drivers e conectores. Fale com nossa engenharia.
-          </p>
-          <a 
-            href="/contato" 
-            className="inline-block bg-[#EE6025] text-white font-bold text-lg py-4 px-10 rounded-full hover:bg-[#d94e15] transition-transform hover:scale-105 shadow-lg"
-          >
-            Solicitar Integração
-          </a>
         </div>
       </section>
     </Layout>
