@@ -25,24 +25,39 @@ export default function Blog() {
 
   useEffect(() => {
     // Carregar posts locais e mesclar com estáticos
-    const loadPosts = () => {
+    const loadPosts = async () => {
       try {
-        const savedPosts = JSON.parse(localStorage.getItem("blog_posts") || "[]");
+        let dynamicPosts: any[] = [];
         
-        // Formatar posts locais para o mesmo formato (se necessário)
-        const formattedLocalPosts = savedPosts.map((p: any) => ({
+        // Tentar carregar da API
+        try {
+          const response = await fetch('/api/posts.php');
+          if (response.ok) {
+            dynamicPosts = await response.json();
+          }
+        } catch (e) {
+          console.warn('API indisponível, verificando localStorage');
+          // Fallback localStorage
+          dynamicPosts = JSON.parse(localStorage.getItem("blog_posts") || "[]");
+        }
+        
+        // Formatar posts dinâmicos para o mesmo formato
+        const formattedDynamicPosts = dynamicPosts.map((p: any) => ({
           ...p,
           image: p.coverImage || p.image || "/images/blog-default.jpg"
         }));
 
-        // Combinar: Locais primeiro (mais recentes), depois estáticos
+        // Combinar: Dinâmicos primeiro (mais recentes), depois estáticos
         // Remover duplicatas por ID se houver conflito
-        const allPosts = [...formattedLocalPosts, ...staticPosts];
+        const allPosts = [...formattedDynamicPosts, ...staticPosts];
+        
+        // Remover duplicatas reais por ID
+        const uniquePosts = Array.from(new Map(allPosts.map(item => [item.id, item])).values());
         
         // Ordenar por data (decrescente)
-        allPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        uniquePosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
-        setPosts(allPosts);
+        setPosts(uniquePosts);
       } catch (err) {
         console.error("Erro ao carregar posts", err);
         setPosts(staticPosts);

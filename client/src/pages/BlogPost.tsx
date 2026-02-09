@@ -18,26 +18,42 @@ export default function BlogPost() {
   }, [slug]);
 
   useEffect(() => {
-    const fetchPost = () => {
+    const fetchPost = async () => {
       try {
-        // Tentar achar nos locais
-        const savedPosts = JSON.parse(localStorage.getItem("blog_posts") || "[]");
-        let found = savedPosts.find((p: any) => p.slug === slug);
+        let foundPost: any = null;
+
+        // 1. Tentar encontrar na API
+        try {
+          const response = await fetch('/api/posts.php');
+          if (response.ok) {
+            const dynamicPosts = await response.json();
+            foundPost = dynamicPosts.find((p: any) => p.slug === slug);
+          }
+        } catch (e) {
+          console.warn('API indisponível, verificando localStorage');
+          // Fallback localStorage
+          const localPosts = JSON.parse(localStorage.getItem("blog_posts") || "[]");
+          foundPost = localPosts.find((p: any) => p.slug === slug);
+        }
+
+        // 2. Se não achou na API/Local, procurar nos estáticos
+        if (!foundPost) {
+          foundPost = staticPosts.find(p => p.slug === slug);
+        }
         
-        if (found) {
+        if (foundPost) {
            setPost({
-              ...found,
-              image: found.coverImage || found.image || "/images/blog-default.jpg",
-              tags: found.tags || ["Tecnologia", "Broadcast"] // Fallback tags
+              ...foundPost,
+              image: foundPost.coverImage || foundPost.image || "/images/blog-default.jpg",
+              tags: foundPost.tags || ["Tecnologia", "Broadcast"] // Fallback tags
            });
-        } else {
-           // Tentar achar nos estáticos
-           const staticFound = staticPosts.find(p => p.slug === slug);
-           setPost(staticFound);
         }
       } catch (err) {
+         console.error('Erro ao buscar post:', err);
          const staticFound = staticPosts.find(p => p.slug === slug);
-         setPost(staticFound);
+         if (staticFound) {
+           setPost(staticFound);
+         }
       } finally {
         setLoading(false);
       }
@@ -137,7 +153,7 @@ export default function BlogPost() {
               {/* Corpo do Texto */}
               <div 
                 className="prose prose-lg max-w-none text-gray-700 prose-headings:text-[#263858] prose-a:text-[#EE6025] prose-img:rounded-xl"
-                dangerouslySetInnerHTML={{ __html: post.content.replace(/\n/g, '<br/>') }}
+                dangerouslySetInnerHTML={{ __html: post.content ? post.content.replace(/\n/g, '<br/>') : '' }}
               />
 
               {/* Tags */}
